@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>H-CORE edu | Cywilne szkolenia kryzysowe</title>
+    <meta name="description"
+        content="H-CORE edu – cywilne szkolenia kryzysowe: kontrola krwotoków, pierwsza pomoc, szkolenia dla firm i osób prywatnych. Kraków i okolice." />
+
+    <style>
+        :root {
+            --bg: #0b0c0f;
+            --card: #11131a;
+            --muted: #a9b0c0;
+            --text: #f3f5ff;
+            --red: #d10b0b;
+            --red2: #ff1a1a;
+            --line: rgba(255, 255, 255, .10);
+            --shadow: 0 18px 60px rgba(0, 0, 0, .55);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
+            background: radial-gradient(1200px 700px at 70% -10%, rgba(209, 11, 11, .25), transparent 60%),
+                radial-gradient(900px 600px at 20% 0%, rgba(255, 255, 255, .06), transparent 55%),
+                var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit
+        }
+
+        .wrap {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 24px
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 22px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02));
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(6px);
+        }
+
+        .brand {
+            display: flex;
+            gap: 24px;
+            /* więcej odstępu */
+            align-items: center;
+            min-width: 0;
+        }
+
+        .brand img {
+            width: 250px;
+            height: auto;
+            display: block;
+            border-radius: 14px;
+            padding: 4px;
+        }
+
+
+        .brand-title {
+            min-width: 0;
+        }
+
+        .brand-title h1 {
+            font-size: 20px;
+            margin: 0;
+            letter-spacing: .8px;
+        }
+
+        .brand-title p {
+            margin: 4px 0 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* Nav tabs */
+        nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+            padding-bottom: 6px;
+            overflow-x: auto;
+
+            padding-left: 6px;
+            /* DODAJ */
+            padding-right: 6px;
+            /* DODAJ */
+        }
+
+        nav::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        nav::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, .12);
+            border-radius: 999px;
+        }
+
+
+        .tab-btn {
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .03);
+            color: var(--text);
+            padding: 10px 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: .2s ease;
+            outline: none;
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-1px);
+            border-color: rgba(255, 255, 255, .18);
+            background: rgba(255, 255, 255, .05);
+        }
+
+        .tab-btn[aria-selected="true"] {
+            border-color: rgba(209, 11, 11, .6);
+            background: linear-gradient(180deg, rgba(209, 11, 11, .25), rgba(255, 255, 255, .03));
+        }
+
+        /* Hero */
+        .hero {
+            margin-top: 18px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background:
+                radial-gradient(900px 280px at 70% 0%, rgba(209, 11, 11, .25), transparent 60%),
+                linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .02));
+            box-shadow: var(--shadow);
+            padding: 26px;
+        }
+
+        .hero h2 {
+            margin: 0 0 10px;
+            font-size: 28px;
+            letter-spacing: .3px;
+        }
+
+        .hero p {
+            margin: 0;
+            color: var(--muted);
+            max-width: 70ch;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .03);
+            text-decoration: none;
+            font-weight: 700;
+            transition: .2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            background: rgba(255, 255, 255, .05);
+            border-color: rgba(255, 255, 255, .18);
+        }
+
+        .btn.primary {
+            border-color: rgba(209, 11, 11, .6);
+            background: linear-gradient(180deg, rgba(209, 11, 11, .45), rgba(209, 11, 11, .22));
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(0, 0, 0, .20);
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 14px;
+        }
+
+        /* Content area */
+        .content {
+            margin-top: 18px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, .02);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .panel {
+            display: none;
+            padding: 22px;
+            animation: fade .18s ease;
+        }
+
+        .panel.active {
+            display: block
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .0;
+                transform: translateY(4px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 14px;
+        }
+
+        .card {
+            grid-column: span 6;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .02));
+            padding: 16px;
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
+            font-size: 16px
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted)
+        }
+
+        .card ul {
+            margin: 10px 0 0 18px;
+            color: var(--muted)
+        }
+
+        .card li {
+            margin: 6px 0
+        }
+
+        .list {
+            margin: 0;
+            padding-left: 18px;
+            color: var(--muted);
+        }
+
+        /* Contact */
+        .contact-box {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 14px;
+        }
+
+        .contact-box .card {
+            grid-column: auto
+        }
+
+        .form {
+            display: grid;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .field {
+            display: grid;
+            gap: 6px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px 12px;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            background: rgba(0, 0, 0, .25);
+            color: var(--text);
+            font-size: 14px;
+            outline: none;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical
+        }
+
+        .hint {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 10px;
+        }
+
+        footer {
+            margin-top: 14px;
+            padding: 18px 4px;
+            color: rgba(255, 255, 255, .55);
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width:860px) {
+            header {
+                flex-direction: column;
+                align-items: stretch
+            }
+
+            nav {
+                justify-content: flex-start
+            }
+
+            .card {
+                grid-column: span 12
+            }
+
+            .contact-box {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <div class="brand">
+                <!-- Logo: wrzuć plik logo.png do tego samego folderu co index.html -->
+                <img src="logo.png" alt="H-CORE edu logo" />
+                <div class="brand-title">
+                    <h1>H-CORE edu</h1>
+                    <p>Cywilne szkolenia kryzysowe • Kraków / Małopolska</p>
+                </div>
+            </div>
+
+            <nav aria-label="Nawigacja strony">
+                <button class="tab-btn" id="tab-onas" aria-controls="panel-onas" aria-selected="true" type="button">O
+                    nas</button>
+                <button class="tab-btn" id="tab-szkolenia" aria-controls="panel-szkolenia" aria-selected="false"
+                    type="button">Szkolenia</button>
+                <button class="tab-btn" id="tab-kontakt" aria-controls="panel-kontakt" aria-selected="false"
+                    type="button">Kontakt</button>
+                <button class="tab-btn" id="tab-materialy" aria-controls="panel-materialy" aria-selected="false"
+                    type="button">Materiały</button>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <h2>Praktyka, która robi różnicę</h2>
+            <p>
+                Krótko, konkretnie i realistycznie. Szkolenia z działań ratujących życie i reagowania kryzysowego
+                dla osób prywatnych, firm i instytucji.
+            </p>
+
+            <div class="cta-row">
+                <!-- PODMIEŃ link do FB -->
+                <a class="btn primary" href="https://www.facebook.com/profile.php?id=61587227281522" target="_blank"
+                    rel="noopener">Facebook /
+                    zapisy</a>
+                <!-- PODMIEŃ numer telefonu -->
+                <a class="btn" href="tel:+48123456789">Zadzwoń</a>
+                <!-- PODMIEŃ email -->
+                <a class="btn" href="mailto:kontakt@h-core.edu.pl">Napisz e-mail</a>
+            </div>
+
+            <div class="pill">
+                <span>Małe grupy</span> • <span>Scenariusze</span> • <span>Sprzęt treningowy</span>
+            </div>
+        </section>
+
+        <main class="content">
+            <!-- O NAS -->
+            <section class="panel active" id="panel-onas" role="tabpanel" aria-labelledby="tab-onas">
+                <div class="grid">
+                    <div class="card">
+                        <h3>Kim jesteśmy</h3>
+                        <p>
+                            H-CORE edu to szkolenia kryzysowe dla cywili — bez lania wody.
+                            Uczymy działań, które możesz wdrożyć od razu: ocena sytuacji, priorytety, proste procedury.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Jak szkolimy</h3>
+                        <ul>
+                            <li>krótkie wprowadzenie + dużo praktyki</li>
+                            <li>realistyczne scenariusze</li>
+                            <li>nacisk na bezpieczeństwo i dobre nawyki</li>
+                            <li>tempo dopasowane do grupy</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Dla kogo</h3>
+                        <p>
+                            Osoby prywatne, rodzice, pracownicy firm, grupy sportowe, organizacje.
+                            Szkolenia w Krakowie i okolicach + dojazd po ustaleniu.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Co zyskujesz</h3>
+                        <ul>
+                            <li>pewność działania pod presją</li>
+                            <li>prosty schemat „co robić po kolei”</li>
+                            <li>praktykę z wyposażeniem (w zależności od szkolenia)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SZKOLENIA -->
+            <section class="panel" id="panel-szkolenia" role="tabpanel" aria-labelledby="tab-szkolenia">
+                <div class="grid">
+                    <div class="card">
+                        <h3>Kontrola krwotoków</h3>
+                        <p>
+                            Najważniejsze techniki tamowania masywnego krwotoku: ucisk, opatrunki, (opcjonalnie) staza,
+                            zasady bezpieczeństwa i ćwiczenia scenariuszowe.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Pierwsza pomoc – fundament</h3>
+                        <p>
+                            Postępowanie w stanach zagrożenia życia: ocena, wezwanie pomocy, podstawowe interwencje.
+                            Dużo praktyki, proste schematy.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Szkolenia dla firm</h3>
+                        <p>
+                            Program dopasowany do środowiska pracy: ryzyka, procedury, wyposażenie.
+                            Możliwa realizacja w siedzibie firmy.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Format i organizacja</h3>
+                        <ul class="list">
+                            <li>grupy: 5–10 osób (albo większe po ustaleniu)</li>
+                            <li>czas: 2–4h / 1 dzień (zależnie od tematu)</li>
+                            <li>lokalizacja: Kraków i okolice / dojazd</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-top:14px; padding:0 22px 22px;">
+                    <a class="btn primary" href="https://www.facebook.com/profile.php?id=61587227281522" target="_blank"
+                        rel="noopener">Zobacz
+                        terminy na Facebooku</a>
+                </div>
+            </section>
+
+            <!-- KONTAKT -->
+            <section class="panel" id="panel-kontakt" role="tabpanel" aria-labelledby="tab-kontakt">
+                <div class="contact-box">
+                    <div class="card">
+                        <h3>Napisz wiadomość</h3>
+                        <p style="color:var(--muted); margin-top:6px;">
+                            Ten formularz działa jako „wyślij e-mail” (bez serwera). Po kliknięciu otworzy się Twoja
+                            poczta.
+                        </p>
+
+                        <form class="form" id="contactForm">
+                            <div class="field">
+                                <label for="name">Imię</label>
+                                <input id="name" name="name" type="text" placeholder="np. Jan" required />
+                            </div>
+
+                            <div class="field">
+                                <label for="phone">Telefon (opcjonalnie)</label>
+                                <input id="phone" name="phone" type="tel" placeholder="np. +48 600 000 000" />
+                            </div>
+
+                            <div class="field">
+                                <label for="msg">Wiadomość</label>
+                                <textarea id="msg" name="msg" placeholder="Napisz w czym mogę pomóc..."
+                                    required></textarea>
+                            </div>
+
+                            <!-- PODMIEŃ email poniżej -->
+                            <button class="btn primary" type="submit">Wyślij e-mail</button>
+                        </form>
+
+                        <div class="hint">
+                            Jeśli chcesz „prawdziwy” formularz wysyłający bez programu pocztowego, trzeba dodać backend
+                            (np. Formularz Google / Netlify Forms / własny serwer).
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Szybki kontakt</h3>
+                        <ul class="list">
+                            <!-- PODMIEŃ dane -->
+                            <li><strong>Telefon:</strong> <a href="tel:+48123456789">+48 123 456 789</a></li>
+                            <li><strong>E-mail:</strong> <a
+                                    href="mailto:kontakt@h-core.edu.pl">kontakt@h-core.edu.pl</a></li>
+                            <li><strong>Facebook:</strong> <a
+                                    href="https://www.facebook.com/profile.php?id=61587227281522" target="_blank"
+                                    rel="noopener">profil / wydarzenia</a></li>
+                            <li><strong>Obszar:</strong> Kraków + okolice</li>
+                        </ul>
+
+                        <div style="margin-top:14px;">
+                            <a class="btn" href="https://maps.google.com/?q=Krak%C3%B3w" target="_blank"
+                                rel="noopener">Otwórz mapę</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MATERIAŁY -->
+            <section class="panel" id="panel-materialy" role="tabpanel" aria-labelledby="tab-materialy">
+                <div class="grid">
+                    <div class="card">
+                        <h3>Materiały do pobrania</h3>
+                        <p>
+                            Tu możesz wrzucić PDF-y / checklisty. Najprościej: wgraj pliki na hosting i podlinkuj.
+                        </p>
+                        <ul class="list" style="margin-top:10px;">
+                            <li><a href="materialy/checklista-krwotok.pdf">Checklista: kontrola krwotoków (PDF)</a></li>
+                            <li><a href="materialy/procedura-112.pdf">Procedura wezwania pomocy (PDF)</a></li>
+                            <li><a href="materialy/wyposazenie.pdf">Wyposażenie – rekomendacje (PDF)</a></li>
+                        </ul>
+                        <div class="hint">Jeśli nie masz plików, usuń linki lub zostaw „wkrótce”.</div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Wideo / posty</h3>
+                        <p>Najwygodniej linkować do Twoich materiałów na Facebooku.</p>
+                        <div style="margin-top:12px;">
+                            <a class="btn primary" href="https://www.facebook.com/profile.php?id=61587227281522"
+                                target="_blank" rel="noopener">Przejdź do Facebooka</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>FAQ (krótko)</h3>
+                        <ul class="list">
+                            <li><strong>Czy trzeba mieć doświadczenie?</strong> Nie — szkolenie jest od podstaw.</li>
+                            <li><strong>Ile osób w grupie?</strong> Najczęściej małe grupy.</li>
+                            <li><strong>Czy robicie szkolenia firmowe?</strong> Tak.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Aktualności</h3>
+                        <p>Wpisz tutaj najbliższy termin albo krótką informację promocyjną.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            © <span id="year"></span> H-CORE edu • www.h-core.edu.pl
+        </footer>
+    </div>
+
+    <script>
+        // Tabs logic
+        const tabs = Array.from(document.querySelectorAll(".tab-btn"));
+        const panels = Array.from(document.querySelectorAll(".panel"));
+
+        function activateTab(tabId) {
+            const tab = document.getElementById(tabId);
+            if (!tab) return;
+
+            tabs.forEach(t => t.setAttribute("aria-selected", String(t.id === tabId)));
+            panels.forEach(p => p.classList.toggle("active", p.id === tab.getAttribute("aria-controls")));
+
+            // Update hash for shareable links
+            const hashMap = {
+                "tab-onas": "onas",
+                "tab-szkolenia": "szkolenia",
+                "tab-kontakt": "kontakt",
+                "tab-materialy": "materialy"
+            };
+            const newHash = hashMap[tabId] || "onas";
+            history.replaceState(null, "", "#" + newHash);
+        }
+
+        tabs.forEach(t => t.addEventListener("click", () => activateTab(t.id)));
+
+        // Open correct tab from URL hash
+        const hash = (location.hash || "").replace("#", "").toLowerCase();
+        const fromHash = {
+            "onas": "tab-onas",
+            "szkolenia": "tab-szkolenia",
+            "kontakt": "tab-kontakt",
+            "materialy": "tab-materialy"
+        }[hash] || "tab-onas";
+        activateTab(fromHash);
+
+        // Footer year
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Contact form (mailto)
+        const form = document.getElementById("contactForm");
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const msg = document.getElementById("msg").value.trim();
+
+            // PODMIEŃ email docelowy:
+            const to = "kontakt@h-core.edu.pl";
+            const subject = encodeURIComponent("Zapytanie ze strony H-CORE edu");
+            const body = encodeURIComponent(
+                `Imię: ${name}\nTelefon: ${phone || "-"}\n\nWiadomość:\n${msg}\n`
+            );
+
+            window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+        });
+    </script>
+</body>
+
+</html>
