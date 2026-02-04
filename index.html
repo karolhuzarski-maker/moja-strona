@@ -148,16 +148,15 @@
 
         /* Hero */
         .hero {
-           margin-top: 6px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
+            margin-top: 1px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
             background:
                 radial-gradient(900px 280px at 70% 0%, rgba(209, 11, 11, .25), transparent 60%),
                 linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .02));
-            max-width: 70%;
- 
             box-shadow: var(--shadow);
             padding: 16px 26px;
+            max-width: 90%;
         }
 
         .hero h2 {
@@ -366,6 +365,55 @@
                 grid-template-columns: 1fr
             }
         }
+
+        /* === MOBILE FIXES (wklej na końcu <style>) === */
+
+        /* nadpisuje Twoje: .brand img { width: 250px; } */
+        .brand img {
+            width: clamp(180px, 70vw, 250px);
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 520px) {
+            .wrap {
+                padding: 14px;
+            }
+
+            /* logo + tytuł jeden pod drugim */
+            .brand {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+
+            /* menu bez uciekania poza ekran (zawijanie) */
+            nav {
+                flex-wrap: wrap;
+                white-space: normal;
+                overflow-x: visible;
+                justify-content: center;
+            }
+
+            .tab-btn {
+                flex: 1 1 45%;
+                /* 2 przyciski w rzędzie */
+                text-align: center;
+            }
+
+            /* przyciski CTA pod sobą (żeby nie rozpychały) */
+            .cta-row {
+                flex-wrap: wrap;
+            }
+
+            .cta-row .btn {
+                flex: 1 1 100%;
+            }
+
+            .hero {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -377,7 +425,7 @@
                 <img src="logo.png" alt="H-CORE edu logo" />
                 <div class="brand-title">
                     <h1>H-CORE edu</h1>
-                    <p>Cywilne szkolenia kryzysowe • Kraków / Małopolska</p>
+                    <p>Krwotoki • zdarzenia masowe • gotowość cywilna 24h • Kraków / Małopolska</p>
                 </div>
             </div>
 
@@ -396,8 +444,10 @@
         <section class="hero">
             <h2>Praktyka, która robi różnicę</h2>
             <p>
-                Krótko, konkretnie i realistycznie. Szkolenia z działań ratujących życie i reagowania kryzysowego
-                dla osób prywatnych, firm i instytucji.
+                To nie jest survival ani preppers. Pierwsze minuty i godziny kryzysu.
+                H-CORE Edu– szkolenia dla cywili.
+
+
             </p>
 
             <div class="cta-row">
@@ -423,7 +473,7 @@
                     <div class="card">
                         <h3>Kim jesteśmy</h3>
                         <p>
-                            H-CORE edu to szkolenia kryzysowe dla cywili — bez lania wody.
+                            H-CORE edu to szkolenia kryzysowe dla cywili .
                             Uczymy działań, które możesz wdrożyć od razu: ocena sytuacji, priorytety, proste procedury.
                         </p>
                     </div>
@@ -507,8 +557,8 @@
                     <div class="card">
                         <h3>Napisz wiadomość</h3>
                         <p style="color:var(--muted); margin-top:6px;">
-                            Ten formularz działa jako „wyślij e-mail” (bez serwera). Po kliknięciu otworzy się Twoja
-                            poczta.
+                            Po kliknięciu „Wyślij e-mail” otworzy się program pocztowy (np. Outlook/Gmail) z uzupełnioną
+                            wiadomością. Wystarczy kliknąć „Wyślij”.
                         </p>
 
                         <form class="form" id="contactForm">
@@ -532,17 +582,14 @@
                             <button class="btn primary" type="submit">Wyślij e-mail</button>
                         </form>
 
-                        <div class="hint">
-                            Jeśli chcesz „prawdziwy” formularz wysyłający bez programu pocztowego, trzeba dodać backend
-                            (np. Formularz Google / Netlify Forms / własny serwer).
-                        </div>
+
                     </div>
 
                     <div class="card">
                         <h3>Szybki kontakt</h3>
                         <ul class="list">
                             <!-- PODMIEŃ dane -->
-                            <li><strong>Telefon:</strong> <a href="tel:+48123456789">+48 123 456 789</a></li>
+                            <li><strong>Telefon:</strong> <a href="tel:+48 791 499 668">+48 791 499 668</a></li>
                             <li><strong>E-mail:</strong> <a
                                     href="mailto:kontakt@h-core.edu.pl">kontakt@h-core.edu.pl</a></li>
                             <li><strong>Facebook:</strong> <a
@@ -664,6 +711,5 @@
         });
     </script>
 </body>
-
 
 </html>
