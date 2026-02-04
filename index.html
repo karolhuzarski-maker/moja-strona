@@ -466,7 +466,7 @@
             </div>
         </section>
 
-        <main class="content">
+        <main class="content" id="content">
             <!-- O NAS -->
             <section class="panel active" id="panel-onas" role="tabpanel" aria-labelledby="tab-onas">
                 <div class="grid">
@@ -674,6 +674,9 @@
             };
             const newHash = hashMap[tabId] || "onas";
             history.replaceState(null, "", "#" + newHash);
+            if (window.matchMedia("(max-width: 520px)").matches) {
+  document.getElementById("content").scrollIntoView({ behavior: "smooth", block: "start" });
+}
         }
 
         tabs.forEach(t => t.addEventListener("click", () => activateTab(t.id)));
@@ -713,3 +716,4 @@
 </body>
 
 </html>
+
