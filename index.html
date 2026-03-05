@@ -60,6 +60,7 @@
             gap: 18px;
             align-items: center;
             justify-content: space-between;
+            flex-wrap: wrap;
             padding: 24px 22px;
             border: 1px solid var(--line);
             border-radius: var(--radius);
@@ -74,6 +75,7 @@
             /* więcej odstępu */
             align-items: center;
             min-width: 0;
+            flex: 1 1 420px;
         }
 
         .brand img {
@@ -105,26 +107,17 @@
         nav {
             display: flex;
             gap: 12px;
-            flex-wrap: nowrap;
-            white-space: nowrap;
+            flex-wrap: wrap;
+            white-space: normal;
             padding-bottom: 6px;
-            overflow-x: auto;
+            overflow-x: visible;
+            justify-content: flex-end;
+            flex: 1 1 340px;
+            min-width: 0;
 
             padding-left: 6px;
-            /* DODAJ */
             padding-right: 6px;
-            /* DODAJ */
         }
-
-        nav::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        nav::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, .12);
-            border-radius: 999px;
-        }
-
 
         .tab-btn {
             border: 1px solid var(--line);
