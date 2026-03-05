@@ -105,26 +105,17 @@
         nav {
             display: flex;
             gap: 12px;
-            flex-wrap: nowrap;
-            white-space: nowrap;
+            flex-wrap: wrap;
+            white-space: normal;
             padding-bottom: 6px;
-            overflow-x: auto;
+            overflow-x: visible;
+            justify-content: flex-end;
 
             padding-left: 6px;
             /* DODAJ */
             padding-right: 6px;
             /* DODAJ */
         }
-
-        nav::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        nav::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, .12);
-            border-radius: 999px;
-        }
-
 
         .tab-btn {
             border: 1px solid var(--line);
