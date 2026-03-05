@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 980" role="img" aria-labelledby="title desc">
+  <title id="title">C.O.R.E. Stop Krwotokom (cywile)</title>
+  <desc id="desc">Grafika promująca 3 moduły szkoleniowe: tamowanie krwotoków, zdarzenia masowe SALT oraz gotowość cywilną 24h.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5a0614"/>
+      <stop offset="0.55" stop-color="#820f21"/>
+      <stop offset="1" stop-color="#43020e"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#b0102d"/>
+      <stop offset="1" stop-color="#ca2138"/>
+    </linearGradient>
+    <style>
+      .h1{font:700 66px 'Arial',sans-serif;fill:#fff}
+      .h2{font:700 64px 'Arial',sans-serif;fill:#f7c255}
+      .m{font:700 54px 'Arial',sans-serif;fill:#fff}
+      .t{font:700 42px 'Arial',sans-serif;fill:#fff}
+      .s{font:500 33px 'Arial',sans-serif;fill:#ffe6e6}
+      .f{font:700 58px 'Arial',sans-serif;fill:#fff}
+      .y{fill:#f7c255}
+      .small{font:700 30px 'Arial',sans-serif;fill:#f8dede}
+    </style>
+  </defs>
+
+  <rect width="1400" height="980" fill="url(#bg)"/>
+  <rect x="0" y="145" width="1400" height="95" fill="url(#bar)" opacity="0.95"/>
+
+  <rect x="95" y="58" width="320" height="86" rx="8" fill="#c71f38"/>
+  <text x="255" y="118" text-anchor="middle" class="h1">C.O.R.E.</text>
+  <text x="450" y="120" class="h1">Stop Krwotokom CORE (cywile)</text>
+
+  <text x="700" y="212" text-anchor="middle" class="h2">3 MODUŁY SZKOLENIOWE</text>
+
+  <g transform="translate(48 256)">
+    <rect width="420" height="500" fill="#6f1022" stroke="#d95e72"/>
+    <text x="210" y="72" text-anchor="middle" class="m">MODUŁ 1</text>
+    <text x="210" y="128" text-anchor="middle" class="t">Tamowanie krwotoków</text>
+    <rect x="36" y="156" width="348" height="50" fill="#f7c255"/>
+    <text x="210" y="192" text-anchor="middle" style="font:700 46px 'Arial';fill:#291306">STOP THE BLEED</text>
+    <rect x="0" y="238" width="420" height="180" fill="#8c1a2e"/>
+    <text x="210" y="470" text-anchor="middle" class="t">Nauka zatrzymywania</text>
+    <text x="210" y="516" text-anchor="middle" class="t">masywnych krwotoków</text>
+  </g>
+
+  <g transform="translate(490 256)">
+    <rect width="420" height="500" fill="#6f1022" stroke="#d95e72"/>
+    <text x="210" y="72" text-anchor="middle" class="m">MODUŁ 2</text>
+    <text x="210" y="128" text-anchor="middle" class="t">Zdarzenia Masowe</text>
+    <rect x="36" y="156" width="348" height="50" fill="#f7c255"/>
+    <text x="210" y="192" text-anchor="middle" style="font:700 46px 'Arial';fill:#291306">SEGREGACJA SALT</text>
+    <rect x="0" y="238" width="420" height="180" fill="#8c1a2e"/>
+    <text x="210" y="470" text-anchor="middle" class="t">Priorytety i segregacja</text>
+    <text x="210" y="516" text-anchor="middle" class="t">wielu poszkodowanych</text>
+  </g>
+
+  <g transform="translate(932 256)">
+    <rect width="420" height="500" fill="#6f1022" stroke="#d95e72"/>
+    <text x="210" y="72" text-anchor="middle" class="m">MODUŁ 3</text>
+    <text x="210" y="128" text-anchor="middle" class="t">Gotowość Cywilna 24 h</text>
+    <rect x="36" y="156" width="348" height="50" fill="#f7c255"/>
+    <text x="210" y="192" text-anchor="middle" style="font:700 44px 'Arial';fill:#291306">BLACKOUT - EWAKUACJA</text>
+    <rect x="0" y="238" width="420" height="180" fill="#8c1a2e"/>
+    <text x="210" y="470" text-anchor="middle" class="t">Planowanie minimalnych</text>
+    <text x="210" y="516" text-anchor="middle" class="t">zasobów w kryzysie</text>
+  </g>
+
+  <rect x="46" y="810" width="1308" height="138" rx="12" fill="#5a0e1d" opacity="0.92"/>
+  <text x="80" y="866" class="small">3 praktyczne moduły (150–210 minut) dla </text>
+  <text x="694" y="866" class="small y">CYWILI</text>
+  <text x="840" y="866" class="small">| certyfikat ukończenia kursu</text>
+  <text x="80" y="926" class="f">Zarezerwuj miejsce w kursie </text>
+  <text x="915" y="926" class="f y">kontakt@h-core.edu.pl</text>
+</svg>
