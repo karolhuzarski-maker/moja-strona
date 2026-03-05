@@ -587,6 +587,7 @@
                 </div>
 
                 <section class="program-section" id="program-core" aria-label="Program C.O.R.E.">
+                <section class="program-section" aria-label="Program C.O.R.E.">
                     <h3>C.O.R.E. – Stop Krwotokom (cywile)</h3>
                     <p class="program-subtitle">3 praktyczne moduły szkoleniowe dla cywili (150–210 minut) + certyfikat ukończenia</p>
 
@@ -815,6 +816,13 @@
             activateTab("tab-onas");
             document.getElementById("program-core")?.scrollIntoView({ behavior: "smooth", block: "start" });
         });
+        const fromHash = {
+            "onas": "tab-onas",
+            "szkolenia": "tab-szkolenia",
+            "kontakt": "tab-kontakt",
+            "materialy": "tab-materialy"
+        }[hash] || "tab-onas";
+        activateTab(fromHash);
 
         // Footer year
         document.getElementById("year").textContent = new Date().getFullYear();
