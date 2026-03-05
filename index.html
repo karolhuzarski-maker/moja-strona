@@ -278,6 +278,84 @@
             margin: 6px 0
         }
 
+        .program-section {
+            margin-top: 16px;
+            border: 1px solid rgba(209, 11, 11, .45);
+            border-radius: 14px;
+            background:
+                radial-gradient(1000px 350px at 50% -20%, rgba(209, 11, 11, .25), transparent 65%),
+                linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .01));
+            padding: 18px;
+        }
+
+        .program-section h3 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .program-subtitle {
+            margin: 6px 0 0;
+            color: #ffd7d7;
+        }
+
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .program-card {
+            border: 1px solid rgba(255, 255, 255, .14);
+            border-radius: 12px;
+            padding: 14px;
+            background: rgba(0, 0, 0, .2);
+        }
+
+        .program-card .modul {
+            font-size: 12px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #ffb7b7;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .program-card h4 {
+            margin: 0;
+            font-size: 20px;
+            line-height: 1.2;
+        }
+
+        .program-card p {
+            margin: 8px 0 0;
+            color: #f8dede;
+            line-height: 1.4;
+        }
+
+        .program-foot {
+            margin-top: 14px;
+            color: #ffe9e9;
+        }
+
+        .program-foot strong {
+            color: #ffcb2f;
+        }
+
+        .program-poster-wrap {
+            margin-top: 16px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .15);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, .35);
+        }
+
+        .program-poster {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
         .list {
             margin: 0;
             padding-left: 18px;
@@ -360,6 +438,10 @@
 
             .contact-box {
                 grid-template-columns: 1fr
+            }
+
+            .program-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -502,6 +584,37 @@
                         </ul>
                     </div>
                 </div>
+
+                <section class="program-section" aria-label="Program C.O.R.E.">
+                    <h3>C.O.R.E. – Stop Krwotokom (cywile)</h3>
+                    <p class="program-subtitle">3 praktyczne moduły szkoleniowe dla cywili (150–210 minut) + certyfikat ukończenia</p>
+
+                    <div class="program-grid">
+                        <article class="program-card">
+                            <div class="modul">Moduł 1</div>
+                            <h4>Tamowanie krwotoków</h4>
+                            <p>Nauka zatrzymywania masywnych krwotoków – techniki, priorytety i bezpieczne działanie pod presją.</p>
+                        </article>
+
+                        <article class="program-card">
+                            <div class="modul">Moduł 2</div>
+                            <h4>Zdarzenia masowe<br>SALT</h4>
+                            <p>Priorytety i segregacja wielu poszkodowanych. Jak działać szybko, logicznie i skutecznie.</p>
+                        </article>
+
+                        <article class="program-card">
+                            <div class="modul">Moduł 3</div>
+                            <h4>Gotowość cywilna 24 h</h4>
+                            <p>Blackout i ewakuacja – planowanie minimalnych zasobów oraz decyzje w pierwszych godzinach kryzysu.</p>
+                        </article>
+                    </div>
+
+                    <p class="program-foot">Zarezerwuj miejsce: <strong><a href="mailto:kontakt@h-core.edu.pl">kontakt@h-core.edu.pl</a></strong></p>
+
+                    <figure class="program-poster-wrap">
+                        <img class="program-poster" src="core-stop-krwotokom.svg" alt="C.O.R.E. Stop Krwotokom — 3 moduły szkoleniowe" loading="lazy" />
+                    </figure>
+                </section>
             </section>
 
             <!-- SZKOLENIA -->
