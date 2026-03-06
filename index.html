@@ -854,10 +854,6 @@
             card.addEventListener("click", () => {
                 heroSection?.classList.add("is-hidden");
                 window.scrollTo({ top: 0, behavior: "smooth" });
-        const sectionCards = document.querySelectorAll("#panel-szkolenia .card, #panel-kontakt .card, #panel-materialy .card");
-        sectionCards.forEach((card) => {
-            card.addEventListener("click", () => {
-                card.closest(".panel")?.scrollIntoView({ behavior: "smooth", block: "start" });
             });
         });
 
