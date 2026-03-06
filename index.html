@@ -544,9 +544,15 @@
             }
 
             .tab-btn {
-                flex: 1 1 45%;
-                /* 2 przyciski w rzędzie */
+                flex: 1 1 calc(50% - 6px);
+                min-width: 0;
                 text-align: center;
+            }
+
+            @media (max-width: 360px) {
+                .tab-btn {
+                    flex-basis: 100%;
+                }
             }
 
             /* przyciski CTA pod sobą (żeby nie rozpychały) */
