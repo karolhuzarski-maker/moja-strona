@@ -280,6 +280,12 @@
             margin: 6px 0
         }
 
+        #panel-szkolenia .card,
+        #panel-kontakt .card,
+        #panel-materialy .card {
+            cursor: pointer;
+        }
+
         .program-section {
             margin-top: 16px;
             border: 1px solid rgba(209, 11, 11, .45);
@@ -824,6 +830,13 @@
             if (e.key === "Escape" && imageModal?.getAttribute("aria-hidden") === "false") {
                 closeImageModal();
             }
+        });
+
+        const sectionCards = document.querySelectorAll("#panel-szkolenia .card, #panel-kontakt .card, #panel-materialy .card");
+        sectionCards.forEach((card) => {
+            card.addEventListener("click", () => {
+                card.closest(".panel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
         });
 
         // Footer year
