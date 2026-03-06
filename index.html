@@ -54,7 +54,7 @@
         .wrap {
             max-width: 1040px;
             margin: 0 auto;
-            padding: 24px
+            padding: 16px
         }
 
         /* Header */
@@ -64,7 +64,7 @@
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            padding: 24px 22px;
+            padding: 20px 14px;
             border: 1px solid var(--line);
             border-radius: var(--radius);
             background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02));
@@ -74,7 +74,7 @@
 
         .brand {
             display: flex;
-            gap: 24px;
+            gap: 16px;
             /* więcej odstępu */
             align-items: center;
             min-width: 0;
@@ -82,11 +82,10 @@
         }
 
         .brand img {
-            width: 250px;
+            width: 300px;
             height: auto;
             display: block;
             border-radius: 14px;
-            padding: 4px;
         }
 
 
@@ -506,9 +505,9 @@
 
         /* === MOBILE FIXES (wklej na końcu <style>) === */
 
-        /* nadpisuje Twoje: .brand img { width: 250px; } */
+        /* nadpisuje bazowe ustawienie szerokości logo */
         .brand img {
-            width: clamp(180px, 70vw, 250px);
+            width: clamp(220px, 55vw, 300px);
             max-width: 100%;
             height: auto;
         }
