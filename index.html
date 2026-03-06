@@ -537,10 +537,11 @@
 
             /* menu bez uciekania poza ekran (zawijanie) */
             nav {
-                flex-wrap: wrap;
-                white-space: normal;
-                overflow-x: visible;
-                justify-content: center;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+                width: 100%;
+                justify-content: stretch;
             }
 
             .tab-btn {
@@ -574,6 +575,12 @@
 
             .image-modal-content {
                 max-height: 82vh;
+            }
+        }
+
+        @media (max-width: 360px) {
+            nav {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -781,13 +788,16 @@
         tabs.forEach(t => t.addEventListener("click", () => activateTab(t.id)));
 
         // Open correct tab from URL hash
-        const hash = (location.hash || "").replace("#", "").toLowerCase();
-        if (hash === "program-core") {
-            activateTab("tab-onas");
-            requestAnimationFrame(() => {
-                document.getElementById("program-core")?.scrollIntoView({ behavior: "smooth", block: "start" });
-            });
-        } else {
+        function tabFromHash() {
+            const hash = (location.hash || "").replace("#", "").toLowerCase();
+            if (hash === "program-core") {
+                activateTab("tab-onas");
+                requestAnimationFrame(() => {
+                    document.getElementById("program-core")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                });
+                return;
+            }
+
             const fromHash = {
                 "onas": "tab-onas",
                 "szkolenia": "tab-szkolenia",
@@ -796,6 +806,9 @@
             }[hash] || "tab-onas";
             activateTab(fromHash);
         }
+
+        tabFromHash();
+        window.addEventListener("hashchange", tabFromHash);
 
         const coreCta = document.getElementById("btn-program-core");
         coreCta?.addEventListener("click", (e) => {
