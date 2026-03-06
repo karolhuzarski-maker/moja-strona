@@ -158,6 +158,10 @@
             max-width: 100%;
         }
 
+        .hero.is-hidden {
+            display: none;
+        }
+
         .hero h2 {
             margin: 0 0 6px;
             font-size: 22px;
@@ -280,6 +284,7 @@
             margin: 6px 0
         }
 
+        #panel-onas .card,
         #panel-szkolenia .card,
         #panel-kontakt .card,
         #panel-materialy .card {
@@ -824,6 +829,12 @@
             }
         });
 
+        const heroSection = document.querySelector(".hero");
+        const sectionCards = document.querySelectorAll(".panel .card");
+        sectionCards.forEach((card) => {
+            card.addEventListener("click", () => {
+                heroSection?.classList.add("is-hidden");
+                window.scrollTo({ top: 0, behavior: "smooth" });
         const sectionCards = document.querySelectorAll("#panel-szkolenia .card, #panel-kontakt .card, #panel-materialy .card");
         sectionCards.forEach((card) => {
             card.addEventListener("click", () => {
