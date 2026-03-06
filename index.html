@@ -280,7 +280,6 @@
             margin: 6px 0
         }
 
-        #panel-onas .card,
         #panel-szkolenia .card,
         #panel-kontakt .card,
         #panel-materialy .card {
@@ -825,10 +824,10 @@
             }
         });
 
-        const sectionCards = document.querySelectorAll(".panel .card");
+        const sectionCards = document.querySelectorAll("#panel-szkolenia .card, #panel-kontakt .card, #panel-materialy .card");
         sectionCards.forEach((card) => {
             card.addEventListener("click", () => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                card.closest(".panel")?.scrollIntoView({ behavior: "smooth", block: "start" });
             });
         });
 
