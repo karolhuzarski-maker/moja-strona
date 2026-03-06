@@ -792,14 +792,6 @@
             activateTab("tab-onas");
             document.getElementById("program-core")?.scrollIntoView({ behavior: "smooth", block: "start" });
         });
-        const fromHash = {
-            "onas": "tab-onas",
-            "szkolenia": "tab-szkolenia",
-            "kontakt": "tab-kontakt",
-            "materialy": "tab-materialy"
-        }[hash] || "tab-onas";
-        activateTab(fromHash);
-
         // Program poster popup
         const imageModal = document.getElementById("image-modal");
         const openPosterBtn = document.getElementById("open-program-poster");
