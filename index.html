@@ -52,9 +52,9 @@
         }
 
         .wrap {
-            max-width: 1040px;
+            max-width: 1240px;
             margin: 0 auto;
-            padding: 24px
+            padding: 10px
         }
 
         /* Header */
@@ -64,7 +64,7 @@
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            padding: 24px 22px;
+            padding: 18px 10px;
             border: 1px solid var(--line);
             border-radius: var(--radius);
             background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02));
@@ -74,7 +74,7 @@
 
         .brand {
             display: flex;
-            gap: 24px;
+            gap: 16px;
             /* więcej odstępu */
             align-items: center;
             min-width: 0;
@@ -82,11 +82,10 @@
         }
 
         .brand img {
-            width: 250px;
+            width: 360px;
             height: auto;
             display: block;
             border-radius: 14px;
-            padding: 4px;
         }
 
 
@@ -156,7 +155,7 @@
                 linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .02));
             box-shadow: var(--shadow);
             padding: 16px 26px;
-            max-width: 90%;
+            max-width: 100%;
         }
 
         .hero h2 {
@@ -450,16 +449,16 @@
 
         /* === MOBILE FIXES (wklej na końcu <style>) === */
 
-        /* nadpisuje Twoje: .brand img { width: 250px; } */
+        /* nadpisuje bazowe ustawienie szerokości logo */
         .brand img {
-            width: clamp(180px, 70vw, 250px);
+            width: clamp(240px, 58vw, 360px);
             max-width: 100%;
             height: auto;
         }
 
         @media (max-width: 520px) {
             .wrap {
-                padding: 14px;
+                padding: 8px;
             }
 
             /* logo + tytuł jeden pod drugim */
@@ -503,8 +502,8 @@
     <div class="wrap">
         <header>
             <div class="brand">
-                <!-- Logo: wrzuć plik logo.png do tego samego folderu co index.html -->
-                <img src="logo.png" alt="H-CORE edu logo" />
+                <!-- Logo: plik `logo new.png` w tym samym folderze co index.html -->
+                <img src="logo new.png" alt="H-CORE edu logo" />
                 <div class="brand-title">
                     <h1>H-CORE edu</h1>
                     <p>Krwotoki • zdarzenia masowe • gotowość cywilna 24h • Kraków / Małopolska</p>
@@ -825,6 +824,4 @@
 </body>
 
 </html>
-
-
 
