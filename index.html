@@ -835,7 +835,7 @@
         const sectionCards = document.querySelectorAll("#panel-szkolenia .card, #panel-kontakt .card, #panel-materialy .card");
         sectionCards.forEach((card) => {
             card.addEventListener("click", () => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                card.closest(".panel")?.scrollIntoView({ behavior: "smooth", block: "start" });
             });
         });
 
