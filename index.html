@@ -410,6 +410,15 @@
             box-shadow: 0 20px 42px rgba(0, 0, 0, .6);
         }
 
+        .pdf-modal-content {
+            width: min(1100px, 96vw);
+            height: min(88vh, 900px);
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .2);
+            box-shadow: 0 20px 42px rgba(0, 0, 0, .6);
+            background: #fff;
+        }
+
         .image-modal-close {
             position: absolute;
             top: max(12px, env(safe-area-inset-top));
@@ -690,7 +699,7 @@
             <!-- SZKOLENIA -->
             <section class="panel" id="panel-szkolenia" role="tabpanel" aria-labelledby="tab-szkolenia">
                 <div class="grid">
-                    <div class="card">
+                    <div class="card" id="totc-card" role="button" tabindex="0" aria-label="Otwórz ofertę PDF TOTC">
                         <h3>Tactical Officer Trauma Care (TOTC)</h3>
                         <p>szkolenie operacyjne dla służb<br />
                             w pakiecie z certyfikacją STOP THE BLEED® Essentials<br />
@@ -763,6 +772,12 @@
         <img class="image-modal-content" src="3 moduly.png" alt="Powiększony plakat C.O.R.E." />
     </div>
 
+    <div class="image-modal" id="pdf-modal" aria-hidden="true" role="dialog" aria-modal="true"
+        aria-label="Oferta szkolenia Tactical Officer Trauma Care (TOTC)">
+        <button class="image-modal-close" id="pdf-modal-close" type="button" aria-label="Zamknij">×</button>
+        <iframe class="pdf-modal-content" id="pdf-modal-frame" title="Oferta TOTC PDF"></iframe>
+    </div>
+
     <script>
         // Tabs logic
         const tabs = Array.from(document.querySelectorAll(".tab-btn"));
@@ -826,6 +841,11 @@
         const imageModal = document.getElementById("image-modal");
         const openPosterBtn = document.getElementById("open-program-poster");
         const closeModalBtn = document.getElementById("image-modal-close");
+        const pdfModal = document.getElementById("pdf-modal");
+        const pdfModalCloseBtn = document.getElementById("pdf-modal-close");
+        const pdfModalFrame = document.getElementById("pdf-modal-frame");
+        const totcCard = document.getElementById("totc-card");
+        const totcPdfPath = "TOTC_oferta 2strony v2-2_edited_v2.pdf";
 
         function closeImageModal() {
             if (!imageModal) return;
@@ -841,23 +861,53 @@
             closeModalBtn?.focus();
         }
 
+        function closePdfModal() {
+            if (!pdfModal) return;
+            pdfModal.setAttribute("aria-hidden", "true");
+            document.body.style.overflow = "";
+            if (pdfModalFrame) pdfModalFrame.removeAttribute("src");
+            totcCard?.focus();
+        }
+
+        function openPdfModal() {
+            if (!pdfModal || !pdfModalFrame) return;
+            pdfModalFrame.src = encodeURI(totcPdfPath);
+            pdfModal.setAttribute("aria-hidden", "false");
+            document.body.style.overflow = "hidden";
+            pdfModalCloseBtn?.focus();
+        }
+
         openPosterBtn?.addEventListener("click", openImageModal);
         closeModalBtn?.addEventListener("click", closeImageModal);
+        pdfModalCloseBtn?.addEventListener("click", closePdfModal);
 
         imageModal?.addEventListener("click", (e) => {
             if (e.target === imageModal) closeImageModal();
         });
 
-        window.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && imageModal?.getAttribute("aria-hidden") === "false") {
-                closeImageModal();
+        pdfModal?.addEventListener("click", (e) => {
+            if (e.target === pdfModal) closePdfModal();
+        });
+
+        totcCard?.addEventListener("click", openPdfModal);
+        totcCard?.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                openPdfModal();
             }
+        });
+
+        window.addEventListener("keydown", (e) => {
+            if (e.key !== "Escape") return;
+            if (imageModal?.getAttribute("aria-hidden") === "false") closeImageModal();
+            if (pdfModal?.getAttribute("aria-hidden") === "false") closePdfModal();
         });
 
         const heroSection = document.querySelector(".hero");
         const sectionCards = document.querySelectorAll(".panel .card");
         sectionCards.forEach((card) => {
             card.addEventListener("click", () => {
+                if (card.id === "totc-card") return;
                 heroSection?.classList.add("is-hidden");
                 window.scrollTo({ top: 0, behavior: "smooth" });
             });
