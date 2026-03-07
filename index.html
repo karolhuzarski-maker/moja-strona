@@ -419,6 +419,26 @@
             background: #fff;
         }
 
+        .pdf-modal-fallback {
+            max-width: min(720px, 92vw);
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .2);
+            background: rgba(10, 12, 16, .95);
+            text-align: center;
+        }
+
+        .pdf-modal-fallback p {
+            margin: 0 0 10px;
+            color: #fff;
+        }
+
+        .pdf-modal-fallback a {
+            color: #ffcb2f;
+            font-weight: 700;
+        }
+
         .image-modal-close {
             position: absolute;
             top: max(12px, env(safe-area-inset-top));
@@ -776,6 +796,10 @@
         aria-label="Oferta szkolenia Tactical Officer Trauma Care (TOTC)">
         <button class="image-modal-close" id="pdf-modal-close" type="button" aria-label="Zamknij">×</button>
         <iframe class="pdf-modal-content" id="pdf-modal-frame" title="Oferta TOTC PDF"></iframe>
+        <div class="pdf-modal-fallback" id="pdf-modal-fallback" hidden>
+            <p>Nie udało się odnaleźć pliku PDF oferty TOTC.</p>
+            <a id="pdf-modal-link" href="#" target="_blank" rel="noopener">Otwórz ofertę w nowej karcie</a>
+        </div>
     </div>
 
     <script>
@@ -844,8 +868,14 @@
         const pdfModal = document.getElementById("pdf-modal");
         const pdfModalCloseBtn = document.getElementById("pdf-modal-close");
         const pdfModalFrame = document.getElementById("pdf-modal-frame");
+        const pdfModalFallback = document.getElementById("pdf-modal-fallback");
+        const pdfModalLink = document.getElementById("pdf-modal-link");
         const totcCard = document.getElementById("totc-card");
-        const totcPdfPath = "TOTC_oferta 2strony v2-2_edited_v2.pdf";
+        const totcPdfCandidates = [
+            "TOTC_oferta_2strony_v2-2_edited_v2.pdf",
+            "TOTC_oferta 2strony v2-2_edited_v2.pdf",
+            "TOTC oferta 2strony v2-2 edited v2.pdf"
+        ];
 
         function closeImageModal() {
             if (!imageModal) return;
@@ -866,12 +896,38 @@
             pdfModal.setAttribute("aria-hidden", "true");
             document.body.style.overflow = "";
             if (pdfModalFrame) pdfModalFrame.removeAttribute("src");
+            pdfModalFrame?.removeAttribute("hidden");
+            if (pdfModalFallback) pdfModalFallback.hidden = true;
+            if (pdfModalLink) pdfModalLink.setAttribute("href", "#");
             totcCard?.focus();
         }
 
-        function openPdfModal() {
+        async function resolveTotcPdfPath() {
+            for (const candidate of totcPdfCandidates) {
+                const encodedPath = encodeURI(candidate);
+                try {
+                    const response = await fetch(encodedPath, { method: "HEAD" });
+                    if (response.ok) return encodedPath;
+                } catch (_) {
+                    // try next candidate
+                }
+            }
+            return null;
+        }
+
+        async function openPdfModal() {
             if (!pdfModal || !pdfModalFrame) return;
-            pdfModalFrame.src = encodeURI(totcPdfPath);
+            const resolvedPath = await resolveTotcPdfPath();
+            if (resolvedPath) {
+                pdfModalFrame.src = resolvedPath;
+                pdfModalFrame.removeAttribute("hidden");
+                if (pdfModalFallback) pdfModalFallback.hidden = true;
+                if (pdfModalLink) pdfModalLink.setAttribute("href", resolvedPath);
+            } else {
+                pdfModalFrame.setAttribute("hidden", "hidden");
+                if (pdfModalFallback) pdfModalFallback.hidden = false;
+                if (pdfModalLink) pdfModalLink.setAttribute("href", totcPdfCandidates[0]);
+            }
             pdfModal.setAttribute("aria-hidden", "false");
             document.body.style.overflow = "hidden";
             pdfModalCloseBtn?.focus();
