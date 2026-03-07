@@ -764,7 +764,8 @@
         const tabs = Array.from(document.querySelectorAll(".tab-btn"));
         const panels = Array.from(document.querySelectorAll(".panel"));
 
-        function activateTab(tabId) {
+        function activateTab(tabId, options = {}) {
+            const { scrollToContent = false } = options;
             const tab = document.getElementById(tabId);
             if (!tab) return;
 
@@ -780,12 +781,13 @@
             };
             const newHash = hashMap[tabId] || "onas";
             history.replaceState(null, "", "#" + newHash);
-            if (window.matchMedia("(max-width: 520px)").matches) {
-  document.getElementById("content").scrollIntoView({ behavior: "smooth", block: "start" });
-}
+
+            if (scrollToContent) {
+                document.getElementById("content")?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
         }
 
-        tabs.forEach(t => t.addEventListener("click", () => activateTab(t.id)));
+        tabs.forEach(t => t.addEventListener("click", () => activateTab(t.id, { scrollToContent: true })));
 
         // Open correct tab from URL hash
         function tabFromHash() {
