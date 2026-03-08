@@ -901,6 +901,10 @@
             pdfModal.setAttribute("aria-hidden", "true");
             document.body.style.overflow = "";
             if (pdfModalFrame) pdfModalFrame.removeAttribute("src");
+            if (activePdfBlobUrl) {
+                URL.revokeObjectURL(activePdfBlobUrl);
+                activePdfBlobUrl = null;
+            }
             pdfModalFrame?.removeAttribute("hidden");
             if (pdfModalFallback) pdfModalFallback.hidden = true;
             if (pdfModalLink) pdfModalLink.setAttribute("href", "#");
@@ -920,22 +924,33 @@
             return null;
         }
 
+        let activePdfBlobUrl = null;
+
         function shouldUseMobilePdfViewer() {
             return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || "");
         }
 
-        function getPdfFrameSource(resolvedPath) {
+        async function getPdfFrameSource(resolvedPath) {
             if (!shouldUseMobilePdfViewer()) return resolvedPath;
 
-            const absolutePdfUrl = new URL(resolvedPath, location.href).href;
-            return `https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(absolutePdfUrl)}`;
+            try {
+                const response = await fetch(resolvedPath);
+                if (!response.ok) return resolvedPath;
+                const blob = await response.blob();
+                if (blob.type && blob.type !== "application/pdf") return resolvedPath;
+                if (activePdfBlobUrl) URL.revokeObjectURL(activePdfBlobUrl);
+                activePdfBlobUrl = URL.createObjectURL(blob);
+                return activePdfBlobUrl;
+            } catch (_) {
+                return resolvedPath;
+            }
         }
 
         async function openPdfModal() {
             if (!pdfModal || !pdfModalFrame) return;
             const resolvedPath = await resolveTotcPdfPath();
             if (resolvedPath) {
-                pdfModalFrame.src = getPdfFrameSource(resolvedPath);
+                pdfModalFrame.src = await getPdfFrameSource(resolvedPath);
                 pdfModalFrame.removeAttribute("hidden");
                 if (pdfModalFallback) pdfModalFallback.hidden = true;
                 if (pdfModalLink) pdfModalLink.setAttribute("href", resolvedPath);
