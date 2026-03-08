@@ -931,6 +931,28 @@
             return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || "");
         }
 
+        let activePdfBlobUrl = null;
+
+        function shouldUseMobilePdfViewer() {
+            return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || "");
+        }
+
+        async function getPdfFrameSource(resolvedPath) {
+            if (!shouldUseMobilePdfViewer()) return resolvedPath;
+
+            try {
+                const response = await fetch(resolvedPath);
+                if (!response.ok) return resolvedPath;
+                const blob = await response.blob();
+                if (blob.type && blob.type !== "application/pdf") return resolvedPath;
+                if (activePdfBlobUrl) URL.revokeObjectURL(activePdfBlobUrl);
+                activePdfBlobUrl = URL.createObjectURL(blob);
+                return activePdfBlobUrl;
+            } catch (_) {
+                return resolvedPath;
+            }
+        }
+
         async function openPdfModal() {
             if (!pdfModal) return;
             const resolvedPath = await resolveTotcPdfPath();
