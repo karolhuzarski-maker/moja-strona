@@ -876,11 +876,7 @@
         const pdfModalFallback = document.getElementById("pdf-modal-fallback");
         const pdfModalLink = document.getElementById("pdf-modal-link");
         const totcCard = document.getElementById("totc-card");
-        const totcPdfCandidates = [
-            "TOTC_oferta_2strony_v2-2_edited_v2.pdf",
-            "TOTC_oferta 2strony v2-2_edited_v2.pdf",
-            "TOTC oferta 2strony v2-2 edited v2.pdf"
-        ];
+        const totcPdfPath = encodeURI("TOTC_oferta_2strony_v2-2_edited_v2.pdf");
 
         function closeImageModal() {
             if (!imageModal) return;
@@ -911,20 +907,13 @@
             totcCard?.focus();
         }
 
-        async function resolveTotcPdfPath() {
-            for (const candidate of totcPdfCandidates) {
-                const encodedPath = encodeURI(candidate);
-                try {
-                    const response = await fetch(encodedPath, { method: "HEAD" });
-                    if (response.ok) return encodedPath;
-                } catch (_) {
-                    // try next candidate
-                }
-            }
-            return null;
-        }
-
         let activePdfBlobUrl = null;
+
+        function showPdfFallback() {
+            pdfModalFrame?.setAttribute("hidden", "hidden");
+            if (pdfModalFallback) pdfModalFallback.hidden = false;
+            if (pdfModalLink) pdfModalLink.setAttribute("href", totcPdfPath);
+        }
 
         function shouldUseMobilePdfViewer() {
             return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || "");
@@ -948,17 +937,10 @@
 
         async function openPdfModal() {
             if (!pdfModal || !pdfModalFrame) return;
-            const resolvedPath = await resolveTotcPdfPath();
-            if (resolvedPath) {
-                pdfModalFrame.src = await getPdfFrameSource(resolvedPath);
-                pdfModalFrame.removeAttribute("hidden");
-                if (pdfModalFallback) pdfModalFallback.hidden = true;
-                if (pdfModalLink) pdfModalLink.setAttribute("href", resolvedPath);
-            } else {
-                pdfModalFrame.setAttribute("hidden", "hidden");
-                if (pdfModalFallback) pdfModalFallback.hidden = false;
-                if (pdfModalLink) pdfModalLink.setAttribute("href", totcPdfCandidates[0]);
-            }
+            pdfModalFrame.src = await getPdfFrameSource(totcPdfPath);
+            pdfModalFrame.removeAttribute("hidden");
+            if (pdfModalFallback) pdfModalFallback.hidden = true;
+            if (pdfModalLink) pdfModalLink.setAttribute("href", totcPdfPath);
             pdfModal.setAttribute("aria-hidden", "false");
             document.body.style.overflow = "hidden";
             pdfModalCloseBtn?.focus();
@@ -975,6 +957,8 @@
         pdfModal?.addEventListener("click", (e) => {
             if (e.target === pdfModal) closePdfModal();
         });
+
+        pdfModalFrame?.addEventListener("error", showPdfFallback);
 
         totcCard?.addEventListener("click", openPdfModal);
         totcCard?.addEventListener("keydown", (e) => {
