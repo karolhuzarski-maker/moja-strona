@@ -736,14 +736,14 @@
                         <p>TOTC – Tactical Officer Trauma Care<br>Szkolenie operacyjne dla funkcjonariuszy oparte na aktualnych wytycznych TCCC i TECC.<br>1 dzień intensywnej praktyki: kontrola krwotoku, priorytety urazowe, ewakuacja, triage i przekaz MIST/ATMIST + certyfikacja STOP THE BLEED® Essentials.</p>
                     </div>
 
-                    <div class="card">
-                        <h3>&nbsp;</h3>
-                        <p>&nbsp;</p>
+                    <div class="card" id="tmtc-card" role="button" tabindex="0" aria-label="Otwórz ofertę TMTC (desktop)">
+                        <h3>Tactical Military Trauma Care (TMTC)</h3>
+                        <p>TMTC – Tactical Military Trauma Care<br>Szkolenie urazowe dla środowiska wojskowego, oparte na aktualnych wytycznych TCCC / TECC, logice MARCH / PAWS oraz fazach działania analogicznych do Care Under Fire, Tactical Field Care i Tactical Evacuation Care.</p>
                     </div>
 
                     <div class="card">
-                        <h3>&nbsp;</h3>
-                        <p>&nbsp;</p>
+                        <h3>C.O.R.E. Stop Krwotokom (cywile)</h3>
+                        <p>3 moduły szkoleniowe: <br>Moduł 1: Tamowanie krwotoków (STOP THE BLEED®).<br>Moduł 2: Zdarzenia masowe (segregacja SALT).<br>Moduł 3: Gotowość cywilna 24 h (blackout i ewakuacja).</p>
                     </div>
 
                     <div class="card">
@@ -806,12 +806,12 @@
     </div>
 
     <div class="image-modal" id="pdf-modal" aria-hidden="true" role="dialog" aria-modal="true"
-        aria-label="Oferta szkolenia Tactical Officer Trauma Care (TOTC)">
+        aria-label="Oferta szkolenia (PDF)">
         <button class="image-modal-close" id="pdf-modal-close" type="button" aria-label="Zamknij">×</button>
-        <iframe class="pdf-modal-content" id="pdf-modal-frame" title="Oferta TOTC PDF"></iframe>
-        <img class="image-modal-content" id="pdf-modal-image" src="" alt="Oferta szkolenia TOTC w wersji JPG" hidden />
+        <iframe class="pdf-modal-content" id="pdf-modal-frame" title="Oferta szkolenia PDF"></iframe>
+        <img class="image-modal-content" id="pdf-modal-image" src="" alt="Oferta szkolenia w wersji JPG" hidden />
         <div class="pdf-modal-fallback" id="pdf-modal-fallback" hidden>
-            <p>Nie udało się odnaleźć pliku PDF oferty TOTC.</p>
+            <p>Nie udało się odnaleźć pliku PDF oferty szkolenia.</p>
             <a id="pdf-modal-link" href="#" target="_blank" rel="noopener">Otwórz ofertę w nowej karcie</a>
         </div>
     </div>
@@ -886,8 +886,12 @@
         const pdfModalLink = document.getElementById("pdf-modal-link");
         const pdfModalImage = document.getElementById("pdf-modal-image");
         const totcCard = document.getElementById("totc-card");
+        const tmtcCard = document.getElementById("tmtc-card");
         const totcPdfPath = encodeURI("TOTC_oferta_2strony_v2-2_edited_v2.pdf");
         const totcJpgPath = encodeURI("TOTC_2strony_ now do tel.jpg");
+        const tmtcPdfPath = encodeURI("TMTC_program_tactical_medical.pdf");
+        let currentPdfPath = totcPdfPath;
+        let lastOpenedPdfCard = null;
 
         function closeImageModal() {
             if (!imageModal) return;
@@ -919,7 +923,7 @@
             }
             if (pdfModalFallback) pdfModalFallback.hidden = true;
             if (pdfModalLink) pdfModalLink.setAttribute("href", "#");
-            totcCard?.focus();
+            lastOpenedPdfCard?.focus();
         }
 
         let activePdfBlobUrl = null;
@@ -927,7 +931,7 @@
         function showPdfFallback() {
             pdfModalFrame?.setAttribute("hidden", "hidden");
             if (pdfModalFallback) pdfModalFallback.hidden = false;
-            if (pdfModalLink) pdfModalLink.setAttribute("href", totcPdfPath);
+            if (pdfModalLink) pdfModalLink.setAttribute("href", currentPdfPath);
         }
 
         function shouldUseMobilePdfViewer() {
@@ -956,6 +960,8 @@
 
         async function openPdfModal() {
             if (!pdfModal || !pdfModalFrame) return;
+            currentPdfPath = totcPdfPath;
+            lastOpenedPdfCard = totcCard;
 
             if (shouldUseMobileTotcImage() && pdfModalImage) {
                 pdfModalFrame.setAttribute("hidden", "hidden");
@@ -974,6 +980,22 @@
             pdfModalFrame.removeAttribute("hidden");
             if (pdfModalFallback) pdfModalFallback.hidden = true;
             if (pdfModalLink) pdfModalLink.setAttribute("href", totcPdfPath);
+            pdfModal.setAttribute("aria-hidden", "false");
+            document.body.style.overflow = "hidden";
+            pdfModalCloseBtn?.focus();
+        }
+
+        async function openTmtcPdfModal() {
+            if (!pdfModal || !pdfModalFrame) return;
+            if (shouldUseMobilePdfViewer()) return;
+            currentPdfPath = tmtcPdfPath;
+            lastOpenedPdfCard = tmtcCard;
+
+            pdfModalImage?.setAttribute("hidden", "hidden");
+            pdfModalFrame.src = await getPdfFrameSource(tmtcPdfPath);
+            pdfModalFrame.removeAttribute("hidden");
+            if (pdfModalFallback) pdfModalFallback.hidden = true;
+            if (pdfModalLink) pdfModalLink.setAttribute("href", tmtcPdfPath);
             pdfModal.setAttribute("aria-hidden", "false");
             document.body.style.overflow = "hidden";
             pdfModalCloseBtn?.focus();
@@ -1001,6 +1023,13 @@
                 openPdfModal();
             }
         });
+        tmtcCard?.addEventListener("click", openTmtcPdfModal);
+        tmtcCard?.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                openTmtcPdfModal();
+            }
+        });
 
         window.addEventListener("keydown", (e) => {
             if (e.key !== "Escape") return;
@@ -1012,7 +1041,7 @@
         const sectionCards = document.querySelectorAll(".panel .card");
         sectionCards.forEach((card) => {
             card.addEventListener("click", () => {
-                if (card.id === "totc-card") return;
+                if (card.id === "totc-card" || card.id === "tmtc-card") return;
                 heroSection?.classList.add("is-hidden");
                 window.scrollTo({ top: 0, behavior: "smooth" });
             });
