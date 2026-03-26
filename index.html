@@ -890,6 +890,7 @@
         const totcPdfPath = encodeURI("TOTC_oferta_2strony_v2-2_edited_v2.pdf");
         const totcJpgPath = encodeURI("TOTC_2strony_ now do tel.jpg");
         const tmtcPdfPath = encodeURI("TMTC_program_tactical_medical.pdf");
+        const tmtcPngPath = encodeURI("TMTC_program_tactical_medical_long.png");
         let currentPdfPath = totcPdfPath;
         let lastOpenedPdfCard = null;
 
@@ -987,7 +988,19 @@
 
         async function openTmtcPdfModal() {
             if (!pdfModal || !pdfModalFrame) return;
-            if (shouldUseMobilePdfViewer()) return;
+            if (shouldUseMobilePdfViewer() && pdfModalImage) {
+                currentPdfPath = tmtcPngPath;
+                lastOpenedPdfCard = tmtcCard;
+                pdfModalFrame.setAttribute("hidden", "hidden");
+                pdfModalImage.src = tmtcPngPath;
+                pdfModalImage.hidden = false;
+                if (pdfModalFallback) pdfModalFallback.hidden = true;
+                if (pdfModalLink) pdfModalLink.setAttribute("href", tmtcPngPath);
+                pdfModal.setAttribute("aria-hidden", "false");
+                document.body.style.overflow = "hidden";
+                pdfModalCloseBtn?.focus();
+                return;
+            }
             currentPdfPath = tmtcPdfPath;
             lastOpenedPdfCard = tmtcCard;
 
