@@ -158,10 +158,6 @@
             max-width: 100%;
         }
 
-        .hero.is-hidden {
-            display: none;
-        }
-
         .hero h2 {
             margin: 0 0 6px;
             font-size: 22px;
@@ -1047,16 +1043,6 @@
             if (e.key !== "Escape") return;
             if (imageModal?.getAttribute("aria-hidden") === "false") closeImageModal();
             if (pdfModal?.getAttribute("aria-hidden") === "false") closePdfModal();
-        });
-
-        const heroSection = document.querySelector(".hero");
-        const sectionCards = document.querySelectorAll(".panel .card");
-        sectionCards.forEach((card) => {
-            card.addEventListener("click", () => {
-                if (card.id === "totc-card" || card.id === "tmtc-card") return;
-                heroSection?.classList.add("is-hidden");
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            });
         });
 
         // Footer year
