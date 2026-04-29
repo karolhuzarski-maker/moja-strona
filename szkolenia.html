@@ -13,6 +13,13 @@
     .nav a { padding: 10px 12px; border: 1px solid rgba(255,255,255,.15); border-radius: 10px; color: #fff; text-decoration: none; }
     .grid { margin-top: 16px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
     .card { grid-column: span 6; padding: 18px; border: 1px solid rgba(255,255,255,.15); border-radius: 14px; background: rgba(255,255,255,.03); }
+    .card.clickable { cursor: pointer; }
+    .link { color: #ffcb2f; }
+    .image-modal { position: fixed; inset: 0; z-index: 999; display: none; align-items: center; justify-content: center; padding: 18px; background: rgba(5,7,10,.9); }
+    .image-modal[aria-hidden="false"] { display: flex; }
+    .pdf-modal-content { width: min(1100px, 96vw); height: min(88vh, 900px); border-radius: 14px; border: 1px solid rgba(255,255,255,.2); background: #fff; }
+    .image-modal-content { max-width: min(980px, 96vw); max-height: 88vh; border-radius: 14px; border: 1px solid rgba(255,255,255,.2); }
+    .image-modal-close { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; border-radius: 999px; border: 1px solid rgba(255,255,255,.3); background: rgba(0,0,0,.4); color: #fff; font-size: 26px; cursor: pointer; }
     .card img { width: 100%; border-radius: 10px; margin-top: 10px; }
     .link { color: #ffcb2f; }
     @media (max-width: 860px) { .card { grid-column: span 12; } }
@@ -22,6 +29,17 @@
   <div class="wrap">
     <header class="top">
       <a href="index.html"><img src="new llogo full core.png" alt="H-CORE edu" /></a>
+      <nav class="nav"><a href="onas.html">O nas</a><a href="szkolenia.html">Szkolenia</a><a href="kontakt.html">Kontakt</a><a href="materialy.html">Materiały</a></nav>
+    </header>
+
+    <main class="grid">
+      <section class="card clickable" id="totc-card" role="button" tabindex="0">
+        <h2>Tactical Officer Trauma Care (TOTC)</h2>
+        <p>TOTC – Tactical Officer Trauma Care. Kliknij, aby otworzyć ofertę.</p>
+      </section>
+      <section class="card clickable" id="tmtc-card" role="button" tabindex="0">
+        <h2>Tactical Military Trauma Care (TMTC)</h2>
+        <p>TMTC – Tactical Military Trauma Care. Kliknij, aby otworzyć ofertę.</p>
       <nav class="nav">
         <a href="onas.html">O nas</a>
         <a href="szkolenia.html">Szkolenia</a>
@@ -44,6 +62,71 @@
       <section class="card">
         <h2>C.O.R.E. Stop Krwotokom (cywile)</h2>
         <p>3 moduły szkoleniowe: Moduł 1: Tamowanie krwotoków (STOP THE BLEED®). Moduł 2: Zdarzenia masowe (segregacja SALT). Moduł 3: Gotowość cywilna 24 h (blackout i ewakuacja).</p>
+        <img src="3 moduly.png" alt="Program C.O.R.E." style="width:100%;border-radius:10px;"/>
+      </section>
+      <section class="card">
+        <h2>Pełna oferta</h2>
+        <a class="link" href="TOTC_oferta_2strony_v2-2_no_CBS.pdf">Pobierz PDF oferty TOTC</a>
+      </section>
+    </main>
+  </div>
+
+  <div class="image-modal" id="pdf-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Oferta szkolenia">
+    <button class="image-modal-close" id="pdf-modal-close" type="button" aria-label="Zamknij">×</button>
+    <iframe class="pdf-modal-content" id="pdf-modal-frame" title="Oferta szkolenia PDF"></iframe>
+    <img class="image-modal-content" id="pdf-modal-image" src="" alt="Oferta szkolenia" hidden />
+  </div>
+
+  <script>
+    const pdfModal = document.getElementById("pdf-modal");
+    const pdfModalCloseBtn = document.getElementById("pdf-modal-close");
+    const pdfModalFrame = document.getElementById("pdf-modal-frame");
+    const pdfModalImage = document.getElementById("pdf-modal-image");
+    const totcCard = document.getElementById("totc-card");
+    const tmtcCard = document.getElementById("tmtc-card");
+
+    const totcPdfPath = encodeURI("TOTC_oferta_2strony_v2-2_no_CBS.pdf");
+    const totcJpgPath = encodeURI("TOTC_poprawione_napisy  na tel.png");
+    const tmtcPdfPath = encodeURI("TMTC_program_tactical_medical.pdf");
+    const tmtcPngPath = encodeURI("TMTC_program_tactical_medical_long.png");
+
+    function isMobile() { return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || ""); }
+
+    function closePdfModal() {
+      pdfModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      pdfModalFrame.removeAttribute("src");
+      pdfModalFrame.removeAttribute("hidden");
+      pdfModalImage.hidden = true;
+      pdfModalImage.removeAttribute("src");
+    }
+
+    function openModalWithPdfOrImage(pdfPath, imagePath) {
+      if (isMobile()) {
+        pdfModalFrame.setAttribute("hidden", "hidden");
+        pdfModalImage.src = imagePath;
+        pdfModalImage.hidden = false;
+      } else {
+        pdfModalImage.hidden = true;
+        pdfModalFrame.src = pdfPath;
+        pdfModalFrame.removeAttribute("hidden");
+      }
+      pdfModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      pdfModalCloseBtn.focus();
+    }
+
+    totcCard.addEventListener("click", () => openModalWithPdfOrImage(totcPdfPath, totcJpgPath));
+    tmtcCard.addEventListener("click", () => openModalWithPdfOrImage(tmtcPdfPath, tmtcPngPath));
+    totcCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModalWithPdfOrImage(totcPdfPath, totcJpgPath); } });
+    tmtcCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModalWithPdfOrImage(tmtcPdfPath, tmtcPngPath); } });
+
+    pdfModalCloseBtn.addEventListener("click", closePdfModal);
+    pdfModal.addEventListener("click", e => { if (e.target === pdfModal) closePdfModal(); });
+    window.addEventListener("keydown", e => { if (e.key === "Escape" && pdfModal.getAttribute("aria-hidden") === "false") closePdfModal(); });
+  </script>
+</body>
+</html>
         <img src="3 moduly.png" alt="Program C.O.R.E." />
       </section>
       <section class="card">
