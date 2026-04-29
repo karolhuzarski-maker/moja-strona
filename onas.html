@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>O nas | H-CORE edu</title>
+  <style>
+    body{margin:0;font-family:system-ui;background:#0b0c0f;color:#f3f5ff}
+    .wrap{max-width:1200px;margin:0 auto;padding:16px}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:16px;background:rgba(255,255,255,.03)}
+    .logo-btn img{width:280px;max-width:100%}
+    .nav{display:flex;gap:10px;flex-wrap:wrap}
+    .nav a{padding:10px 12px;border:1px solid rgba(255,255,255,.15);border-radius:10px;color:#fff;text-decoration:none}
+    .grid{margin-top:16px;display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+    .card{grid-column:span 6;padding:18px;border:1px solid rgba(255,255,255,.15);border-radius:14px;background:rgba(255,255,255,.03)}
+    .card ul{margin:8px 0 0 18px}
+    .card li{margin:6px 0}
+    .card img{width:100%;border-radius:10px;margin-top:10px}
+    @media (max-width:860px){.card{grid-column:span 12}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="logo-btn" href="index.html" aria-label="Wróć na stronę główną"><img src="new llogo full core.png" alt="H-CORE edu" /></a>
+      <nav class="nav"><a href="onas.html">O nas</a><a href="szkolenia.html">Szkolenia</a><a href="kontakt.html">Kontakt</a><a href="materialy.html">Materiały</a></nav>
+    </header>
+    <main class="grid">
+      <section class="card"><h2>Kim jesteśmy</h2><p>Tworzymy zespół ratowników medycznych, którzy łączą doświadczenie operacyjne z codzienną praktyką pracy w polskim systemie Państwowego Ratownictwa Medycznego. Nasze kompetencje budowaliśmy m.in. podczas misji NATO Resolute Support w Afganistanie oraz w OSCE Special Monitoring Mission to Ukraine (SMM).</p></section>
+      <section class="card"><h2>Jak szkolimy</h2><ul><li>programy szkoleniowe oparte na aktualnych wytycznych TCCC / TECC oraz logice MARCH-PAWS</li><li>szkolenia TOTC™ i TMTC™ prowadzi instruktor CLS ZPWIR</li><li>moduły STOP THE BLEED® realizowane we współpracy z akredytowanym ośrodkiem Stop the Bleed Coalition — Stop Krwotokom</li><li>szkolenia obejmują również elementy łączności kryzysowej i gotowości 24 h, z użyciem radiokomunikacji krótkofalowej, przenośnych akumulatorów, ładowarek solarnych oraz źródeł zasilania stacjonarnego</li></ul></section>
+      <section class="card"><h2>Dla kogo</h2><p>Nie dla widzów. Dla tych, którzy chcą umieć działać. Szkolenia dla osób i zespołów, które wybierają przygotowanie zamiast liczenia na przypadek.</p></section>
+      <section class="card"><h2>Co zyskujesz</h2><ul><li>wysoki standard szkolenia oparty na aktualnych wytycznych TCCC / TECC oraz logice MARCH-PAWS</li><li>szkolenie prowadzone przez instruktorów z odpowiednimi uprawnieniami i doświadczeniem</li><li>przemyślany program nastawiony na praktykę i realne działanie</li><li>certyfikat STOP THE BLEED® po ukończeniu modułu</li></ul></section>
+      <section class="card" id="program-core"><h2>Program C.O.R.E.</h2><p>Podgląd programu 3 modułów:</p><img src="3 moduly.png" alt="Program C.O.R.E." style="width:100%;border-radius:10px;margin-top:10px"></section>
+    </main>
+  </div>
+</body>
+</html>
