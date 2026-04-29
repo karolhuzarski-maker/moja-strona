@@ -5,170 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Szkolenia | H-CORE edu</title>
   <style>
-    :root {
-      --bg: #0b0c0f;
-      --text: #f3f5ff;
-      --surface: rgba(255, 255, 255, 0.04);
-      --border: rgba(255, 255, 255, 0.18);
-      --accent: #ffcb2f;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-    }
-
+    body { margin: 0; font-family: system-ui; background: #0b0c0f; color: #f3f5ff; }
     .wrap { max-width: 1200px; margin: 0 auto; padding: 16px; }
-
-    .top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px;
-      background: var(--surface);
-    }
-
+    .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; border: 1px solid rgba(255,255,255,.15); border-radius: 14px; padding: 16px; background: rgba(255,255,255,.03); }
     .top img { width: 280px; max-width: 100%; }
-
     .nav { display: flex; gap: 10px; flex-wrap: wrap; }
-
-    .nav a {
-      padding: 10px 12px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: #fff;
-      text-decoration: none;
-    }
-
-    .grid {
-      margin-top: 16px;
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: 14px;
-      align-items: stretch;
-    }
-
-    .card {
-      grid-column: span 6;
-      display: flex;
-      flex-direction: column;
-      min-height: 260px;
-      padding: 18px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: var(--surface);
-    }
-
-    .card h2 { margin: 0 0 10px; font-size: 1.2rem; }
-    .card p { margin: 0; color: rgba(243, 245, 255, 0.92); }
-
-    .card.clickable {
-      cursor: pointer;
-      transition: transform 0.15s ease, border-color 0.15s ease;
-    }
-
-    .card.clickable:hover,
-    .card.clickable:focus-visible {
-      transform: translateY(-2px);
-      border-color: rgba(255, 203, 47, 0.7);
-      outline: none;
-    }
-
-    .card img {
-      width: 100%;
-      border-radius: 10px;
-      margin-top: 12px;
-      display: block;
-    }
-
-    .link { color: var(--accent); font-weight: 600; margin-top: 8px; }
-
-    .image-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-      background: rgba(5, 7, 10, 0.9);
-    }
-
+    .nav a { padding: 10px 12px; border: 1px solid rgba(255,255,255,.15); border-radius: 10px; color: #fff; text-decoration: none; }
+    .grid { margin-top: 16px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+    .card { grid-column: span 6; padding: 18px; border: 1px solid rgba(255,255,255,.15); border-radius: 14px; background: rgba(255,255,255,.03); }
+    .card.clickable { cursor: pointer; }
+    .link { color: #ffcb2f; }
+    .image-modal { position: fixed; inset: 0; z-index: 999; display: none; align-items: center; justify-content: center; padding: 18px; background: rgba(5,7,10,.9); }
     .image-modal[aria-hidden="false"] { display: flex; }
-
-    .pdf-modal-content {
-      width: min(1100px, 96vw);
-      height: min(88vh, 900px);
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background: #fff;
-    }
-
-    .image-modal-content {
-      max-width: min(980px, 96vw);
-      max-height: 88vh;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .image-modal-close {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      background: rgba(0, 0, 0, 0.4);
-      color: #fff;
-      font-size: 26px;
-      cursor: pointer;
-    }
-
-    @media (max-width: 860px) {
-      .top { flex-direction: column; align-items: flex-start; }
-      .card { grid-column: span 12; min-height: 0; }
-    }
+    .pdf-modal-content { width: min(1100px, 96vw); height: min(88vh, 900px); border-radius: 14px; border: 1px solid rgba(255,255,255,.2); background: #fff; }
+    .image-modal-content { max-width: min(980px, 96vw); max-height: 88vh; border-radius: 14px; border: 1px solid rgba(255,255,255,.2); }
+    .image-modal-close { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; border-radius: 999px; border: 1px solid rgba(255,255,255,.3); background: rgba(0,0,0,.4); color: #fff; font-size: 26px; cursor: pointer; }
+    @media (max-width: 860px) { .card { grid-column: span 12; } }
   </style>
 </head>
 <body>
   <div class="wrap">
     <header class="top">
       <a href="index.html"><img src="new llogo full core.png" alt="H-CORE edu" /></a>
-      <nav class="nav">
-        <a href="onas.html">O nas</a>
-        <a href="szkolenia.html">Szkolenia</a>
-        <a href="kontakt.html">Kontakt</a>
-        <a href="materialy.html">Materiały</a>
-      </nav>
+      <nav class="nav"><a href="onas.html">O nas</a><a href="szkolenia.html">Szkolenia</a><a href="kontakt.html">Kontakt</a><a href="materialy.html">Materiały</a></nav>
     </header>
 
     <main class="grid">
       <section class="card clickable" id="totc-card" role="button" tabindex="0">
         <h2>Tactical Officer Trauma Care (TOTC)</h2>
-        <p>TOTC – Tactical Officer Trauma Care. Szkolenie operacyjne dla funkcjonariuszy oparte na aktualnych wytycznych TCCC i TECC. Kliknij, aby otworzyć ofertę.</p>
+        <p>TOTC – Tactical Officer Trauma Care. Kliknij, aby otworzyć ofertę.</p>
       </section>
-
       <section class="card clickable" id="tmtc-card" role="button" tabindex="0">
         <h2>Tactical Military Trauma Care (TMTC)</h2>
-        <p>TMTC – Tactical Military Trauma Care. Szkolenie urazowe dla środowiska wojskowego oparte na wytycznych TCCC / TECC i logice MARCH / PAWS. Kliknij, aby otworzyć ofertę.</p>
+        <p>TMTC – Tactical Military Trauma Care. Kliknij, aby otworzyć ofertę.</p>
       </section>
-
       <section class="card">
         <h2>C.O.R.E. Stop Krwotokom (cywile)</h2>
         <p>3 moduły szkoleniowe: Moduł 1: Tamowanie krwotoków (STOP THE BLEED®). Moduł 2: Zdarzenia masowe (segregacja SALT). Moduł 3: Gotowość cywilna 24 h (blackout i ewakuacja).</p>
-        <img src="3 moduly.png" alt="Program C.O.R.E." />
+        <img src="3 moduly.png" alt="Program C.O.R.E." style="width:100%;border-radius:10px;"/>
       </section>
-
-      <section class="card" aria-label="Miejsce na pełną ofertę"></section>
+      <section class="card">
+        <h2>Pełna oferta</h2>
+        <a class="link" href="TOTC_oferta_2strony_v2-2_no_CBS.pdf">Pobierz PDF oferty TOTC</a>
+      </section>
     </main>
   </div>
 
