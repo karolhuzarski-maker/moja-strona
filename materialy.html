@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Materiały | H-CORE edu</title>
+  <style>
+    body { margin: 0; font-family: system-ui; background: #0b0c0f; color: #f3f5ff; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 16px; }
+    .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; border: 1px solid rgba(255,255,255,.15); border-radius: 14px; padding: 16px; background: rgba(255,255,255,.03); }
+    .top img { width: 280px; max-width: 100%; }
+    .nav { display: flex; gap: 10px; flex-wrap: wrap; }
+    .nav a { padding: 10px 12px; border: 1px solid rgba(255,255,255,.15); border-radius: 10px; color: #fff; text-decoration: none; }
+    .grid { margin-top: 16px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .card { padding: 18px; border: 1px solid rgba(255,255,255,.15); border-radius: 14px; background: rgba(255,255,255,.03); }
+    @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a href="index.html"><img src="new llogo full core.png" alt="H-CORE edu" /></a>
+      <nav class="nav">
+        <a href="onas.html">O nas</a>
+        <a href="szkolenia.html">Szkolenia</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="materialy.html">Materiały</a>
+      </nav>
+    </header>
+
+    <main class="grid">
+      <section class="card"><h2>Materiały szkoleniowe</h2><p>Sekcja na materiały do kursów i checklisty.</p></section>
+      <section class="card"><h2>Pliki do pobrania</h2><p>Wkrótce: dokumenty i instrukcje PDF.</p></section>
+      <section class="card"><h2>Aktualizacje</h2><p>Wkrótce: aktualne wytyczne i nowości.</p></section>
+      <section class="card"><h2>FAQ</h2><p>Wkrótce: odpowiedzi na najczęstsze pytania.</p></section>
+    </main>
+  </div>
+</body>
+</html>
