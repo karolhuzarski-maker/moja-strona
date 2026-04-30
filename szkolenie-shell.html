@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>News | H-CORE edu</title>
+  <title>Szkolenie w Shell | H-CORE edu</title>
   <style>
     body {
       margin: 0;
@@ -21,39 +21,26 @@
     .top img { width: 280px; max-width: 100%; }
     .nav { display: flex; gap: 10px; flex-wrap: wrap; }
     .nav a { padding: 10px 12px; border: 1px solid rgba(255,255,255,.15); border-radius: 10px; color: #fff; text-decoration: none; }
-    .grid { margin-top: 16px; display: grid; grid-template-columns: 1fr; gap: 14px; }
-    .card { padding: 18px; border: 1px solid rgba(255,255,255,.15); border-radius: 14px; background: rgba(255,255,255,.03); }
-      .news-link { display: block; color: inherit; text-decoration: none; }
-    .news-link .card { transition: transform .2s ease, border-color .2s ease, background .2s ease; }
-    .news-link:hover .card { transform: translateY(-2px); border-color: rgba(255,255,255,.3); background: rgba(255,255,255,.06); }
-</style>
+    .card { margin-top: 16px; padding: 18px; border: 1px solid rgba(255,255,255,.15); border-radius: 14px; background: rgba(255,255,255,.03); }
+  </style>
 </head>
 <body>
   <div class="wrap">
     <header class="top">
       <a href="index.html"><img src="new llogo full core.png" alt="H-CORE edu" /></a>
       <nav class="nav">
+        <a href="news.html">News</a>
         <a href="onas.html">O nas</a>
         <a href="szkolenia.html">Szkolenia</a>
         <a href="kontakt.html">Kontakt</a>
-        <a href="galeria.html">Galeria</a>
-        <a href="terminy.html">Terminy</a>
       </nav>
     </header>
 
-    <main class="grid">
-      <section class="card">
-        <h2>News</h2>
-        <p>Tu będą publikowane aktualności i informacje o nowych szkoleniach.</p>
-      </section>
-
-      <a class="news-link" href="szkolenie-shell.html" aria-label="Przejdź do podstrony Szkolenie w Shell">
-        <section class="card">
-          <h3>Szkolenie w Shell</h3>
-          <p>Kliknij, aby przejść do podstrony z opisem nowego szkolenia.</p>
-        </section>
-      </a>
-    </main>
+    <section class="card">
+      <h1>Szkolenie w Shell</h1>
+      <p>Nowe szkolenie obejmuje podstawy pracy w terminalu, nawigację po plikach, podstawowe komendy i praktyczne zadania.</p>
+      <p>Jeśli chcesz zapisać się na ten kurs, skontaktuj się z nami przez zakładkę <a href="kontakt.html">Kontakt</a>.</p>
+    </section>
   </div>
 </body>
 </html>
