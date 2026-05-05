@@ -138,10 +138,20 @@
             letter-spacing: .8px;
         }
 
+
         .brand-title p {
-            margin: 4px 0 0;
-            color: var(--muted);
-            font-size: 14px;
+            margin: 6px 0 0;
+            color: #d6dceb;
+            font-size: 15px;
+            line-height: 1.55;
+            text-wrap: balance;
+            max-width: 42ch;
+        }
+
+        .brand-quote-author {
+            color: #ffffff;
+            font-weight: 700;
+            letter-spacing: .3px;
         }
 
         /* Nav tabs */
@@ -185,28 +195,45 @@
         }
 
         /* Hero */
+
         .hero {
             margin-top: 1px;
-            border: 1px solid var(--line);
+            border: 1px solid rgba(255, 255, 255, .14);
             border-radius: var(--radius);
             background:
-                radial-gradient(900px 280px at 70% 0%, rgba(209, 11, 11, .25), transparent 60%),
-                linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .02));
-            box-shadow: var(--shadow);
-            padding: 16px 26px;
+                radial-gradient(1100px 300px at 70% -20%, rgba(209, 11, 11, .35), transparent 60%),
+                linear-gradient(145deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .015));
+            box-shadow: 0 24px 70px rgba(0, 0, 0, .55);
+            padding: 22px 26px 20px;
             max-width: 100%;
+            position: relative;
+            overflow: hidden;
         }
 
-        .hero h2 {
-            margin: 0 0 6px;
-            font-size: 22px;
-            letter-spacing: .3px;
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, rgba(255, 255, 255, .08), transparent 36%);
+            pointer-events: none;
         }
+
+
+        .hero h2 {
+            margin: 0 0 8px;
+            font-size: clamp(1.55rem, 2.5vw, 2.25rem);
+            letter-spacing: .2px;
+            line-height: 1.15;
+            max-width: 22ch;
+            text-wrap: balance;
+        }
+
 
         .hero p {
             margin: 0;
-            color: var(--muted);
+            color: #c8d0e2;
             max-width: 70ch;
+            font-size: 1.03rem;
         }
 
         .cta-row {
@@ -705,7 +732,11 @@
                 <img src="new llogo full core.png" alt="H-CORE edu logo" />
                 <div class="brand-title">
                     <h1>H-CORE edu</h1>
-                    <p>“Our future enemies may not afford us time to prepare.”<br>„Przeciwnik jutra może nie dać nam czasu, by się przygotować.”<br>— Gen. Robert B. Abrams</p>
+
+                    <p>“Our future enemies may not afford us time to prepare.”<br>
+                        „Przeciwnik jutra może nie dać nam czasu, by się przygotować.”<br>
+                        <span class="brand-quote-author">— Gen. Robert B. Abrams</span>
+                    </p>
                 </div>
             </div>
 
@@ -718,11 +749,10 @@
         </header>
 
         <section class="hero">
-            <h2>Reagowanie na to, czego nie da się zaplanować</h2>
+
+            <h2>Gdy liczą się sekundy, działanie musi być natychmiastowe.</h2>
             <p>
-                Nowoczesne przygotowanie do sytuacji nagłych, presji czasu i pierwszych minut chaosu.
-
-
+                Profesjonalne szkolenia H-CORE edu przygotowują do skutecznej reakcji w sytuacjach nagłych — od masywnych krwotoków po pierwsze minuty chaosu, zanim pojawi się pomoc.
             </p>
 
             <div class="cta-row">
