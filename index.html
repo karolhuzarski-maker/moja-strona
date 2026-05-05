@@ -326,6 +326,34 @@
             margin: 6px 0
         }
 
+        .about-card {
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(rgba(9, 10, 14, .78), rgba(9, 10, 14, .78)),
+                url("o mnie.png") center/cover no-repeat;
+        }
+
+        .about-card::after {
+            content: "H-CORE EDU";
+            position: absolute;
+            right: -18px;
+            bottom: 12px;
+            font-size: clamp(28px, 7vw, 52px);
+            font-weight: 800;
+            letter-spacing: .12em;
+            color: rgba(255, 255, 255, .08);
+            transform: rotate(-12deg);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .about-card>* {
+            position: relative;
+            z-index: 1;
+        }
+
+
         #panel-onas .card,
         #panel-szkolenia .card,
         #panel-kontakt .card,
@@ -720,7 +748,7 @@
             <!-- O NAS -->
             <section class="panel active" id="panel-onas" role="tabpanel" aria-labelledby="tab-onas">
                 <div class="grid">
-                    <div class="card">
+                    <div class="card about-card">
                         <h3>O H-CORE Edu</h3>
                             <p>Autorski projekt szkoleniowy Karola Huzarskiego — ratownika medycznego, instruktora STOP THE BLEED® oraz Combat Lifesaver.</p>
         <p>H-CORE Edu powstało z praktyki ratownictwa, doświadczenia operacyjnego i pracy w środowisku międzynarodowym: Afganistan / NATO Resolute Support oraz Ukraina / OSCE SMM.</p>
