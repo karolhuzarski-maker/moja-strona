@@ -52,6 +52,7 @@
     </script>
 
     <style>
+        @import url("https://fonts.googleapis.com/css2?family=Teko:wght@600;700&display=swap");
         :root {
             --bg: #0b0c0f;
             --card: #11131a;
@@ -220,12 +221,15 @@
 
 
         .hero h2 {
-            margin: 0 0 8px;
-            font-size: clamp(1.55rem, 2.5vw, 2.25rem);
-            letter-spacing: .2px;
-            line-height: 1.15;
-            max-width: 22ch;
-            text-wrap: balance;
+            margin: 0 0 10px;
+            font-family: "Teko", "Impact", "Arial Black", sans-serif;
+            font-size: clamp(1.35rem, 2.1vw, 2rem);
+            font-weight: 700;
+            letter-spacing: .4px;
+            line-height: 1.02;
+            white-space: nowrap;
+            max-width: none;
+            text-shadow: 0 4px 16px rgba(0, 0, 0, .35);
         }
 
 
@@ -234,6 +238,14 @@
             color: #c8d0e2;
             max-width: 70ch;
             font-size: 1.03rem;
+            text-align: left;
+            text-wrap: pretty;
+        }
+
+        .hero-lead {
+            margin-top: 14px;
+            font-size: 1.06rem;
+            color: #d4daea;
         }
 
         .cta-row {
@@ -707,6 +719,12 @@
                 max-width: 100%;
             }
 
+            .hero h2 {
+                white-space: normal;
+                font-size: clamp(1.55rem, 7vw, 2rem);
+                line-height: 1.05;
+            }
+
             .image-modal {
                 padding: 10px;
             }
@@ -750,11 +768,7 @@
 
         <section class="hero">
 
-            <h2>Gdy liczą się sekundy, działanie musi być natychmiastowe.</h2>
-            <p>
-                Profesjonalne szkolenia H-CORE edu przygotowują do skutecznej reakcji w sytuacjach nagłych — od masywnych krwotoków po pierwsze minuty chaosu, zanim pojawi się pomoc.
-            </p>
-
+            <h2>Gdy liczą się sekundy, liczy się przygotowanie.</h2>
             <div class="cta-row">
                 <!-- PODMIEŃ link do FB -->
                 <a class="btn primary" href="https://www.facebook.com/profile.php?id=61587227281522" target="_blank"
@@ -765,10 +779,14 @@
                 <a class="btn" id="btn-program-core" href="galeria.html">Galeria</a>
             </div>
 
-            <p class="seo-copy">H-CORE edu prowadzi specjalistyczne szkolenia z pierwszej pomocy, tamowania masywnych krwotoków oraz działania w sytuacjach wysokiego stresu. Pracujemy stacjonarnie w Krakowie i okolicach.</p>
+            <p class="hero-lead">
+                Praktyczne szkolenia H-CORE Edu przygotowują do działania w pierwszych minutach zagrożenia — od masywnych krwotoków po sytuacje wysokiego stresu i zdarzenia nagłe.
+            </p>
+
+            <p class="seo-copy">Szkolimy z pierwszej reakcji, kontroli krwotoków i postępowania urazowego. Realne scenariusze, konkretne procedury i nauka przez działanie — stacjonarnie w Krakowie oraz na terenie całej Polski.</p>
 
             <div class="pill">
-                <span>Aktualne wytyczne</span> • <span>Scenariusze zdarzeń</span> • <span>Nauka przez działanie</span>
+                <span>Aktualne wytyczne</span> • <span>Realne scenariusze</span> • <span>Działanie pod presją</span>
             </div>
         </section>
 
