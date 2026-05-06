@@ -52,6 +52,7 @@
     </script>
 
     <style>
+        @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&display=swap");
         :root {
             --bg: #0b0c0f;
             --card: #11131a;
@@ -221,13 +222,18 @@
 
         .hero h2 {
             margin: 0 0 10px;
-            font-family: "Arial Black", "Impact", "Segoe UI", system-ui, sans-serif;
-            font-size: clamp(1.8rem, 3vw, 2.7rem);
-            letter-spacing: .3px;
-            line-height: 1.08;
-            max-width: 24ch;
-            text-wrap: balance;
+            font-family: "Barlow Condensed", "Arial Narrow", "Segoe UI", sans-serif;
+            font-size: clamp(1.25rem, 2.1vw, 1.7rem);
+            letter-spacing: .35px;
+            line-height: 1.12;
+            max-width: 100%;
+            white-space: nowrap;
             text-shadow: 0 6px 26px rgba(0, 0, 0, .45);
+            display: inline-block;
+            padding: 7px 10px;
+            border: 1px solid rgba(255, 255, 255, .25);
+            border-radius: 10px;
+            background: rgba(6, 10, 20, .35);
         }
 
 
@@ -717,6 +723,15 @@
                 max-width: 100%;
             }
 
+            .hero h2 {
+                font-size: clamp(0.82rem, 3.2vw, 1rem);
+                letter-spacing: .1px;
+                line-height: 1.12;
+                max-width: 100%;
+                white-space: nowrap;
+                padding: 5px 7px;
+            }
+
             .image-modal {
                 padding: 10px;
             }
@@ -760,7 +775,7 @@
 
         <section class="hero">
 
-            <h2>Gdy liczą się sekundy, liczy się przygotowanie.</h2>
+            <h2>Gdy świat traci rytm, chaos nie może przejąć kontroli</h2>
             <div class="cta-row">
                 <!-- PODMIEŃ link do FB -->
                 <a class="btn primary" href="https://www.facebook.com/profile.php?id=61587227281522" target="_blank"
@@ -772,13 +787,13 @@
             </div>
 
             <p class="hero-lead">
-                Praktyczne szkolenia H-CORE Edu przygotowują do działania w pierwszych minutach zagrożenia — od masywnych krwotoków po sytuacje wysokiego stresu i zdarzenia nagłe.
+                H-CORE Edu przygotowuje cywili, ZRM i służby do skutecznego działania w sytuacjach nagłych — od masywnych krwotoków po zdarzenia mnogie, stres operacyjny, blackout i ewakuację.
             </p>
 
-            <p class="seo-copy">Szkolimy z pierwszej reakcji, kontroli krwotoków i postępowania urazowego. Realne scenariusze, konkretne procedury i nauka przez działanie — stacjonarnie w Krakowie oraz na terenie całej Polski.</p>
+            <p class="seo-copy">Uczymy konkretnych procedur, pracy pod presją i decyzji w pierwszych minutach zdarzenia. Szkolimy praktycznie, scenariuszowo i zadaniowo — w Krakowie oraz na terenie całej Polski.</p>
 
             <div class="pill">
-                <span>Aktualne wytyczne</span> • <span>Realne scenariusze</span> • <span>Działanie pod presją</span>
+                <span>Krwotoki</span> • <span>Urazy</span> • <span>Zdarzenia mnogie</span> • <span>Blackout</span> • <span>Ewakuacja</span>
             </div>
         </section>
 
