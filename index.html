@@ -114,11 +114,9 @@
 
         .brand {
             display: flex;
-            gap: 16px;
-            /* więcej odstępu */
             align-items: center;
             min-width: 0;
-            flex: 1 1 100%;
+            flex: 0 0 auto;
         }
 
         .brand img {
@@ -129,37 +127,6 @@
         }
 
 
-        .brand-title {
-            min-width: 0;
-        }
-
-        .brand-title h1 {
-            font-family: "Rajdhani", "Barlow Condensed", "Arial Narrow", "Segoe UI", sans-serif;
-            font-size: 20px;
-            margin: 0;
-            letter-spacing: .8px;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-
-        .brand-title p {
-            margin: 6px 0 0;
-            color: #d6dceb;
-            font-family: "Rajdhani", "Barlow Condensed", "Arial Narrow", "Segoe UI", sans-serif;
-            font-size: clamp(14px, 1.6vw, 22px);
-            font-weight: 700;
-            line-height: 1.2;
-            text-wrap: pretty;
-            text-align: left;
-        }
-
-
-        .brand-title .quote-line,
-        .brand-title .quote-author {
-            display: block;
-            white-space: normal;
-        }
 
         /* Nav tabs */
         nav {
@@ -674,9 +641,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .brand-title p {
-                font-size: 20px;
-            }
         }
 
         /* === MOBILE FIXES (wklej na końcu <style>) === */
@@ -753,15 +717,6 @@
         }
 
         @media (max-width: 360px) {
-            .brand-title p {
-                font-size: 16px;
-            }
-
-            .brand-title .quote-line,
-            .brand-title .quote-author {
-                white-space: normal;
-            }
-
             nav {
                 grid-template-columns: 1fr;
             }
@@ -772,19 +727,10 @@
 <body>
     <div class="wrap">
         <header>
-            <div class="brand">
+            <a class="brand" href="index.html" aria-label="Wróć na stronę główną">
                 <!-- Logo główne: wariant full core (wysoka jakość) -->
                 <img src="new llogo full core.png" alt="H-CORE edu logo" />
-                <div class="brand-title">
-                    <h1>H-CORE edu</h1>
-
-                    <p>
-                        <span class="quote-line">“Our future enemies may not afford us time to prepare.”</span>
-                        <span class="quote-line">„Przeciwnik jutra może nie dać nam czasu, by się przygotować.”</span>
-                        <span class="quote-author">— Gen. Robert B. Abrams</span>
-                    </p>
-                </div>
-            </div>
+            </a>
 
             <nav aria-label="Nawigacja strony">
                 <a class="tab-btn" href="onas.html">Kadra H-CORE Edu</a>
