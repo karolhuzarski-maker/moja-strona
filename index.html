@@ -118,7 +118,7 @@
             /* więcej odstępu */
             align-items: center;
             min-width: 0;
-            flex: 1 1 420px;
+            flex: 1 1 560px;
         }
 
         .brand img {
@@ -147,11 +147,18 @@
             margin: 6px 0 0;
             color: #d6dceb;
             font-family: "Rajdhani", "Barlow Condensed", "Arial Narrow", "Segoe UI", sans-serif;
-            font-size: 30px;
+            font-size: clamp(20px, 2.3vw, 32px);
             font-weight: 700;
             line-height: 1.2;
-            text-wrap: balance;
-            text-align: center;
+            text-wrap: pretty;
+            text-align: left;
+        }
+
+
+        .brand-title .quote-line,
+        .brand-title .quote-author {
+            display: block;
+            white-space: nowrap;
         }
 
         /* Nav tabs */
@@ -163,7 +170,7 @@
             padding-bottom: 6px;
             overflow-x: visible;
             justify-content: flex-end;
-            flex: 1 1 340px;
+            flex: 0 1 auto;
             min-width: 0;
 
             padding-left: 6px;
@@ -539,7 +546,7 @@
             border-radius: 14px;
             border: 1px solid rgba(255, 255, 255, .2);
             background: rgba(10, 12, 16, .95);
-            text-align: center;
+            text-align: left;
         }
 
         .pdf-modal-fallback p {
@@ -629,7 +636,7 @@
             padding: 18px 4px;
             color: rgba(255, 255, 255, .55);
             font-size: 12px;
-            text-align: center;
+            text-align: left;
         }
 
         /* Desktop: pokazuj całe zdjęcie tła (bez nadmiernego zoomu) */
@@ -690,7 +697,7 @@
             .brand {
                 flex-direction: column;
                 gap: 12px;
-                text-align: center;
+                text-align: left;
             }
 
             /* menu bez uciekania poza ekran (zawijanie) */
@@ -705,7 +712,7 @@
             .tab-btn {
                 flex: 1 1 calc(50% - 6px);
                 min-width: 0;
-                text-align: center;
+                text-align: left;
             }
 
             @media (max-width: 360px) {
@@ -750,6 +757,11 @@
                 font-size: 16px;
             }
 
+            .brand-title .quote-line,
+            .brand-title .quote-author {
+                white-space: normal;
+            }
+
             nav {
                 grid-template-columns: 1fr;
             }
@@ -766,9 +778,10 @@
                 <div class="brand-title">
                     <h1>H-CORE edu</h1>
 
-                    <p>“Our future enemies may not afford us time to prepare.”<br>
-                        „Przeciwnik jutra może nie dać nam czasu, by się przygotować.”<br>
-                        — Gen. Robert B. Abrams
+                    <p>
+                        <span class="quote-line">“Our future enemies may not afford us time to prepare.”</span>
+                        <span class="quote-line">„Przeciwnik jutra może nie dać nam czasu, by się przygotować.”</span>
+                        <span class="quote-author">— Gen. Robert B. Abrams</span>
                     </p>
                 </div>
             </div>
