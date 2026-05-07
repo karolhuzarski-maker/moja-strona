@@ -146,16 +146,12 @@
         .brand-title p {
             margin: 6px 0 0;
             color: #d6dceb;
-            font-size: 15px;
-            line-height: 1.55;
-            text-wrap: balance;
-            max-width: 42ch;
-        }
-
-        .brand-quote-author {
-            color: #ffffff;
+            font-family: "Rajdhani", "Barlow Condensed", "Arial Narrow", "Segoe UI", sans-serif;
+            font-size: 30px;
             font-weight: 700;
-            letter-spacing: .3px;
+            line-height: 1.2;
+            text-wrap: balance;
+            text-align: center;
         }
 
         /* Nav tabs */
@@ -227,6 +223,7 @@
             margin: 0 0 10px;
             font-family: "Barlow Condensed", "Arial Narrow", "Segoe UI", sans-serif;
             font-size: clamp(1.25rem, 2.1vw, 1.7rem);
+            font-weight: 400;
             letter-spacing: .35px;
             line-height: 1.12;
             max-width: 100%;
@@ -669,6 +666,10 @@
             .program-grid {
                 grid-template-columns: 1fr;
             }
+
+            .brand-title p {
+                font-size: 20px;
+            }
         }
 
         /* === MOBILE FIXES (wklej na końcu <style>) === */
@@ -745,6 +746,10 @@
         }
 
         @media (max-width: 360px) {
+            .brand-title p {
+                font-size: 16px;
+            }
+
             nav {
                 grid-template-columns: 1fr;
             }
@@ -763,7 +768,7 @@
 
                     <p>“Our future enemies may not afford us time to prepare.”<br>
                         „Przeciwnik jutra może nie dać nam czasu, by się przygotować.”<br>
-                        <span class="brand-quote-author">— Gen. Robert B. Abrams</span>
+                        — Gen. Robert B. Abrams
                     </p>
                 </div>
             </div>
