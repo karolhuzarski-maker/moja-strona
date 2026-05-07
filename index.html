@@ -100,16 +100,14 @@
         /* Header */
         header {
             display: flex;
-            gap: 18px;
-            align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
-            padding: 20px 14px;
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02));
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 14px;
+            padding: 16px;
+            background: rgba(255,255,255,.03);
             box-shadow: var(--shadow);
-            backdrop-filter: blur(6px);
         }
 
         .brand {
@@ -120,7 +118,7 @@
         }
 
         .brand img {
-            width: 300px;
+            width: 280px;
             height: auto;
             display: block;
             border-radius: 14px;
@@ -131,30 +129,23 @@
         /* Nav tabs */
         nav {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
-            white-space: normal;
-            padding-bottom: 6px;
-            overflow-x: visible;
-            justify-content: flex-start;
-            flex: 1 1 100%;
-            min-width: 0;
-
-            padding-left: 6px;
-            padding-right: 6px;
         }
 
         .tab-btn {
-            border: 1px solid var(--line);
-            background: rgba(255, 255, 255, .03);
-            color: var(--text);
+            border: 1px solid rgba(255,255,255,.15);
+            background: rgba(255,255,255,.03);
+            color: #fff;
             padding: 10px 12px;
-            border-radius: 12px;
+            border-radius: 10px;
             cursor: pointer;
             font-weight: 600;
             font-size: 14px;
             transition: .2s ease;
             outline: none;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .tab-btn:hover {
@@ -163,7 +154,7 @@
             background: rgba(255, 255, 255, .05);
         }
 
-        .tab-btn[aria-selected="true"] {
+        .tab-btn[aria-current="page"] {
             border-color: rgba(209, 11, 11, .6);
             background: linear-gradient(180deg, rgba(209, 11, 11, .25), rgba(255, 255, 255, .03));
         }
