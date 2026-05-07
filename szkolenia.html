@@ -11,6 +11,7 @@
       --surface: rgba(255, 255, 255, 0.04);
       --border: rgba(255, 255, 255, 0.18);
       --accent: #ffcb2f;
+      --heading-font: "Arial Black", "Segoe UI", Roboto, sans-serif;
     }
 
     * { box-sizing: border-box; }
@@ -72,7 +73,16 @@
       background: var(--surface);
     }
 
-    .card h2 { margin: 0 0 10px; font-size: 1.2rem; }
+    .card h2 { margin: 0 0 10px; font-size: 1.2rem; font-family: var(--heading-font); }
+
+    .top-quote {
+      margin: 0 0 16px;
+      text-align: center;
+      font-family: var(--heading-font);
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      letter-spacing: 0.02em;
+      color: var(--accent);
+    }
     .card p { margin: 0; color: rgba(243, 245, 255, 0.92); }
 
     .card.clickable {
@@ -146,6 +156,8 @@
 </head>
 <body>
   <div class="wrap">
+    <p class="top-quote">„Szkolenie to inwestycja, która ratuje życie.”</p>
+
     <header class="top">
       <a href="index.html"><img src="new llogo full core.png" alt="H-CORE edu" /></a>
       <nav class="nav">
