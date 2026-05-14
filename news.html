@@ -1,44 +1,96 @@
 <!doctype html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Forward Care Review | H-CORE edu</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui;
-      background:
-        linear-gradient(rgba(11, 12, 15, .72), rgba(11, 12, 15, .72)),
-        url("medic cbs.png") center/cover no-repeat fixed,
-        radial-gradient(1200px 700px at 70% -10%, rgba(209, 11, 11, .25), transparent 60%),
-        radial-gradient(900px 600px at 20% 0%, rgba(255, 255, 255, .06), transparent 55%),
-        #0b0c0f;
-      color: #f3f5ff;
-    }
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 16px; }
-    .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; border: 1px solid rgba(255,255,255,.15); border-radius: 14px; padding: 16px; background: rgba(255,255,255,.03); }
-    .top img { width: 280px; max-width: 100%; }
-    .nav { display: flex; gap: 10px; flex-wrap: wrap; }
-    .nav a { padding: 10px 12px; border: 1px solid rgba(255,255,255,.15); border-radius: 10px; color: #fff; text-decoration: none; }
-    .grid { margin-top: 16px; display: grid; grid-template-columns: 1fr; gap: 14px; }
-    .card { padding: 18px; border: 1px solid rgba(255,255,255,.15); border-radius: 14px; background: rgba(255,255,255,.03); }
+<style>
+  :root{
+    --bg:#0b1220;
+    --panel:#111827ee;
+    --line:#ffffff2b;
+    --txt:#ecf0f7;
+    --muted:#a8b3c8;
+    --accent:#ef4444;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    color:var(--txt);
+    background:
+      linear-gradient(180deg,#050912 0%, #0b1220 100%),
+      url('https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=2000&q=80') center/cover fixed;
+  }
+  .wrap{
+    min-height:100dvh;
+    backdrop-filter:saturate(110%) blur(2px);
+    background:linear-gradient(180deg,#0000008f 0%,#00000099 100%);
+  }
+  .top{
+    max-width:1180px;
+    margin:0 auto;
+    padding:18px 20px 8px;
+    display:grid;
+    grid-template-columns:220px 1fr;
+    align-items:center;
+    gap:14px;
+  }
+  .top img{height:72px;width:auto;display:block}
+  .nav{
+    display:grid;
+    grid-template-columns:repeat(5,minmax(120px,1fr));
+    gap:10px;
+  }
+  .nav a{
+    color:#fff;
+    text-decoration:none;
+    text-align:center;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:#10182780;
+    box-shadow:0 8px 20px #00000040 inset;
+  }
+  .nav a:hover{border-color:#ffffff55;background:#1f2937a6}
 
-    @media (max-width: 640px) {
-      .top {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .top > a { display: block; }
-      .top img { width: 100%; max-width: 320px; }
-      .nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
-      .nav a { text-align: center; display: flex; align-items: center; justify-content: center; }
-      .nav a:nth-child(n+5) { grid-column: 1 / -1; }
-    }
+  .grid{
+    max-width:1180px;
+    margin:18px auto 0;
+    padding:16px 20px 40px;
+    display:grid;
+    gap:18px;
+  }
+  .card{
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:var(--panel);
+    padding:22px;
+  }
+  .label{
+    color:#d15454;
+    font-weight:700;
+    letter-spacing:.18em;
+    font-size:.72rem;
+    text-transform:uppercase;
+    margin:0 0 10px;
+  }
+  .card h2{
+    margin:0 0 12px;
+    font-size:clamp(1.5rem,2.5vw,2.2rem);
+    line-height:1.2;
+  }
+  .lead{
+    margin:0;
+    color:var(--muted);
+    line-height:1.75;
+    max-width:70ch;
+  }
 
-    @media (max-width: 360px) {
-      .nav { grid-template-columns: 1fr; }
-    }
+  @media (max-width:900px){
+    .top { grid-template-columns: 1fr; }
+    .nav { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -56,7 +108,9 @@
 
     <main class="grid">
       <section class="card">
-        <h2>Forward Care Review</h2>
+        <p class="label">Publikacja</p>
+        <h2>Praktyka. Wiedza. Odpowiedzialność.</h2>
+        <p class="lead">Forward Care Review to publikacja tworzona z perspektywy ratownika medycznego. Łączy praktykę przedszpitalną, analizy wytycznych, komentarz ekspercki i nowoczesne spojrzenie na opiekę nad pacjentem w stanie nagłego zagrożenia zdrowotnego.</p>
       </section>
 
     </main>
