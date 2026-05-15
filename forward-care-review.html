@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Forward Care Review | H-CORE Edu</title>
+  <title>Forward Care Review | H-CORE edu</title>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&family=Rajdhani:wght@600;700&display=swap");
     :root { --bg:#0b0c0f; --muted:#a9b0c0; --text:#f3f5ff; --line:rgba(255,255,255,.10); --shadow:0 18px 60px rgba(0,0,0,.55); --radius:16px; }
@@ -27,12 +27,17 @@
     .hero::before { content:""; position:absolute; inset:0; background:linear-gradient(120deg, rgba(255,255,255,.08), transparent 36%); pointer-events:none; }
     .hero h2 { position:relative; z-index:1; margin:0 0 10px; font-family:"Rajdhani","Barlow Condensed","Arial Narrow","Segoe UI",sans-serif; font-size:clamp(1.25rem,2.1vw,1.7rem); font-weight:400; letter-spacing:.35px; line-height:1.12; white-space:nowrap; text-shadow:0 6px 26px rgba(0,0,0,.45); display:inline-block; padding:7px 10px; border:1px solid rgba(255,255,255,.25); border-radius:10px; background:rgba(6,10,20,.35); }
     .hero p { position:relative; z-index:1; margin:0; color:#c8d0e2; max-width:70ch; font-size:1.03rem; }
-    .content { margin-top:18px; border:1px solid var(--line); border-radius:var(--radius); background:rgba(255,255,255,.02); box-shadow:var(--shadow); }
-    .card { border:1px solid var(--line); border-radius:14px; background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02)); padding:22px; margin:16px; }
+    .grid { margin-top:18px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    .card { border:1px solid var(--line); border-radius:14px; background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02)); padding:18px; min-height:230px; }
+    .card h2 { margin:0 0 8px; font-size:1.5rem; font-family:"Rajdhani","Segoe UI",sans-serif; }
+    .card p { margin:0 0 10px; color:var(--muted); font-size:1.05rem; }
+    .card.clickable { cursor:pointer; transition:transform .15s ease,border-color .15s ease, background .15s ease; }
+    .card.clickable:hover, .card.clickable:focus-visible { transform:translateY(-2px); border-color:rgba(255,255,255,.3); background:rgba(255,255,255,.06); outline:none; }
     .label { color:#d15454; font-weight:700; letter-spacing:.18em; font-size:.72rem; text-transform:uppercase; margin:0 0 10px; }
-    .card h3 { margin:0 0 12px; font-size:clamp(1.5rem,2.5vw,2.2rem); line-height:1.2; font-family:"Rajdhani","Segoe UI",sans-serif; }
-    .lead { margin:0; color:var(--muted); line-height:1.75; max-width:70ch; }
+    .code { display:inline-block; margin:0 0 10px; padding:3px 8px; border-radius:999px; border:1px solid rgba(255,255,255,.2); color:#d6deef; font-size:.76rem; letter-spacing:.08em; }
+    .cta { display:inline-block; margin-top:6px; border:1px solid rgba(255,255,255,.22); border-radius:10px; background:linear-gradient(180deg, rgba(209,11,11,.22), rgba(255,255,255,.05)); color:#fff; font-size:.9rem; font-weight:600; padding:9px 14px; text-decoration:none; }
     @media (max-width:860px) { header { flex-direction:column; align-items:stretch; } .brand { justify-content:center; } nav { justify-content:center; } }
+    @media (max-width:700px) { .grid { grid-template-columns:1fr; } }
     @media (max-width:520px) { .wrap { padding:12px; } .tab-btn { width:100%; text-align:center; } nav { width:100%; } .hero h2 { white-space:normal; } }
   </style>
 </head>
@@ -49,16 +54,18 @@
       </nav>
     </header>
 
-    <section class="hero" aria-label="Forward Care Review">
+    <section class="hero" aria-label="Wprowadzenie do Forward Care Review">
       <h2>Forward Care Review</h2>
-      <p>Perspektywa ratownika medycznego: praktyka przedszpitalna, analiza wytycznych i odpowiedzialne decyzje kliniczne.</p>
+      <p>Forward Care Review to autorska przestrzeń publikacyjną H-CORE Edu - materiały, komentarze i analizy z perspektywy ratownika medycznego, łączące praktykę przedszpitalną z nowoczesnym spojrzeniem na wytyczne i realne decyzje kliniczne.</p>
     </section>
 
-    <main class="content">
-      <section class="card">
+    <main class="grid" aria-label="Publikacje Forward Care Review">
+      <section class="card clickable" role="article" aria-label="Publikacja FCR-001">
         <p class="label">Publikacja</p>
-        <h3>Praktyka. Wiedza. Odpowiedzialność.</h3>
-        <p class="lead">Forward Care Review to publikacja tworzona z perspektywy ratownika medycznego. Łączy praktykę przedszpitalną, analizy wytycznych, komentarz ekspercki i nowoczesne spojrzenie na opiekę nad pacjentem w stanie nagłego zagrożenia zdrowotnego.</p>
+        <span class="code">FCR-001</span>
+        <h2>Evidence to nie uprawnienie</h2>
+        <p>TCCC, kurs, system i granice praktyki ZRM</p>
+        <a class="cta" href="forward_care_review_fcr001_v2 (1).pdf" target="_blank" rel="noopener noreferrer">Czytaj PDF</a>
       </section>
     </main>
   </div>
