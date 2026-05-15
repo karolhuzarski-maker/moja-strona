@@ -3,55 +3,47 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kontakt | H-CORE edu</title>
+  <title>Kontakt | H-CORE Edu</title>
   <style>
-    body {
-      margin: 0;
-      font-family: system-ui;
-      background:
-        linear-gradient(rgba(11, 12, 15, .72), rgba(11, 12, 15, .72)),
-        url("medic cbs.png") center/cover no-repeat fixed,
-        radial-gradient(1200px 700px at 70% -10%, rgba(209, 11, 11, .25), transparent 60%),
-        radial-gradient(900px 600px at 20% 0%, rgba(255, 255, 255, .06), transparent 55%),
-        #0b0c0f;
-      color: #f3f5ff;
-    }
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 16px; }
-    .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; border: 1px solid rgba(255,255,255,.15); border-radius: 14px; padding: 16px; background: rgba(255,255,255,.03); }
-    .top img { width: 280px; max-width: 100%; }
-    .nav { display: flex; gap: 10px; flex-wrap: wrap; }
-    .nav a { padding: 10px 12px; border: 1px solid rgba(255,255,255,.15); border-radius: 10px; color: #fff; text-decoration: none; }
-    .card { margin-top: 16px; padding: 18px; border: 1px solid rgba(255,255,255,.15); border-radius: 14px; background: rgba(255,255,255,.03); }
-    .link { color: #ffcb2f; }
-  
-    @media (max-width: 640px) {
-      .top {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .top > a { display: block; }
-      .top img { width: 100%; max-width: 320px; }
-      .nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
-      .nav a { text-align: center; display: flex; align-items: center; justify-content: center; }
-    }
-
-    @media (max-width: 360px) {
-      .nav { grid-template-columns: 1fr; }
-    }
-</style>
+    @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&family=Rajdhani:wght@600;700&display=swap");
+    :root { --bg:#0b0c0f; --muted:#a9b0c0; --text:#f3f5ff; --line:rgba(255,255,255,.10); --shadow:0 18px 60px rgba(0,0,0,.55); --radius:16px; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif; background:linear-gradient(rgba(11,12,15,.72),rgba(11,12,15,.72)),url("medic cbs.png") center/cover no-repeat fixed,radial-gradient(1200px 700px at 70% -10%, rgba(209,11,11,.25), transparent 60%),radial-gradient(900px 600px at 20% 0%, rgba(255,255,255,.06), transparent 55%),var(--bg); color:var(--text); line-height:1.5; }
+    .wrap { max-width:1240px; margin:0 auto; padding:16px; }
+    header { display:flex; justify-content:space-between; align-items:center; gap:12px; border:1px solid rgba(255,255,255,.15); border-radius:14px; padding:16px; background:rgba(255,255,255,.03); box-shadow:var(--shadow); }
+    .brand { display:flex; align-items:center; min-width:0; flex:0 0 auto; }
+    .brand img { width:280px; height:auto; display:block; border-radius:14px; }
+    nav { display:flex; gap:10px; flex-wrap:wrap; }
+    .tab-btn { border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.03); color:#fff; padding:10px 12px; border-radius:10px; cursor:pointer; font-weight:600; font-size:14px; transition:.2s ease; outline:none; text-decoration:none; display:inline-block; }
+    .tab-btn:hover { transform:translateY(-1px); border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.05); }
+    .tab-btn[aria-current="page"] { border-color:rgba(209,11,11,.6); background:linear-gradient(180deg, rgba(209,11,11,.25), rgba(255,255,255,.03)); }
+    .hero { margin-top:1px; border:1px solid rgba(255,255,255,.14); border-radius:var(--radius); background:radial-gradient(1100px 300px at 70% -20%, rgba(209,11,11,.35), transparent 60%), linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.015)); box-shadow:0 24px 70px rgba(0,0,0,.55); padding:22px 26px 20px; position:relative; overflow:hidden; }
+    .hero::before { content:""; position:absolute; inset:0; background:linear-gradient(120deg, rgba(255,255,255,.08), transparent 36%); pointer-events:none; }
+    .hero h2 { position:relative; z-index:1; margin:0 0 10px; font-family:"Rajdhani","Barlow Condensed","Arial Narrow","Segoe UI",sans-serif; font-size:clamp(1.25rem,2.1vw,1.7rem); font-weight:400; letter-spacing:.35px; line-height:1.12; white-space:nowrap; text-shadow:0 6px 26px rgba(0,0,0,.45); display:inline-block; padding:7px 10px; border:1px solid rgba(255,255,255,.25); border-radius:10px; background:rgba(6,10,20,.35); }
+    .hero p { position:relative; z-index:1; margin:0; color:#c8d0e2; max-width:70ch; font-size:1.03rem; }
+    .card { margin-top:18px; padding:22px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02)); }
+    .link { color:#ffcb2f; }
+    @media (max-width:860px) { header { flex-direction:column; align-items:stretch; } .brand { justify-content:center; } nav { justify-content:center; } }
+    @media (max-width:520px) { .wrap { padding:12px; } .tab-btn { width:100%; text-align:center; } nav { width:100%; } .hero h2 { white-space:normal; } }
+  </style>
 </head>
 <body>
   <div class="wrap">
-    <header class="top">
-      <a href="index.html"><img src="new llogo full core.png" alt="H-CORE edu" /></a>
-      <nav class="nav">
-        <a href="onas.html">Kadra H-Core edu</a>
-        <a href="szkolenia.html">Szkolenia</a>
-        <a href="news.html">Forward Care Review</a>
-        <a href="galeria.html">Działania</a>
-        <a href="kontakt.html">Kontakt</a>
+    <header>
+      <a class="brand" href="index.html" aria-label="Wróć na stronę główną"><img src="new llogo full core.png" alt="H-CORE edu" /></a>
+      <nav aria-label="Główna nawigacja">
+        <a class="tab-btn" href="onas.html">Kadra H-CORE Edu</a>
+        <a class="tab-btn" href="szkolenia.html">Szkolenia</a>
+        <a class="tab-btn" href="forward-care-review.html">Forward Care Review</a>
+        <a class="tab-btn" href="galeria.html">Działania</a>
+        <a class="tab-btn" href="kontakt.html" aria-current="page">Kontakt</a>
       </nav>
     </header>
+
+    <section class="hero" aria-label="Wprowadzenie do kontaktu">
+      <h2>Kontakt</h2>
+      <p>Skontaktuj się z H-CORE Edu w sprawie szkoleń, współpracy lub projektów edukacyjnych.</p>
+    </section>
 
     <main class="card">
       <h1>Kontakt</h1>
