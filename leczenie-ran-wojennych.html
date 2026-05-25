@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leczenie ran odniesionych w działaniach wojennych | H-CORE Edu</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui;
+      background:
+        linear-gradient(rgba(11, 12, 15, .72), rgba(11, 12, 15, .72)),
+        url("medic cbs.png") center/cover no-repeat fixed,
+        radial-gradient(1200px 700px at 70% -10%, rgba(209, 11, 11, .25), transparent 60%),
+        radial-gradient(900px 600px at 20% 0%, rgba(255, 255, 255, .06), transparent 55%),
+        #0b0c0f;
+      color: #f3f5ff;
+      line-height: 1.6;
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 16px; }
+    .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; border: 1px solid rgba(255,255,255,.15); border-radius: 14px; padding: 16px; background: rgba(255,255,255,.03); }
+    .top img { width: 280px; max-width: 100%; }
+    .nav { display: flex; gap: 10px; flex-wrap: wrap; }
+    .nav a { padding: 10px 12px; border: 1px solid rgba(255,255,255,.15); border-radius: 10px; color: #fff; text-decoration: none; }
+    .card { margin-top: 16px; padding: 24px; border: 1px solid rgba(255,255,255,.15); border-radius: 14px; background: rgba(255,255,255,.03); }
+    h1, h2, h3 { margin-top: 0; }
+    .gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+    .gallery button { border: 1px solid rgba(255,255,255,.15); border-radius: 12px; overflow: hidden; background: rgba(0,0,0,.25); padding: 0; margin: 0; cursor: pointer; width: 100%; }
+    .gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+    .gallery-lightbox { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0, 0, 0, .78); z-index: 9999; padding: 16px; }
+    .gallery-lightbox.active { display: flex; }
+    .gallery-lightbox img { max-width: 90vw; max-height: 90vh; display: block; object-fit: contain; }
+    .gallery-lightbox-close { position: absolute; top: 18px; right: 24px; border: 0; background: transparent; color: #fff; font-size: 42px; line-height: 1; cursor: pointer; padding: 0; }
+
+    @media (max-width: 900px) {
+      .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 520px) {
+      .nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+      .nav a { text-align: center; }
+      .nav a:nth-child(n+5) { grid-column: 1 / -1; }
+      .gallery { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 360px) {
+      .nav { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a href="index.html"><img src="new llogo full core.png" alt="H-CORE edu" /></a>
+      <nav class="nav">
+        <a href="forward-care-review.html">Forward Care Review</a>
+        <a href="onas.html">Kadra H-Core edu</a>
+        <a href="szkolenia.html">Szkolenia</a>
+        <a href="dzialania.html">Działania</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+    </header>
+
+    <section class="card">
+      <h1>Leczenie ran odniesionych w działaniach wojennych</h1>
+      <p>Szkolenie praktyczne zrealizowane w ramach projektu LTPL00413</p>
+      <p>21.05.2026</p>
+      <img src="./zamaza_twarze_03.jpg" alt="Leczenie ran odniesionych w działaniach wojennych" style="width: 100%; object-fit: cover; border-radius: 12px; margin-bottom: 12px;" />
+      <p>W dniu 21.05.2026 r. przeprowadzono szkolenie pt. „Leczenie ran odniesionych w działaniach wojennych”, realizowane w ramach projektu LTPL00413. Szkolenie obejmowało część teoretyczną oraz praktyczną, ukierunkowaną na postępowanie z ranami, zabezpieczenie poszkodowanego oraz pracę w warunkach zwiększonego ryzyka.</p>
+      <p>Uczestnicy aktywnie brali udział w ćwiczeniach praktycznych, pracując na scenariuszach związanych z obrażeniami odniesionymi w działaniach wojennych. Zajęcia miały charakter praktyczny i były ukierunkowane na rozwijanie umiejętności przydatnych w sytuacjach kryzysowych oraz ratowniczych.</p>
+      <p><a href="dzialania.html">← Wróć do działań</a></p>
+    </section>
+
+    <section class="card">
+      <h2>Galeria zdjęć</h2>
+      <div class="gallery">
+        <button type="button" class="gallery-item"><img src="./zamaza_twarze_01.jpg" alt="Leczenie ran 1" /></button>
+        <button type="button" class="gallery-item"><img src="./zamaza_twarze_02.jpg" alt="Leczenie ran 2" /></button>
+        <button type="button" class="gallery-item"><img src="./zamaza_twarze_03.jpg" alt="Leczenie ran 3" /></button>
+        <button type="button" class="gallery-item"><img src="./zamaza_twarze_04.jpg" alt="Leczenie ran 4" /></button>
+        <button type="button" class="gallery-item"><img src="./zamaza_twarze_05.jpg" alt="Leczenie ran 5" /></button>
+        <button type="button" class="gallery-item"><img src="./zamaza_twarze_06.jpg" alt="Leczenie ran 6" /></button>
+        <button type="button" class="gallery-item"><img src="./zamaza_twarze_07.jpg" alt="Leczenie ran 7" /></button>
+        <button type="button" class="gallery-item"><img src="./zamaza_twarze_08.jpg" alt="Leczenie ran 8" /></button>
+      </div>
+    </section>
+  </div>
+
+  <div class="gallery-lightbox" id="galleryLightbox" aria-hidden="true">
+    <button class="gallery-lightbox-close" type="button" aria-label="Zamknij">&times;</button>
+    <img src="" alt="Powiększone zdjęcie" />
+  </div>
+
+  <script>
+    (function () {
+      var lightbox = document.getElementById('galleryLightbox');
+      var lightboxImage = lightbox ? lightbox.querySelector('img') : null;
+      var closeButton = lightbox ? lightbox.querySelector('.gallery-lightbox-close') : null;
+      var items = document.querySelectorAll('.gallery-item img');
+
+      if (!lightbox || !lightboxImage || !closeButton || !items.length) return;
+
+      function openLightbox(src, alt) {
+        lightboxImage.src = src;
+        lightboxImage.alt = alt;
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightboxImage.src = '';
+        document.body.style.overflow = '';
+      }
+
+      items.forEach(function (image) {
+        image.parentElement.addEventListener('click', function () {
+          openLightbox(image.src, image.alt);
+        });
+      });
+
+      closeButton.addEventListener('click', closeLightbox);
+
+      lightbox.addEventListener('click', function (event) {
+        if (event.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+      });
+    })();
+  </script>
+</body>
+</html>
