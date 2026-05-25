@@ -36,6 +36,13 @@
     .k1k2-content h3 { margin:0 0 4px; }
     .k1k2-date { margin:0 0 6px; font-weight:600; }
     .k1k2-talk { margin:0 0 6px; }
+    .k1k2-image-trigger { border:0; padding:0; margin:0; width:100%; background:none; display:block; cursor:pointer; }
+    .k1k2-image-trigger img { transition:transform .2s ease, filter .2s ease; cursor:pointer; }
+    .k1k2-image-trigger:hover img { transform:scale(1.02); filter:brightness(.94); }
+    .image-lightbox { position:fixed; inset:0; background:rgba(0,0,0,.75); display:none; align-items:center; justify-content:center; z-index:9999; padding:16px; }
+    .image-lightbox.active { display:flex; }
+    .image-lightbox img { max-width:90vw; max-height:90vh; object-fit:contain; display:block; }
+    .image-lightbox-close { position:absolute; top:18px; right:24px; border:0; background:transparent; color:#fff; font-size:42px; line-height:1; cursor:pointer; padding:0; }
     @media (max-width:860px) { header { flex-direction:column; align-items:stretch; } .brand { justify-content:center; } nav { justify-content:center; } .grid { grid-template-columns:1fr; } }
     @media (max-width:520px) { .wrap { padding:12px; } .tab-btn { width:100%; text-align:center; } nav { width:100%; } .hero h2 { white-space:normal; } }
   </style>
@@ -62,7 +69,9 @@
 
     <main class="grid">
       <section class="card k1k2-thumb" aria-label="Konferencja online K1/K2">
-        <img src="./swiadnomy  medyk.png" alt="Konferencja online K1/K2" />
+        <button class="k1k2-image-trigger" type="button" aria-label="Powiększ zdjęcie konferencji">
+          <img src="./swiadnomy  medyk.png" alt="Konferencja online K1/K2" />
+        </button>
         <div class="k1k2-content">
           <p class="k1k2-meta">K1/K2. Współczesne wyzwania ratownictwa medycznego #3</p>
           <h3>Konferencja online K1/K2</h3>
@@ -82,5 +91,46 @@
       <section class="card"><h2>&nbsp;</h2><p>&nbsp;</p></section>
     </main>
   </div>
+  <div class="image-lightbox" id="k1k2Lightbox" aria-hidden="true">
+    <button class="image-lightbox-close" type="button" aria-label="Zamknij">&times;</button>
+    <img src="./swiadnomy  medyk.png" alt="Konferencja online K1/K2" />
+  </div>
+
+  <script>
+    (function () {
+      var trigger = document.querySelector('.k1k2-image-trigger');
+      var lightbox = document.getElementById('k1k2Lightbox');
+      var closeBtn = lightbox ? lightbox.querySelector('.image-lightbox-close') : null;
+
+      if (!trigger || !lightbox || !closeBtn) return;
+
+      function openLightbox() {
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      trigger.addEventListener('click', openLightbox);
+      closeBtn.addEventListener('click', closeLightbox);
+
+      lightbox.addEventListener('click', function (event) {
+        if (event.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
