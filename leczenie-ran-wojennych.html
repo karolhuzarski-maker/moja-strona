@@ -27,6 +27,7 @@
     .gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
     .gallery button { border: 1px solid rgba(255,255,255,.15); border-radius: 12px; overflow: hidden; background: rgba(0,0,0,.25); padding: 0; margin: 0; cursor: pointer; width: 100%; }
     .gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+    .main-preview-image { object-position: center 25%; }
     .gallery-lightbox { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0, 0, 0, .78); z-index: 9999; padding: 16px; }
     .gallery-lightbox.active { display: flex; }
     .gallery-lightbox img { max-width: 90vw; max-height: 90vh; display: block; object-fit: contain; }
@@ -73,7 +74,7 @@
     <section class="card">
       <h2>Galeria zdjęć</h2>
       <div class="gallery">
-        <button type="button" class="gallery-item"><img src="./zamaza_twarze_05.jpg" alt="Leczenie ran 1" /></button>
+        <button type="button" class="gallery-item"><img class="main-preview-image" src="./zamaza_twarze_05.jpg" alt="Leczenie ran 1" /></button>
         <button type="button" class="gallery-item"><img src="./zamaza_twarze_02.jpg" alt="Leczenie ran 2" /></button>
         <button type="button" class="gallery-item"><img src="./zamaza_twarze_03.jpg" alt="Leczenie ran 3" /></button>
         <button type="button" class="gallery-item"><img src="./zamaza_twarze_04.jpg" alt="Leczenie ran 4" /></button>
@@ -81,6 +82,8 @@
         <button type="button" class="gallery-item"><img src="./zamaza_twarze_06.jpg" alt="Leczenie ran 6" /></button>
         <button type="button" class="gallery-item"><img src="./zamaza_twarze_07.jpg" alt="Leczenie ran 7" /></button>
         <button type="button" class="gallery-item"><img src="./zamaza_twarze_08.jpg" alt="Leczenie ran 8" /></button>
+        <button type="button" class="gallery-item"><img src="./ChatGPT Image 25 maj 2026, 11_11_00.png" alt="Leczenie ran 9" /></button>
+        <button type="button" class="gallery-item"><img src="./ChatGPT Image 25 maj 2026, 11_11_42.png" alt="Leczenie ran 10" /></button>
       </div>
     </section>
   </div>
