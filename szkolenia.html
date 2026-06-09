@@ -120,7 +120,6 @@
     const traumaWorkshopCard = document.getElementById("trauma-workshop-card");
 
     const traumaWorkshopPdfPath = encodeURI("Trauma_Workshop_H_CORE_tactical_FINAL_poprawiony.pdf");
-    const traumaWorkshopImagePath = encodeURI("WhatsApp Image 2026-05-06 at 12.06.26.jpeg");
     const totcPdfPath = encodeURI("TOTC_oferta_2strony_v2-2_no_CBS.pdf");
     const totcJpgPath = encodeURI("TOTC_poprawione_napisy  na tel.png");
     const tmtcPdfPath = encodeURI("TMTC_program_tactical_medical.pdf");
@@ -174,10 +173,10 @@
       pdfModalCloseBtn.focus();
     }
 
-    traumaWorkshopCard.addEventListener("click", () => openModalWithPdfOrImage(traumaWorkshopPdfPath, traumaWorkshopImagePath));
+    traumaWorkshopCard.addEventListener("click", () => openModalWithPdfOrImage(traumaWorkshopPdfPath, null, true));
     totcCard.addEventListener("click", () => openModalWithPdfOrImage(totcPdfPath, totcJpgPath));
     tmtcCard.addEventListener("click", () => openModalWithPdfOrImage(tmtcPdfPath, tmtcPngPath));
-    traumaWorkshopCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModalWithPdfOrImage(traumaWorkshopPdfPath, traumaWorkshopImagePath); } });
+    traumaWorkshopCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModalWithPdfOrImage(traumaWorkshopPdfPath, null, true); } });
     totcCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModalWithPdfOrImage(totcPdfPath, totcJpgPath); } });
     tmtcCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModalWithPdfOrImage(tmtcPdfPath, tmtcPngPath); } });
 
