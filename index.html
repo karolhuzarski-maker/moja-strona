@@ -806,7 +806,7 @@
             <!-- SZKOLENIA -->
             <section class="panel" id="panel-szkolenia" role="tabpanel" aria-labelledby="tab-szkolenia">
                 <div class="grid">
-                    <div class="card">
+                    <div class="card" id="trauma-workshop-card" role="button" tabindex="0" aria-label="Otwórz program Trauma Workshop (PDF)">
                         <h3>Trauma Workshop</h3>
                         <p>Interwencje urazowe w strefach Hot/Warm/Cold dla ZRM.<br>Seminarium praktyczne dla ratowników medycznych, oparte na założeniach TECC, STOP THE BLEED® oraz logice MARCH/PAWS.<br>Czas: 8 godz. dydaktycznych • Punkty edukacyjne: 8 pkt • Forma: warsztaty + scenariusze symulacyjne.</p>
                     </div>
@@ -886,10 +886,11 @@
         const pdfModalImage = document.getElementById("pdf-modal-image");
         const totcCard = document.getElementById("totc-card");
         const tmtcCard = document.getElementById("tmtc-card");
+        const traumaWorkshopCard = document.getElementById("trauma-workshop-card");
         const totcPdfPath = encodeURI("TOTC_oferta_2strony_v2-2_no_CBS.pdf");
         const totcJpgPath = encodeURI("TOTC_poprawione_napisy  na tel.png");
         const tmtcPdfPath = encodeURI("TMTC_program_tactical_medical.pdf");
-        const tmtcPngPath = encodeURI("TMTC_program_tactical_medical_long.png");
+        const traumaWorkshopPdfPath = encodeURI("Trauma_Workshop_H_CORE_tactical_FINAL_poprawiony.pdf");
         let currentPdfPath = totcPdfPath;
         let lastOpenedPdfCard = null;
 
@@ -985,32 +986,27 @@
             pdfModalCloseBtn?.focus();
         }
 
-        async function openTmtcPdfModal() {
+        async function openTrainingPdfModal(pdfPath, openedCard) {
             if (!pdfModal || !pdfModalFrame) return;
-            if (shouldUseMobilePdfViewer() && pdfModalImage) {
-                currentPdfPath = tmtcPngPath;
-                lastOpenedPdfCard = tmtcCard;
-                pdfModalFrame.setAttribute("hidden", "hidden");
-                pdfModalImage.src = tmtcPngPath;
-                pdfModalImage.hidden = false;
-                if (pdfModalFallback) pdfModalFallback.hidden = true;
-                if (pdfModalLink) pdfModalLink.setAttribute("href", tmtcPngPath);
-                pdfModal.setAttribute("aria-hidden", "false");
-                document.body.style.overflow = "hidden";
-                pdfModalCloseBtn?.focus();
-                return;
-            }
-            currentPdfPath = tmtcPdfPath;
-            lastOpenedPdfCard = tmtcCard;
+            currentPdfPath = pdfPath;
+            lastOpenedPdfCard = openedCard;
 
             pdfModalImage?.setAttribute("hidden", "hidden");
-            pdfModalFrame.src = await getPdfFrameSource(tmtcPdfPath);
+            pdfModalFrame.src = await getPdfFrameSource(pdfPath);
             pdfModalFrame.removeAttribute("hidden");
             if (pdfModalFallback) pdfModalFallback.hidden = true;
-            if (pdfModalLink) pdfModalLink.setAttribute("href", tmtcPdfPath);
+            if (pdfModalLink) pdfModalLink.setAttribute("href", pdfPath);
             pdfModal.setAttribute("aria-hidden", "false");
             document.body.style.overflow = "hidden";
             pdfModalCloseBtn?.focus();
+        }
+
+        function openTmtcPdfModal() {
+            return openTrainingPdfModal(tmtcPdfPath, tmtcCard);
+        }
+
+        function openTraumaWorkshopPdfModal() {
+            return openTrainingPdfModal(traumaWorkshopPdfPath, traumaWorkshopCard);
         }
 
         openPosterBtn?.addEventListener("click", openImageModal);
@@ -1033,6 +1029,18 @@
             if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
                 openPdfModal();
+            }
+        });
+        traumaWorkshopCard?.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openTraumaWorkshopPdfModal();
+        });
+        traumaWorkshopCard?.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                e.stopPropagation();
+                openTraumaWorkshopPdfModal();
             }
         });
         tmtcCard?.addEventListener("click", openTmtcPdfModal);
