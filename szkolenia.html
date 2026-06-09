@@ -128,23 +128,45 @@
 
     function isMobile() { return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || ""); }
 
+    let activePdfBlobUrl = null;
+
     function closePdfModal() {
       pdfModal.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
       pdfModalFrame.removeAttribute("src");
+      if (activePdfBlobUrl) {
+        URL.revokeObjectURL(activePdfBlobUrl);
+        activePdfBlobUrl = null;
+      }
       pdfModalFrame.removeAttribute("hidden");
       pdfModalImage.hidden = true;
       pdfModalImage.removeAttribute("src");
     }
 
-    function openModalWithPdfOrImage(pdfPath, imagePath, usePdfOnMobile = false) {
+    async function getPdfFrameSource(pdfPath) {
+      if (!isMobile()) return pdfPath;
+
+      try {
+        const response = await fetch(pdfPath);
+        if (!response.ok) return pdfPath;
+        const blob = await response.blob();
+        if (blob.type && blob.type !== "application/pdf") return pdfPath;
+        if (activePdfBlobUrl) URL.revokeObjectURL(activePdfBlobUrl);
+        activePdfBlobUrl = URL.createObjectURL(blob);
+        return activePdfBlobUrl;
+      } catch (_) {
+        return pdfPath;
+      }
+    }
+
+    async function openModalWithPdfOrImage(pdfPath, imagePath, usePdfOnMobile = false) {
       if (isMobile() && !usePdfOnMobile) {
         pdfModalFrame.setAttribute("hidden", "hidden");
         pdfModalImage.src = imagePath;
         pdfModalImage.hidden = false;
       } else {
         pdfModalImage.hidden = true;
-        pdfModalFrame.src = pdfPath;
+        pdfModalFrame.src = await getPdfFrameSource(pdfPath);
         pdfModalFrame.removeAttribute("hidden");
       }
       pdfModal.setAttribute("aria-hidden", "false");
