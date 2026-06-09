@@ -174,10 +174,10 @@
       pdfModalCloseBtn.focus();
     }
 
-    traumaWorkshopCard.addEventListener("click", () => openModalWithPdfOrImage(traumaWorkshopPdfPath, traumaWorkshopImagePath, true));
+    traumaWorkshopCard.addEventListener("click", () => openModalWithPdfOrImage(traumaWorkshopPdfPath, traumaWorkshopImagePath));
     totcCard.addEventListener("click", () => openModalWithPdfOrImage(totcPdfPath, totcJpgPath));
     tmtcCard.addEventListener("click", () => openModalWithPdfOrImage(tmtcPdfPath, tmtcPngPath));
-    traumaWorkshopCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModalWithPdfOrImage(traumaWorkshopPdfPath, traumaWorkshopImagePath, true); } });
+    traumaWorkshopCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModalWithPdfOrImage(traumaWorkshopPdfPath, traumaWorkshopImagePath); } });
     totcCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModalWithPdfOrImage(totcPdfPath, totcJpgPath); } });
     tmtcCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModalWithPdfOrImage(tmtcPdfPath, tmtcPngPath); } });
 
