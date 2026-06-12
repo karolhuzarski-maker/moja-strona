@@ -160,6 +160,11 @@
     async function openPdfModal(pdfPath) {
       pdfModalImage.hidden = true;
       pdfModalImage.removeAttribute("src");
+      if (isMobile()) {
+        pdfModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        pdfModalCloseBtn.focus();
+      }
       pdfModalFrame.src = await getPdfFrameSource(pdfPath);
       pdfModalFrame.removeAttribute("hidden");
       pdfModal.setAttribute("aria-hidden", "false");
