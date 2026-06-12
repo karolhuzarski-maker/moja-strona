@@ -316,6 +316,22 @@
             padding: 16px;
         }
 
+        .card-link {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform .15s ease, border-color .15s ease, background .15s ease;
+        }
+
+        .card-link:hover,
+        .card-link:focus-visible {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, .3);
+            background: rgba(255, 255, 255, .06);
+            outline: none;
+        }
+
         .card h3 {
             margin: 0 0 8px;
             font-size: 16px
@@ -806,10 +822,10 @@
             <!-- SZKOLENIA -->
             <section class="panel" id="panel-szkolenia" role="tabpanel" aria-labelledby="tab-szkolenia">
                 <div class="grid">
-                    <div class="card" id="trauma-workshop-card" role="button" tabindex="0" aria-label="Otwórz program Trauma Workshop (PDF)" data-pdf-modal data-pdf-src="Trauma_Workshop_H_CORE_tactical_FINAL_poprawiony.pdf">
+                    <a class="card card-link" id="trauma-workshop-card" href="trauma-workshop.html" aria-label="Przejdź do podstrony Trauma Workshop">
                         <h3>Trauma Workshop</h3>
                         <p>Interwencje urazowe w strefach Hot/Warm/Cold dla ZRM.<br>Seminarium praktyczne dla ratowników medycznych, oparte na założeniach TECC, STOP THE BLEED® oraz logice MARCH/PAWS.<br>Czas: 8 godz. dydaktycznych • Punkty edukacyjne: 8 pkt • Forma: warsztaty + scenariusze symulacyjne.</p>
-                    </div>
+                    </a>
 
                     <div class="card" id="tmtc-card" role="button" tabindex="0" aria-label="Otwórz ofertę TMTC (desktop)" data-pdf-modal data-pdf-src="TMTC_program_tactical_medical.pdf" data-mobile-image-src="TMTC_program_tactical_medical_long.png">
                         <h3>Tactical Military Trauma Care (TMTC)</h3>
@@ -886,12 +902,10 @@
         const pdfModalImage = document.getElementById("pdf-modal-image");
         const totcCard = document.getElementById("totc-card");
         const tmtcCard = document.getElementById("tmtc-card");
-        const traumaWorkshopCard = document.getElementById("trauma-workshop-card");
         const totcPdfPath = encodeURI("TOTC_oferta_2strony_v2-2_no_CBS.pdf");
         const totcJpgPath = encodeURI("TOTC_poprawione_napisy  na tel.png");
         const tmtcPdfPath = encodeURI("TMTC_program_tactical_medical.pdf");
         const tmtcJpgPath = encodeURI("TMTC_program_tactical_medical_long.png");
-        const traumaWorkshopPdfPath = encodeURI("Trauma_Workshop_H_CORE_tactical_FINAL_poprawiony.pdf");
         let currentPdfPath = totcPdfPath;
         let lastOpenedPdfCard = null;
 
@@ -1039,9 +1053,6 @@
             return openTrainingPdfOrImageModal(tmtcPdfPath, tmtcJpgPath, tmtcCard);
         }
 
-        function openTraumaWorkshopPdfModal() {
-            return openTrainingPdfModal(traumaWorkshopPdfPath, traumaWorkshopCard);
-        }
 
         openPosterBtn?.addEventListener("click", openImageModal);
         closeModalBtn?.addEventListener("click", closeImageModal);
