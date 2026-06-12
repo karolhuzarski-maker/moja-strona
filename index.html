@@ -890,6 +890,7 @@
         const totcPdfPath = encodeURI("TOTC_oferta_2strony_v2-2_no_CBS.pdf");
         const totcJpgPath = encodeURI("TOTC_poprawione_napisy  na tel.png");
         const tmtcPdfPath = encodeURI("TMTC_program_tactical_medical.pdf");
+        const tmtcJpgPath = encodeURI("TMTC_program_tactical_medical_long.png");
         const traumaWorkshopPdfPath = encodeURI("Trauma_Workshop_H_CORE_tactical_FINAL_poprawiony.pdf");
         let currentPdfPath = totcPdfPath;
         let lastOpenedPdfCard = null;
@@ -1001,8 +1002,26 @@
             pdfModalCloseBtn?.focus();
         }
 
+        async function openTrainingPdfOrImageModal(pdfPath, imagePath, openedCard) {
+            if (shouldUseMobilePdfViewer() && imagePath && pdfModal && pdfModalFrame && pdfModalImage) {
+                currentPdfPath = pdfPath;
+                lastOpenedPdfCard = openedCard;
+                pdfModalFrame.setAttribute("hidden", "hidden");
+                pdfModalImage.src = imagePath;
+                pdfModalImage.hidden = false;
+                if (pdfModalFallback) pdfModalFallback.hidden = true;
+                if (pdfModalLink) pdfModalLink.setAttribute("href", imagePath);
+                pdfModal.setAttribute("aria-hidden", "false");
+                document.body.style.overflow = "hidden";
+                pdfModalCloseBtn?.focus();
+                return;
+            }
+
+            return openTrainingPdfModal(pdfPath, openedCard);
+        }
+
         function openTmtcPdfModal() {
-            return openTrainingPdfModal(tmtcPdfPath, tmtcCard);
+            return openTrainingPdfOrImageModal(tmtcPdfPath, tmtcJpgPath, tmtcCard);
         }
 
         function openTraumaWorkshopPdfModal() {
