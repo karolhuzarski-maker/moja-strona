@@ -66,7 +66,7 @@
     </section>
 
     <main class="grid">
-      <section class="card clickable training-card" id="trauma-workshop-card" role="button" tabindex="0" aria-label="Trauma Workshop dla ZRM">
+      <section class="card clickable training-card" id="trauma-workshop-card" role="button" tabindex="0" aria-label="Trauma Workshop dla ZRM" data-pdf-modal data-pdf-src="Trauma_Workshop_H_CORE_tactical_FINAL_poprawiony.pdf">
         <div class="training-card__content">
           <h2>Trauma Workshop dla ZRM</h2>
           <p>Praktyczne szkolenie urazowe dla zespołów ratownictwa medycznego, skupione na kontroli krwotoków, procedurach ratunkowych, pracy w warunkach wysokiego ryzyka oraz elementach TCCC/TECC możliwych do wykorzystania w realiach PRM. Kliknij, aby otworzyć program PDF.</p>
@@ -79,7 +79,7 @@
         </div>
       </section>
 
-      <section class="card clickable training-card" id="tmtc-card" role="button" tabindex="0">
+      <section class="card clickable training-card" id="tmtc-card" role="button" tabindex="0" data-pdf-modal data-pdf-src="TMTC_program_tactical_medical.pdf" data-mobile-image-src="TMTC_program_tactical_medical_long.png">
         <div class="training-card__content">
           <h2>Tactical Military Trauma Care (TMTC)</h2>
           <p>TMTC – Tactical Military Trauma Care. Szkolenie urazowe dla środowiska wojskowego oparte na wytycznych TCCC / TECC i logice MARCH / PAWS. Kliknij, aby otworzyć ofertę.</p>
@@ -95,7 +95,7 @@
         <img src="3 moduly.png" alt="Program C.O.R.E." />
       </section>
 
-      <section class="card clickable" id="totc-card" role="button" tabindex="0">
+      <section class="card clickable" id="totc-card" role="button" tabindex="0" data-pdf-modal data-pdf-src="TOTC_oferta_2strony_v2-2_no_CBS.pdf" data-mobile-image-src="TOTC_poprawione_napisy  na tel.png">
         <h2>Tactical Officer Trauma Care (TOTC)</h2>
         <p>TOTC – Tactical Officer Trauma Care. Szkolenie operacyjne dla funkcjonariuszy oparte na aktualnych wytycznych TCCC i TECC. Kliknij, aby otworzyć ofertę.</p>
       </section>
@@ -146,14 +146,14 @@
 
       try {
         const response = await fetch(pdfPath);
-        if (!response.ok) return pdfPath;
+        if (!response.ok) return "";
         const blob = await response.blob();
-        if (blob.type && blob.type !== "application/pdf") return pdfPath;
+        if (blob.type && blob.type !== "application/pdf") return "";
         if (activePdfBlobUrl) URL.revokeObjectURL(activePdfBlobUrl);
         activePdfBlobUrl = URL.createObjectURL(blob);
         return activePdfBlobUrl;
       } catch (_) {
-        return pdfPath;
+        return "";
       }
     }
 
@@ -165,8 +165,11 @@
         document.body.style.overflow = "hidden";
         pdfModalCloseBtn.focus();
       }
-      pdfModalFrame.src = await getPdfFrameSource(pdfPath);
-      pdfModalFrame.removeAttribute("hidden");
+      const frameSource = await getPdfFrameSource(pdfPath);
+      if (frameSource) {
+        pdfModalFrame.src = frameSource;
+        pdfModalFrame.removeAttribute("hidden");
+      }
       pdfModal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
       pdfModalCloseBtn.focus();
@@ -186,12 +189,28 @@
       pdfModalCloseBtn.focus();
     }
 
-    traumaWorkshopCard.addEventListener("click", e => { e.preventDefault(); e.stopPropagation(); openPdfModal(traumaWorkshopPdfPath); });
-    totcCard.addEventListener("click", () => openModalWithPdfOrImage(totcPdfPath, totcJpgPath));
-    tmtcCard.addEventListener("click", () => openModalWithPdfOrImage(tmtcPdfPath, tmtcJpgPath));
-    traumaWorkshopCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); openPdfModal(traumaWorkshopPdfPath); } });
-    totcCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModalWithPdfOrImage(totcPdfPath, totcJpgPath); } });
-    tmtcCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModalWithPdfOrImage(tmtcPdfPath, tmtcJpgPath); } });
+    function openPdfTrigger(trigger) {
+      const pdfPath = trigger.dataset.pdfSrc;
+      if (!pdfPath) return;
+      openModalWithPdfOrImage(encodeURI(pdfPath), trigger.dataset.mobileImageSrc ? encodeURI(trigger.dataset.mobileImageSrc) : "");
+    }
+
+    document.addEventListener("click", e => {
+      const trigger = e.target.closest("[data-pdf-modal][data-pdf-src]");
+      if (!trigger) return;
+      e.preventDefault();
+      e.stopPropagation();
+      openPdfTrigger(trigger);
+    });
+
+    document.addEventListener("keydown", e => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      const trigger = e.target.closest("[data-pdf-modal][data-pdf-src]");
+      if (!trigger) return;
+      e.preventDefault();
+      e.stopPropagation();
+      openPdfTrigger(trigger);
+    });
 
     pdfModalCloseBtn.addEventListener("click", closePdfModal);
     pdfModal.addEventListener("click", e => { if (e.target === pdfModal) closePdfModal(); });

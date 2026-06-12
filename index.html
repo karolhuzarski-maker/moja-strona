@@ -806,12 +806,12 @@
             <!-- SZKOLENIA -->
             <section class="panel" id="panel-szkolenia" role="tabpanel" aria-labelledby="tab-szkolenia">
                 <div class="grid">
-                    <div class="card" id="trauma-workshop-card" role="button" tabindex="0" aria-label="Otwórz program Trauma Workshop (PDF)">
+                    <div class="card" id="trauma-workshop-card" role="button" tabindex="0" aria-label="Otwórz program Trauma Workshop (PDF)" data-pdf-modal data-pdf-src="Trauma_Workshop_H_CORE_tactical_FINAL_poprawiony.pdf">
                         <h3>Trauma Workshop</h3>
                         <p>Interwencje urazowe w strefach Hot/Warm/Cold dla ZRM.<br>Seminarium praktyczne dla ratowników medycznych, oparte na założeniach TECC, STOP THE BLEED® oraz logice MARCH/PAWS.<br>Czas: 8 godz. dydaktycznych • Punkty edukacyjne: 8 pkt • Forma: warsztaty + scenariusze symulacyjne.</p>
                     </div>
 
-                    <div class="card" id="tmtc-card" role="button" tabindex="0" aria-label="Otwórz ofertę TMTC (desktop)">
+                    <div class="card" id="tmtc-card" role="button" tabindex="0" aria-label="Otwórz ofertę TMTC (desktop)" data-pdf-modal data-pdf-src="TMTC_program_tactical_medical.pdf" data-mobile-image-src="TMTC_program_tactical_medical_long.png">
                         <h3>Tactical Military Trauma Care (TMTC)</h3>
                         <p>TMTC – Tactical Military Trauma Care<br>Szkolenie urazowe dla środowiska wojskowego, oparte na aktualnych wytycznych TCCC / TECC, logice MARCH / PAWS oraz fazach działania analogicznych do Care Under Fire, Tactical Field Care i Tactical Evacuation Care.</p>
                     </div>
@@ -864,7 +864,7 @@
         <img class="image-modal-content" id="pdf-modal-image" src="" alt="Oferta szkolenia w wersji JPG" hidden />
         <div class="pdf-modal-fallback" id="pdf-modal-fallback" hidden>
             <p>Nie udało się odnaleźć pliku PDF oferty szkolenia.</p>
-            <a id="pdf-modal-link" href="#" target="_blank" rel="noopener">Otwórz ofertę w nowej karcie</a>
+            <a id="pdf-modal-link" href="#" rel="noopener">Otwórz ofertę w nowej karcie</a>
         </div>
     </div>
 
@@ -933,7 +933,7 @@
         function showPdfFallback() {
             pdfModalFrame?.setAttribute("hidden", "hidden");
             if (pdfModalFallback) pdfModalFallback.hidden = false;
-            if (pdfModalLink) pdfModalLink.setAttribute("href", currentPdfPath);
+            if (pdfModalLink) pdfModalLink.setAttribute("href", shouldUseMobilePdfViewer() ? "#" : currentPdfPath);
         }
 
         function shouldUseMobilePdfViewer() {
@@ -945,14 +945,14 @@
 
             try {
                 const response = await fetch(resolvedPath);
-                if (!response.ok) return resolvedPath;
+                if (!response.ok) return "";
                 const blob = await response.blob();
-                if (blob.type && blob.type !== "application/pdf") return resolvedPath;
+                if (blob.type && blob.type !== "application/pdf") return "";
                 if (activePdfBlobUrl) URL.revokeObjectURL(activePdfBlobUrl);
                 activePdfBlobUrl = URL.createObjectURL(blob);
                 return activePdfBlobUrl;
             } catch (_) {
-                return resolvedPath;
+                return "";
             }
         }
 
@@ -978,10 +978,15 @@
             }
 
             pdfModalImage?.setAttribute("hidden", "hidden");
-            pdfModalFrame.src = await getPdfFrameSource(totcPdfPath);
+            const frameSource = await getPdfFrameSource(totcPdfPath);
+            if (!frameSource) {
+                showPdfFallback();
+                return;
+            }
+            pdfModalFrame.src = frameSource;
             pdfModalFrame.removeAttribute("hidden");
             if (pdfModalFallback) pdfModalFallback.hidden = true;
-            if (pdfModalLink) pdfModalLink.setAttribute("href", totcPdfPath);
+            if (pdfModalLink) pdfModalLink.setAttribute("href", shouldUseMobilePdfViewer() ? "#" : totcPdfPath);
             pdfModal.setAttribute("aria-hidden", "false");
             document.body.style.overflow = "hidden";
             pdfModalCloseBtn?.focus();
@@ -998,10 +1003,15 @@
                 document.body.style.overflow = "hidden";
                 pdfModalCloseBtn?.focus();
             }
-            pdfModalFrame.src = await getPdfFrameSource(pdfPath);
+            const frameSource = await getPdfFrameSource(pdfPath);
+            if (!frameSource) {
+                showPdfFallback();
+                return;
+            }
+            pdfModalFrame.src = frameSource;
             pdfModalFrame.removeAttribute("hidden");
             if (pdfModalFallback) pdfModalFallback.hidden = true;
-            if (pdfModalLink) pdfModalLink.setAttribute("href", pdfPath);
+            if (pdfModalLink) pdfModalLink.setAttribute("href", shouldUseMobilePdfViewer() ? "#" : pdfPath);
             pdfModal.setAttribute("aria-hidden", "false");
             document.body.style.overflow = "hidden";
             pdfModalCloseBtn?.focus();
@@ -1048,31 +1058,27 @@
         pdfModalFrame?.addEventListener("error", showPdfFallback);
         pdfModalImage?.addEventListener("error", showPdfFallback);
 
-        totcCard?.addEventListener("click", openPdfModal);
-        totcCard?.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                openPdfModal();
-            }
-        });
-        traumaWorkshopCard?.addEventListener("click", (e) => {
+        function openPdfTrigger(trigger) {
+            const pdfPath = trigger.dataset.pdfSrc;
+            if (!pdfPath) return;
+            openTrainingPdfOrImageModal(encodeURI(pdfPath), trigger.dataset.mobileImageSrc ? encodeURI(trigger.dataset.mobileImageSrc) : "", trigger);
+        }
+
+        document.addEventListener("click", (e) => {
+            const trigger = e.target.closest("[data-pdf-modal][data-pdf-src]");
+            if (!trigger) return;
             e.preventDefault();
             e.stopPropagation();
-            openTraumaWorkshopPdfModal();
+            openPdfTrigger(trigger);
         });
-        traumaWorkshopCard?.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                e.stopPropagation();
-                openTraumaWorkshopPdfModal();
-            }
-        });
-        tmtcCard?.addEventListener("click", openTmtcPdfModal);
-        tmtcCard?.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                openTmtcPdfModal();
-            }
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key !== "Enter" && e.key !== " ") return;
+            const trigger = e.target.closest("[data-pdf-modal][data-pdf-src]");
+            if (!trigger) return;
+            e.preventDefault();
+            e.stopPropagation();
+            openPdfTrigger(trigger);
         });
 
         window.addEventListener("keydown", (e) => {
