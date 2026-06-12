@@ -29,6 +29,7 @@
     .hero p { position:relative; z-index:1; margin:0; color:#c8d0e2; max-width:70ch; font-size:1.03rem; }
     .grid { margin-top:18px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; align-items:stretch; }
     .card { border:1px solid var(--line); border-radius:14px; background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02)); padding:18px; min-height:230px; }
+    a.card { color:inherit; text-decoration:none; display:block; }
     .card h2 { margin:0 0 8px; font-size:1.5rem; font-family:"Rajdhani","Segoe UI",sans-serif; }
     .card p { margin:0; color:var(--muted); font-size:1.05rem; }
     .card.clickable { cursor:pointer; transition:transform .15s ease,border-color .15s ease, background .15s ease; }
@@ -66,10 +67,10 @@
     </section>
 
     <main class="grid">
-      <section class="card clickable training-card" id="trauma-workshop-card" role="button" tabindex="0" aria-label="Trauma Workshop dla ZRM" data-pdf-modal data-pdf-src="Trauma_Workshop_H_CORE_tactical_FINAL_poprawiony.pdf">
+      <a class="card clickable training-card" id="trauma-workshop-card" href="trauma-workshop.html" aria-label="Przejdź do podstrony Trauma Workshop dla ZRM">
         <div class="training-card__content">
           <h2>Trauma Workshop dla ZRM</h2>
-          <p>Praktyczne szkolenie urazowe dla zespołów ratownictwa medycznego, skupione na kontroli krwotoków, procedurach ratunkowych, pracy w warunkach wysokiego ryzyka oraz elementach TCCC/TECC możliwych do wykorzystania w realiach PRM. Kliknij, aby otworzyć program PDF.</p>
+          <p>Praktyczne szkolenie urazowe dla zespołów ratownictwa medycznego, skupione na kontroli krwotoków, procedurach ratunkowych, pracy w warunkach wysokiego ryzyka oraz elementach TCCC/TECC możliwych do wykorzystania w realiach PRM. Kliknij, aby otworzyć podstronę programu.</p>
           <p>Czas: 8 godz. dydaktycznych</p>
           <p>Punkty edukacyjne: 8 pkt</p>
           <p>Forma: warsztaty + scenariusze symulacyjne</p>
@@ -77,7 +78,7 @@
         <div class="training-card__media">
           <img src="WhatsApp Image 2026-05-06 at 12.06.26.jpeg" alt="Trauma Workshop H-CORE EDU dla zespołów ratownictwa medycznego" />
         </div>
-      </section>
+      </a>
 
       <section class="card clickable training-card" id="tmtc-card" role="button" tabindex="0" data-pdf-modal data-pdf-src="TMTC_program_tactical_medical.pdf" data-mobile-image-src="TMTC_program_tactical_medical_long.png">
         <div class="training-card__content">
@@ -117,9 +118,7 @@
     const pdfModalImage = document.getElementById("pdf-modal-image");
     const totcCard = document.getElementById("totc-card");
     const tmtcCard = document.getElementById("tmtc-card");
-    const traumaWorkshopCard = document.getElementById("trauma-workshop-card");
 
-    const traumaWorkshopPdfPath = encodeURI("Trauma_Workshop_H_CORE_tactical_FINAL_poprawiony.pdf");
     const totcPdfPath = encodeURI("TOTC_oferta_2strony_v2-2_no_CBS.pdf");
     const totcJpgPath = encodeURI("TOTC_poprawione_napisy  na tel.png");
     const tmtcPdfPath = encodeURI("TMTC_program_tactical_medical.pdf");
