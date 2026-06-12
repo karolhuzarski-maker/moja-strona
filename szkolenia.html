@@ -123,6 +123,7 @@
     const totcPdfPath = encodeURI("TOTC_oferta_2strony_v2-2_no_CBS.pdf");
     const totcJpgPath = encodeURI("TOTC_poprawione_napisy  na tel.png");
     const tmtcPdfPath = encodeURI("TMTC_program_tactical_medical.pdf");
+    const tmtcJpgPath = encodeURI("TMTC_program_tactical_medical_long.png");
     function isMobile() { return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || ""); }
 
     let activePdfBlobUrl = null;
@@ -182,10 +183,10 @@
 
     traumaWorkshopCard.addEventListener("click", e => { e.preventDefault(); e.stopPropagation(); openPdfModal(traumaWorkshopPdfPath); });
     totcCard.addEventListener("click", () => openModalWithPdfOrImage(totcPdfPath, totcJpgPath));
-    tmtcCard.addEventListener("click", () => openPdfModal(tmtcPdfPath));
+    tmtcCard.addEventListener("click", () => openModalWithPdfOrImage(tmtcPdfPath, tmtcJpgPath));
     traumaWorkshopCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); openPdfModal(traumaWorkshopPdfPath); } });
     totcCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModalWithPdfOrImage(totcPdfPath, totcJpgPath); } });
-    tmtcCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openPdfModal(tmtcPdfPath); } });
+    tmtcCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModalWithPdfOrImage(tmtcPdfPath, tmtcJpgPath); } });
 
     pdfModalCloseBtn.addEventListener("click", closePdfModal);
     pdfModal.addEventListener("click", e => { if (e.target === pdfModal) closePdfModal(); });
