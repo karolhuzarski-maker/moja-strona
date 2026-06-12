@@ -123,6 +123,7 @@
     const totcPdfPath = encodeURI("TOTC_oferta_2strony_v2-2_no_CBS.pdf");
     const totcJpgPath = encodeURI("TOTC_poprawione_napisy  na tel.png");
     const tmtcPdfPath = encodeURI("TMTC_program_tactical_medical.pdf");
+    const tmtcJpgPath = encodeURI("TMTC_program_tactical_medical_long.png");
     function isMobile() { return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || ""); }
 
     let activePdfBlobUrl = null;
@@ -180,12 +181,23 @@
       pdfModalCloseBtn.focus();
     }
 
-    traumaWorkshopCard.addEventListener("click", e => { e.preventDefault(); e.stopPropagation(); openPdfModal(traumaWorkshopPdfPath); });
+    async function openPdfModalInstantOnMobile(pdfPath) {
+      if (!isMobile()) return openPdfModal(pdfPath);
+      pdfModalImage.hidden = true;
+      pdfModalImage.removeAttribute("src");
+      pdfModalFrame.removeAttribute("hidden");
+      pdfModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      pdfModalCloseBtn.focus();
+      pdfModalFrame.src = await getPdfFrameSource(pdfPath);
+    }
+
+    traumaWorkshopCard.addEventListener("click", e => { e.preventDefault(); e.stopPropagation(); openPdfModalInstantOnMobile(traumaWorkshopPdfPath); });
     totcCard.addEventListener("click", () => openModalWithPdfOrImage(totcPdfPath, totcJpgPath));
-    tmtcCard.addEventListener("click", () => openPdfModal(tmtcPdfPath));
-    traumaWorkshopCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); openPdfModal(traumaWorkshopPdfPath); } });
+    tmtcCard.addEventListener("click", () => openModalWithPdfOrImage(tmtcPdfPath, tmtcJpgPath));
+    traumaWorkshopCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); openPdfModalInstantOnMobile(traumaWorkshopPdfPath); } });
     totcCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModalWithPdfOrImage(totcPdfPath, totcJpgPath); } });
-    tmtcCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openPdfModal(tmtcPdfPath); } });
+    tmtcCard.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModalWithPdfOrImage(tmtcPdfPath, tmtcJpgPath); } });
 
     pdfModalCloseBtn.addEventListener("click", closePdfModal);
     pdfModal.addEventListener("click", e => { if (e.target === pdfModal) closePdfModal(); });
