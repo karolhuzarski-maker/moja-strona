@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Trauma Workshop | H-CORE edu</title>
-  <meta name="description" content="Trauma Workshop H-CORE edu — praktyczne szkolenie urazowe dla zespołów ratownictwa medycznego z osadzonym programem PDF." />
+  <meta name="description" content="Trauma Workshop H-CORE edu — praktyczne szkolenie urazowe dla zespołów ratownictwa medycznego z programem PDF renderowanym bezpośrednio na stronie." />
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&family=Rajdhani:wght@600;700&display=swap");
 
@@ -164,18 +164,58 @@
     }
 
     .pdf-section {
-      padding: 14px;
+      padding: clamp(10px, 2vw, 18px);
       background: rgba(255, 255, 255, .025);
     }
 
-    .pdf-frame {
-      display: block;
+    .pdf-viewer {
       width: 100%;
-      min-height: 80vh;
-      height: 86vh;
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .pdf-status {
+      margin: 0;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 12px;
+      background: rgba(0, 0, 0, .24);
+      color: #d6dbea;
+      text-align: center;
+    }
+
+    .pdf-page {
+      width: 100%;
+      margin: 0 auto 18px;
+      overflow: hidden;
       border: 1px solid rgba(255, 255, 255, .18);
       border-radius: 12px;
       background: #fff;
+      box-shadow: 0 16px 42px rgba(0, 0, 0, .45);
+    }
+
+    .pdf-page:last-child {
+      margin-bottom: 0;
+    }
+
+    .pdf-page canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #fff;
+    }
+
+    .pdf-fallback {
+      max-width: 1040px;
+      margin: 16px auto 0;
+      text-align: center;
+    }
+
+    .pdf-fallback a {
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      font-weight: 700;
     }
 
     footer {
@@ -232,9 +272,9 @@
         text-align: center;
       }
 
-      .pdf-frame {
-        min-height: 80vh;
-        height: 82vh;
+      .pdf-page {
+        margin-bottom: 12px;
+        border-radius: 10px;
       }
     }
   </style>
@@ -268,7 +308,10 @@
       </section>
 
       <section class="pdf-section" aria-label="Program PDF Trauma Workshop">
-        <iframe class="pdf-frame" src="Trauma_Workshop_H_CORE_tactical_FINAL_poprawiony.pdf" title="Program PDF Trauma Workshop"></iframe>
+        <div class="pdf-viewer" id="pdf-viewer" data-pdf-src="Trauma_Workshop_H_CORE_tactical_FINAL_poprawiony.pdf">
+          <p class="pdf-status" id="pdf-status">Ładowanie programu PDF…</p>
+        </div>
+        <p class="pdf-fallback"><a href="Trauma_Workshop_H_CORE_tactical_FINAL_poprawiony.pdf">Pobierz PDF</a></p>
       </section>
     </main>
 
@@ -276,8 +319,104 @@
       © <span id="year"></span> H-CORE edu • www.h-core.edu.pl
     </footer>
   </div>
-  <script>
+  <script type="module">
+    import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const viewer = document.getElementById("pdf-viewer");
+    const status = document.getElementById("pdf-status");
+    const pdfPath = viewer?.dataset.pdfSrc;
+    let pdfDocument = null;
+    let renderRun = 0;
+    let resizeTimer = null;
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+
+    function setStatus(message, isError = false) {
+      if (!status) return;
+      status.textContent = message;
+      status.hidden = false;
+      status.style.color = isError ? "#ffd7d7" : "#d6dbea";
+    }
+
+    function clearRenderedPages() {
+      viewer?.querySelectorAll(".pdf-page").forEach(page => page.remove());
+    }
+
+    async function renderPage(pageNumber, runId) {
+      const page = await pdfDocument.getPage(pageNumber);
+      if (runId !== renderRun || !viewer) return;
+
+      const baseViewport = page.getViewport({ scale: 1 });
+      const availableWidth = Math.max(280, viewer.clientWidth);
+      const scale = availableWidth / baseViewport.width;
+      const viewport = page.getViewport({ scale });
+      const outputScale = Math.min(window.devicePixelRatio || 1, 2);
+
+      const pageWrap = document.createElement("div");
+      pageWrap.className = "pdf-page";
+      pageWrap.setAttribute("aria-label", `Strona ${pageNumber} z ${pdfDocument.numPages}`);
+
+      const canvas = document.createElement("canvas");
+      const context = canvas.getContext("2d", { alpha: false });
+      canvas.width = Math.floor(viewport.width * outputScale);
+      canvas.height = Math.floor(viewport.height * outputScale);
+      canvas.style.width = `${viewport.width}px`;
+      canvas.style.height = `${viewport.height}px`;
+
+      pageWrap.style.maxWidth = `${viewport.width}px`;
+      pageWrap.appendChild(canvas);
+      viewer.appendChild(pageWrap);
+
+      await page.render({
+        canvasContext: context,
+        viewport,
+        transform: outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null
+      }).promise;
+    }
+
+    async function renderPdf() {
+      if (!pdfDocument || !viewer) return;
+      const runId = ++renderRun;
+      clearRenderedPages();
+      setStatus("Renderowanie programu PDF…");
+
+      try {
+        for (let pageNumber = 1; pageNumber <= pdfDocument.numPages; pageNumber += 1) {
+          if (runId !== renderRun) return;
+          await renderPage(pageNumber, runId);
+          if (pageNumber === 1 && status) status.hidden = true;
+        }
+        if (runId === renderRun && status) status.hidden = true;
+      } catch (error) {
+        if (runId === renderRun) {
+          console.error("Nie udało się wyrenderować PDF:", error);
+          setStatus("Nie udało się wyrenderować programu PDF. Skorzystaj z linku „Pobierz PDF” poniżej.", true);
+        }
+      }
+    }
+
+    async function loadPdf() {
+      if (!viewer || !pdfPath) return;
+
+      try {
+        setStatus("Ładowanie programu PDF…");
+        pdfDocument = await pdfjsLib.getDocument(pdfPath).promise;
+        await renderPdf();
+      } catch (error) {
+        console.error("Nie udało się załadować PDF:", error);
+        setStatus("Nie udało się załadować programu PDF. Skorzystaj z linku „Pobierz PDF” poniżej.", true);
+      }
+    }
+
+    window.addEventListener("resize", () => {
+      if (!pdfDocument) return;
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(renderPdf, 250);
+    });
+
+    loadPdf();
   </script>
 </body>
 </html>
