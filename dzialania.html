@@ -31,6 +31,10 @@
     .k1k2-thumb { padding:0; overflow:hidden; transition:transform .2s ease, border-color .2s ease, background .2s ease; }
     .k1k2-thumb:hover { transform:translateY(-2px); border-color:rgba(255,255,255,.3); background:rgba(255,255,255,.06); }
     .k1k2-thumb img { width:100%; min-height:170px; max-height:240px; object-fit:cover; display:block; }
+    .image-fallback { min-height:170px; max-height:240px; aspect-ratio:16 / 9; display:flex; flex-direction:column; justify-content:flex-end; gap:6px; padding:18px; background:linear-gradient(145deg, rgba(209,11,11,.32), rgba(6,10,20,.88)), radial-gradient(700px 220px at 70% 0%, rgba(255,255,255,.13), transparent 60%); color:#fff; }
+    .image-fallback[hidden] { display:none; }
+    .image-fallback span { width:fit-content; padding:3px 8px; border:1px solid rgba(255,255,255,.22); border-radius:999px; color:#c8d0e2; font-size:.85rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; background:rgba(11,12,15,.34); }
+    .image-fallback strong { max-width:62ch; font-size:clamp(1rem, 2vw, 1.45rem); line-height:1.15; text-shadow:0 2px 12px rgba(0,0,0,.55); }
     .wounds-thumb-image { object-position:center 25%; }
     .k1k2-content { padding:10px 14px 12px; }
     .k1k2-meta { margin:0 0 4px; color:#c8d0e2; font-size:.95rem; }
@@ -70,6 +74,21 @@
     </section>
 
     <main class="grid">
+      <a class="action-link" href="/dzialania/konferencja-zarzadzanie-kryzysowe-ochrona-ludnosci-ratownictwo/" aria-label="Przejdź do wpisu BLS + AED to fundament. SALT + STOP THE BLEED® to kolejny krok.">
+        <section class="card k1k2-thumb">
+          <img src="/certf.jpg" alt="Konferencja Zarządzanie Kryzysowe – Ochrona Ludności – Ratownictwo" onerror="this.hidden=true;this.nextElementSibling.hidden=false" />
+          <div class="image-fallback" hidden aria-hidden="true">
+            <span>Konferencja</span>
+            <strong>Zarządzanie Kryzysowe – Ochrona Ludności – Ratownictwo</strong>
+          </div>
+          <div class="k1k2-content">
+            <p class="k1k2-meta">Konferencja</p>
+            <h3>BLS + AED to fundament. SALT + STOP THE BLEED® to kolejny krok.</h3>
+            <p>Jeśli uczysz BLS i AED — zrób kolejny krok.</p>
+            <p>Zobacz wpis</p>
+          </div>
+        </section>
+      </a>
       <section class="card k1k2-thumb" aria-label="Polski prototyp trenażera do kontroli krwotoków">
         <button class="k1k2-image-trigger" type="button" aria-label="Odtwórz film z prototypem trenażera do kontroli krwotoków" data-lightbox-target="nexusLightbox">
           <img src="./nexus2.jpeg" alt="Prototyp trenażera do kontroli krwotoków Grupy Ratowniczej NEXUS" />
