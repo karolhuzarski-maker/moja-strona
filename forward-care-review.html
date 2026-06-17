@@ -50,6 +50,7 @@
     .hero p { position:relative; z-index:1; margin:0; color:#c8d0e2; max-width:70ch; font-size:1.03rem; }
     .grid { margin-top:18px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
     .card { border:1px solid var(--line); border-radius:14px; background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02)); padding:18px; min-height:230px; }
+    a.card { color:inherit; text-decoration:none; display:block; }
     .card h2 { margin:0 0 8px; font-size:1.5rem; font-family:"Rajdhani","Segoe UI",sans-serif; }
     .card p { margin:0 0 10px; color:var(--muted); font-size:1.05rem; }
     .card.clickable { cursor:pointer; transition:transform .15s ease,border-color .15s ease, background .15s ease; }
@@ -81,13 +82,13 @@
     </section>
 
     <main class="grid" aria-label="Publikacje Forward Care Review">
-      <section class="card clickable" role="article" aria-label="Publikacja FCR-001">
+      <a class="card clickable" role="article" href="forward-care-review/evidence-to-nie-uprawnienie/" aria-label="Przejdź do publikacji FCR-001: Evidence to nie uprawnienie">
         <p class="label">Publikacja</p>
         <span class="code">FCR-001</span>
         <h2>Evidence to nie uprawnienie</h2>
         <p>TCCC, kurs, system i granice praktyki ZRM</p>
-        <a class="cta" href="forward_care_review_fcr001_v2 (1).pdf" target="_blank" rel="noopener noreferrer">Czytaj PDF</a>
-      </section>
+        <span class="cta" aria-hidden="true">Czytaj PDF</span>
+      </a>
     </main>
   </div>
 </body>
