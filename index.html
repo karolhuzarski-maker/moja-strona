@@ -447,35 +447,6 @@
             color: #ffcb2f;
         }
 
-        .program-poster-wrap {
-            margin-top: 16px;
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, .15);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, .35);
-        }
-
-        .program-poster {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-
-        .program-poster-btn {
-            border: 0;
-            padding: 0;
-            margin: 0;
-            background: transparent;
-            width: 100%;
-            display: block;
-            cursor: zoom-in;
-        }
-
-        .program-poster-btn:focus-visible {
-            outline: 3px solid #ffcb2f;
-            outline-offset: 4px;
-        }
-
         .image-modal {
             position: fixed;
             inset: 0;
@@ -807,16 +778,6 @@
                         </ul>
                     </div>
                 </div>
-
-                <section class="program-section" id="program-core" aria-label="Plakat programu C.O.R.E.">
-                    <figure class="program-poster-wrap">
-                        <button class="program-poster-btn" id="open-program-poster" type="button"
-                            aria-label="Powiększ plakat programu C.O.R.E.">
-                            <img class="program-poster" src="3 moduly.png"
-                                alt="C.O.R.E. Stop Krwotokom — 3 moduły szkoleniowe" loading="lazy" />
-                        </button>
-                    </figure>
-                </section>
             </section>
 
             <!-- SZKOLENIA -->
@@ -867,12 +828,6 @@
         </footer>
     </div>
 
-    <div class="image-modal" id="image-modal" aria-hidden="true" role="dialog" aria-modal="true"
-        aria-label="Powiększone zdjęcie programu C.O.R.E.">
-        <button class="image-modal-close" id="image-modal-close" type="button" aria-label="Zamknij">×</button>
-        <img class="image-modal-content" src="3 moduly.png" alt="Powiększony plakat C.O.R.E." />
-    </div>
-
     <div class="image-modal" id="pdf-modal" aria-hidden="true" role="dialog" aria-modal="true"
         aria-label="Oferta szkolenia (PDF)">
         <button class="image-modal-close" id="pdf-modal-close" type="button" aria-label="Zamknij">×</button>
@@ -890,10 +845,6 @@
             e.preventDefault();
             location.href = "dzialania.html";
         });
-        // Program poster popup
-        const imageModal = document.getElementById("image-modal");
-        const openPosterBtn = document.getElementById("open-program-poster");
-        const closeModalBtn = document.getElementById("image-modal-close");
         const pdfModal = document.getElementById("pdf-modal");
         const pdfModalCloseBtn = document.getElementById("pdf-modal-close");
         const pdfModalFrame = document.getElementById("pdf-modal-frame");
@@ -908,20 +859,6 @@
         const tmtcJpgPath = encodeURI("TMTC_program_tactical_medical_long.png");
         let currentPdfPath = totcPdfPath;
         let lastOpenedPdfCard = null;
-
-        function closeImageModal() {
-            if (!imageModal) return;
-            imageModal.setAttribute("aria-hidden", "true");
-            document.body.style.overflow = "";
-            openPosterBtn?.focus();
-        }
-
-        function openImageModal() {
-            if (!imageModal) return;
-            imageModal.setAttribute("aria-hidden", "false");
-            document.body.style.overflow = "hidden";
-            closeModalBtn?.focus();
-        }
 
         function closePdfModal() {
             if (!pdfModal) return;
@@ -1054,13 +991,7 @@
         }
 
 
-        openPosterBtn?.addEventListener("click", openImageModal);
-        closeModalBtn?.addEventListener("click", closeImageModal);
         pdfModalCloseBtn?.addEventListener("click", closePdfModal);
-
-        imageModal?.addEventListener("click", (e) => {
-            if (e.target === imageModal) closeImageModal();
-        });
 
         pdfModal?.addEventListener("click", (e) => {
             if (e.target === pdfModal) closePdfModal();
@@ -1094,7 +1025,6 @@
 
         window.addEventListener("keydown", (e) => {
             if (e.key !== "Escape") return;
-            if (imageModal?.getAttribute("aria-hidden") === "false") closeImageModal();
             if (pdfModal?.getAttribute("aria-hidden") === "false") closePdfModal();
         });
 
