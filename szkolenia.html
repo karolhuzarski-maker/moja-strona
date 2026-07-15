@@ -15,6 +15,19 @@
       color: var(--text);
       line-height: 1.5;
     }
+
+
+    /* Desktop: pokazuj całe zdjęcie tła (bez nadmiernego zoomu) */
+    @media (min-width:861px) {
+      body {
+        background:
+          linear-gradient(rgba(11, 12, 15, .72), rgba(11, 12, 15, .72)),
+          url("medic cbs.png") center/contain no-repeat fixed,
+          radial-gradient(1200px 700px at 70% -10%, rgba(209, 11, 11, .25), transparent 60%),
+          radial-gradient(900px 600px at 20% 0%, rgba(255, 255, 255, .06), transparent 55%),
+          var(--bg);
+      }
+    }
     .wrap { max-width: 1240px; margin: 0 auto; padding: 16px; }
     header { display:flex; justify-content:space-between; align-items:center; gap:12px; border:1px solid rgba(255,255,255,.15); border-radius:14px; padding:16px; background:rgba(255,255,255,.03); box-shadow:var(--shadow); }
     .brand { display:flex; align-items:center; min-width:0; flex:0 0 auto; }
