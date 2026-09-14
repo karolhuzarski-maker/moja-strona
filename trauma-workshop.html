@@ -4,22 +4,27 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Trauma Workshop | H-CORE edu</title>
-  <meta name="description" content="Trauma Workshop H-CORE edu — praktyczne szkolenie urazowe dla zespołów ratownictwa medycznego z programem PDF renderowanym bezpośrednio na stronie." />
+  <meta name="description" content="Trauma Workshop H-CORE edu — praktyczne szkolenie urazowe dla ratowników medycznych: Stress Lab, Hot/Warm/Cold, STOP THE BLEED® i scenariusze ZRM." />
+  <link rel="preload" as="image" href="assets/trauma-workshop/stress-lab-poster.webp" fetchpriority="high" />
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&family=Rajdhani:wght@600;700&display=swap");
-
     :root {
       --bg: #0b0c0f;
-      --muted: #a9b0c0;
+      --panel: rgba(255, 255, 255, .045);
+      --muted: #b9bfcc;
       --text: #f3f5ff;
       --red: #d10b0b;
-      --line: rgba(255, 255, 255, .10);
+      --red-dark: #8f0505;
+      --line: rgba(255, 255, 255, .13);
       --shadow: 0 18px 60px rgba(0, 0, 0, .55);
       --radius: 16px;
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     html,
@@ -30,15 +35,18 @@
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        linear-gradient(rgba(11, 12, 15, .72), rgba(11, 12, 15, .72)),
+        linear-gradient(rgba(11, 12, 15, .82), rgba(11, 12, 15, .86)),
         url("/new llogo full core.png") center/cover no-repeat fixed,
-        radial-gradient(1200px 700px at 70% -10%, rgba(209, 11, 11, .25), transparent 60%),
-        radial-gradient(900px 600px at 20% 0%, rgba(255, 255, 255, .06), transparent 55%),
+        radial-gradient(900px 560px at 80% 0%, rgba(209, 11, 11, .25), transparent 64%),
         var(--bg);
       color: var(--text);
       line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
     }
 
     .wrap {
@@ -51,12 +59,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      border: 1px solid rgba(255, 255, 255, .15);
+      gap: 16px;
+      border: 1px solid var(--line);
       border-radius: 14px;
-      padding: 16px;
-      background: rgba(255, 255, 255, .03);
+      padding: 14px 16px;
+      background: rgba(11, 12, 15, .76);
       box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
     }
 
     .brand {
@@ -67,214 +76,367 @@
     }
 
     .brand img {
-      width: clamp(220px, 55vw, 300px);
+      width: clamp(210px, 28vw, 300px);
       max-width: 100%;
       height: auto;
       display: block;
-      border-radius: 14px;
+      border-radius: 12px;
     }
 
     nav {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .tab-btn,
-    .back-link {
-      border: 1px solid rgba(255, 255, 255, .15);
-      background: rgba(255, 255, 255, .03);
+    .button {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .035);
       color: #fff;
       padding: 10px 12px;
       border-radius: 10px;
       cursor: pointer;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 14px;
-      transition: .2s ease;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
       outline: none;
       text-decoration: none;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
     .tab-btn:hover,
-    .back-link:hover,
+    .button:hover,
     .tab-btn:focus-visible,
-    .back-link:focus-visible {
+    .button:focus-visible {
       transform: translateY(-1px);
-      border-color: rgba(255, 255, 255, .3);
-      background: rgba(255, 255, 255, .06);
+      border-color: rgba(255, 255, 255, .32);
+      background: rgba(255, 255, 255, .075);
     }
 
     .tab-btn[aria-current="page"] {
-      border-color: rgba(209, 11, 11, .6);
-      background: linear-gradient(180deg, rgba(209, 11, 11, .25), rgba(255, 255, 255, .03));
+      border-color: rgba(209, 11, 11, .72);
+      background: linear-gradient(180deg, rgba(209, 11, 11, .28), rgba(255, 255, 255, .035));
     }
 
-    .hero,
-    .pdf-section {
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(280px, 420px) minmax(0, 1fr);
+      align-items: center;
+      gap: clamp(22px, 4vw, 54px);
       margin-top: 18px;
-      border: 1px solid rgba(255, 255, 255, .14);
+      border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: radial-gradient(1100px 300px at 70% -20%, rgba(209, 11, 11, .35), transparent 60%), linear-gradient(145deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .015));
-      box-shadow: 0 24px 70px rgba(0, 0, 0, .55);
-      padding: 22px 26px;
+      background:
+        radial-gradient(800px 360px at 78% 0%, rgba(209, 11, 11, .3), transparent 62%),
+        linear-gradient(145deg, rgba(255, 255, 255, .065), rgba(255, 255, 255, .018));
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .58);
+      padding: clamp(16px, 3vw, 32px);
       overflow: hidden;
     }
 
-    h1 {
-      margin: 0 0 10px;
-      font-family: "Rajdhani", "Barlow Condensed", "Arial Narrow", "Segoe UI", sans-serif;
-      font-size: clamp(2rem, 5vw, 4rem);
-      line-height: 1;
-      letter-spacing: .03em;
+    .video-card {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, .22);
+      border-radius: 15px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 24px 62px rgba(0, 0, 0, .62), 0 0 42px rgba(209, 11, 11, .12);
+    }
+
+    .video-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06);
+    }
+
+    .video-tag {
+      position: absolute;
+      z-index: 2;
+      top: 12px;
+      left: 12px;
+      padding: 8px 11px;
+      border: 1px solid rgba(255, 255, 255, .28);
+      border-radius: 8px;
+      background: rgba(7, 8, 10, .82);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .45);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .09em;
       text-transform: uppercase;
-      text-shadow: 0 8px 28px rgba(0, 0, 0, .5);
+    }
+
+    .video-tag span {
+      color: #ff3b3b;
+    }
+
+    video {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      background: #000;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: #ff6a6a;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      font-family: "Arial Narrow", "Roboto Condensed", Impact, ui-sans-serif, system-ui, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .025em;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 6.2rem);
+      line-height: .88;
+      text-shadow: 0 8px 28px rgba(0, 0, 0, .55);
+    }
+
+    h1 span {
+      display: block;
+      color: #ff3636;
     }
 
     .lead {
-      margin: 0;
-      color: #d6dbea;
-      max-width: 78ch;
-      font-size: clamp(1rem, 2vw, 1.12rem);
+      margin: 18px 0 0;
+      color: #e1e5ef;
+      max-width: 68ch;
+      font-size: clamp(1rem, 2vw, 1.16rem);
+    }
+
+    .stress-copy {
+      margin: 12px 0 0;
+      color: var(--muted);
+      max-width: 66ch;
+      font-size: 1rem;
     }
 
     .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 16px 0 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+      margin: 20px 0 0;
       padding: 0;
       list-style: none;
     }
 
     .meta li {
       border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(0, 0, 0, .22);
-      color: #ffd7d7;
-      padding: 7px 10px;
+      border-radius: 11px;
+      background: rgba(0, 0, 0, .25);
+      color: #f4f5f8;
+      padding: 11px 12px;
       font-size: .95rem;
+      font-weight: 700;
+    }
+
+    .meta strong {
+      display: block;
+      margin-bottom: 2px;
+      color: #ff7a7a;
+      font-size: 12px;
+      letter-spacing: .07em;
+      text-transform: uppercase;
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      margin-top: 20px;
+    }
+
+    .button.primary {
+      border-color: rgba(255, 76, 76, .72);
+      background: linear-gradient(180deg, #d81515, var(--red-dark));
+      box-shadow: 0 10px 28px rgba(209, 11, 11, .26);
+    }
+
+    .program-section {
       margin-top: 18px;
-    }
-
-    .pdf-section {
-      padding: clamp(10px, 2vw, 18px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
       background: rgba(255, 255, 255, .025);
+      box-shadow: 0 20px 56px rgba(0, 0, 0, .44);
+      padding: clamp(14px, 2.5vw, 26px);
     }
 
-    .pdf-viewer {
-      width: 100%;
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      line-height: .95;
+    }
+
+    .section-heading p {
+      max-width: 56ch;
+      margin: 0;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .program-pages {
+      display: grid;
+      gap: 16px;
       max-width: 1040px;
       margin: 0 auto;
     }
 
-    .pdf-status {
-      margin: 0;
-      padding: 18px;
-      border: 1px solid rgba(255, 255, 255, .12);
-      border-radius: 12px;
-      background: rgba(0, 0, 0, .24);
-      color: #d6dbea;
-      text-align: center;
-    }
-
-    .pdf-page {
-      width: 100%;
-      margin: 0 auto 18px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, .18);
-      border-radius: 12px;
-      background: #fff;
-      box-shadow: 0 16px 42px rgba(0, 0, 0, .45);
-    }
-
-    .pdf-page:last-child {
-      margin-bottom: 0;
-    }
-
-    .pdf-page canvas {
+    .program-page {
       display: block;
       width: 100%;
       height: auto;
-      background: #fff;
+      border: 1px solid rgba(255, 255, 255, .17);
+      border-radius: 12px;
+      background: #f3f0e9;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, .4);
     }
 
-    .pdf-fallback {
-      max-width: 1040px;
-      margin: 16px auto 0;
-      text-align: center;
+    .program-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
     }
 
-    .pdf-fallback a {
-      color: #fff;
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      font-weight: 700;
+    .program-footer p {
+      margin: 0;
+      color: var(--muted);
     }
 
     footer {
       margin-top: 14px;
       padding: 18px 4px;
-      color: rgba(255, 255, 255, .55);
+      color: rgba(255, 255, 255, .58);
       font-size: 12px;
-      text-align: left;
     }
 
     @media (min-width: 861px) {
       body {
         background:
-          linear-gradient(rgba(11, 12, 15, .72), rgba(11, 12, 15, .72)),
+          linear-gradient(rgba(11, 12, 15, .82), rgba(11, 12, 15, .86)),
           url("/new llogo full core.png") center/contain no-repeat fixed,
-          radial-gradient(1200px 700px at 70% -10%, rgba(209, 11, 11, .25), transparent 60%),
-          radial-gradient(900px 600px at 20% 0%, rgba(255, 255, 255, .06), transparent 55%),
+          radial-gradient(900px 560px at 80% 0%, rgba(209, 11, 11, .25), transparent 64%),
           var(--bg);
       }
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 900px) {
       header {
-        flex-direction: column;
         align-items: stretch;
+        flex-direction: column;
       }
 
       nav {
-        justify-content: center;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 3px;
+        scrollbar-width: thin;
+      }
+
+      .tab-btn {
+        flex: 0 0 auto;
+      }
+
+      .hero {
+        grid-template-columns: minmax(250px, 360px) minmax(0, 1fr);
+        gap: 24px;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 7vw, 4.5rem);
       }
     }
 
-    @media (max-width: 520px) {
+    @media (max-width: 700px) {
       .wrap {
         padding: 10px;
       }
 
-      header,
-      .hero,
-      .pdf-section {
+      header {
+        padding: 12px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
         padding: 14px;
       }
 
-      nav,
-      .actions {
-        display: grid;
+      .video-card {
+        max-width: 430px;
+      }
+
+      .hero-copy {
+        padding: 4px 2px 2px;
+      }
+
+      .section-heading,
+      .program-footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .section-heading p {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .brand img {
+        width: min(100%, 250px);
+      }
+
+      .meta {
         grid-template-columns: 1fr;
+      }
+
+      .actions,
+      .button {
         width: 100%;
+      }
+
+      .program-page {
+        border-radius: 8px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
       }
 
       .tab-btn,
-      .back-link {
-        width: 100%;
-        text-align: center;
-      }
-
-      .pdf-page {
-        margin-bottom: 12px;
-        border-radius: 10px;
+      .button {
+        transition: none;
       }
     }
   </style>
@@ -282,7 +444,9 @@
 <body>
   <div class="wrap">
     <header>
-      <a class="brand" href="index.html" aria-label="Wróć na stronę główną"><img src="/new llogo full core.png" alt="H-CORE edu" /></a>
+      <a class="brand" href="index.html" aria-label="Wróć na stronę główną">
+        <img src="/new llogo full core.png" alt="H-CORE edu" />
+      </a>
       <nav aria-label="Główna nawigacja">
         <a class="tab-btn" href="onas.html">Kadra H-CORE Edu</a>
         <a class="tab-btn" href="szkolenia.html" aria-current="page">Szkolenia</a>
@@ -294,24 +458,53 @@
 
     <main>
       <section class="hero" aria-labelledby="trauma-workshop-title">
-        <h1 id="trauma-workshop-title">Trauma Workshop</h1>
-        <p class="lead">Interwencje urazowe w strefach Hot/Warm/Cold dla ZRM. Seminarium praktyczne dla ratowników medycznych, oparte na założeniach TECC, STOP THE BLEED® oraz logice MARCH/PAWS.</p>
-        <ul class="meta" aria-label="Najważniejsze informacje">
-          <li>Czas: 8 godz. dydaktycznych</li>
-          <li>Punkty edukacyjne: 8 pkt</li>
-          <li>Forma: warsztaty + scenariusze symulacyjne</li>
-        </ul>
-        <div class="actions">
-          <a class="back-link" href="szkolenia.html">← Wróć do szkoleń</a>
-          <a class="back-link" href="index.html">Wróć do strony głównej</a>
+        <div class="video-card">
+          <div class="video-tag"><span>Stress Lab</span> • Hot Zone</div>
+          <video autoplay muted loop playsinline controls preload="auto" poster="assets/trauma-workshop/stress-lab-poster.webp" aria-label="Fragment ćwiczeń Stress Lab podczas Trauma Workshop">
+            <source src="assets/trauma-workshop/stress-lab.mp4" type="video/mp4" />
+            Twoja przeglądarka nie obsługuje odtwarzania wideo.
+          </video>
+        </div>
+
+        <div class="hero-copy">
+          <p class="eyebrow">Warsztat dla ratowników medycznych</p>
+          <h1 id="trauma-workshop-title">Trauma <span>Workshop</span></h1>
+          <p class="lead">Interwencje urazowe w strefach Hot / Warm / Cold dla ZRM. Seminarium praktyczne oparte na założeniach TECC, STOP THE BLEED® oraz logice MARCH / PAWS.</p>
+          <p class="stress-copy"><strong>Stress Lab</strong> przenosi kluczowe działania do warunków presji, hałasu i ograniczonego światła. To praktyka decyzji i procedur wtedy, gdy samo odtworzenie schematu nie wystarcza.</p>
+
+          <ul class="meta" aria-label="Najważniejsze informacje">
+            <li><strong>Czas</strong>8 godz. dydaktycznych</li>
+            <li><strong>Punkty</strong>8 pkt edukacyjnych</li>
+            <li><strong>Forma</strong>Hands-on + scenariusze</li>
+            <li><strong>Dla kogo</strong>Ratownicy medyczni / ZRM</li>
+          </ul>
+
+          <div class="actions">
+            <a class="button primary" href="#program">Zobacz pełny program</a>
+            <a class="button" href="szkolenia.html">← Wróć do szkoleń</a>
+          </div>
         </div>
       </section>
 
-      <section class="pdf-section" aria-label="Program PDF Trauma Workshop">
-        <div class="pdf-viewer" id="pdf-viewer" data-pdf-src="Trauma_Workshop_H_CORE_tactical_FINAL_poprawiony.pdf">
-          <p class="pdf-status" id="pdf-status">Ładowanie programu PDF…</p>
+      <section class="program-section" id="program" aria-labelledby="program-title">
+        <div class="section-heading">
+          <h2 id="program-title">Program szkolenia</h2>
+          <p>Cały program jest wyświetlany bezpośrednio na stronie — bez uruchamiania ciężkiego podglądu PDF.</p>
         </div>
-        <p class="pdf-fallback"><a href="Trauma_Workshop_H_CORE_tactical_FINAL_poprawiony.pdf">Pobierz PDF</a></p>
+
+        <div class="program-pages">
+          <img class="program-page" src="assets/trauma-workshop/program-1.webp" width="1241" height="1754" loading="lazy" decoding="async" alt="Trauma Workshop — informacje podstawowe, strona 1 z 6" />
+          <img class="program-page" src="assets/trauma-workshop/program-2.webp" width="1241" height="1754" loading="lazy" decoding="async" alt="Dlaczego ten warsztat, dla kogo i najważniejsze efekty szkolenia, strona 2 z 6" />
+          <img class="program-page" src="assets/trauma-workshop/program-3.webp" width="1241" height="1754" loading="lazy" decoding="async" alt="Program szkolenia — moduły A i B, strona 3 z 6" />
+          <img class="program-page" src="assets/trauma-workshop/program-4.webp" width="1241" height="1754" loading="lazy" decoding="async" alt="Program szkolenia — moduły C, D i E, strona 4 z 6" />
+          <img class="program-page" src="assets/trauma-workshop/program-5.webp" width="1241" height="1754" loading="lazy" decoding="async" alt="Harmonogram Trauma Workshop, strona 5 z 6" />
+          <img class="program-page" src="assets/trauma-workshop/program-6.webp" width="1241" height="1754" loading="lazy" decoding="async" alt="Certyfikaty, prowadzący i formalności, strona 6 z 6" />
+        </div>
+
+        <div class="program-footer">
+          <p>Wolisz zachować program na później?</p>
+          <a class="button" href="Trauma_Workshop_H_CORE_tactical_FINAL_poprawiony.pdf" download>Pobierz program PDF</a>
+        </div>
       </section>
     </main>
 
@@ -319,104 +512,9 @@
       © <span id="year"></span> H-CORE edu • www.h-core.edu.pl
     </footer>
   </div>
-  <script type="module">
-    import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
 
+  <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    const viewer = document.getElementById("pdf-viewer");
-    const status = document.getElementById("pdf-status");
-    const pdfPath = viewer?.dataset.pdfSrc;
-    let pdfDocument = null;
-    let renderRun = 0;
-    let resizeTimer = null;
-
-    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
-
-    function setStatus(message, isError = false) {
-      if (!status) return;
-      status.textContent = message;
-      status.hidden = false;
-      status.style.color = isError ? "#ffd7d7" : "#d6dbea";
-    }
-
-    function clearRenderedPages() {
-      viewer?.querySelectorAll(".pdf-page").forEach(page => page.remove());
-    }
-
-    async function renderPage(pageNumber, runId) {
-      const page = await pdfDocument.getPage(pageNumber);
-      if (runId !== renderRun || !viewer) return;
-
-      const baseViewport = page.getViewport({ scale: 1 });
-      const availableWidth = Math.max(280, viewer.clientWidth);
-      const scale = availableWidth / baseViewport.width;
-      const viewport = page.getViewport({ scale });
-      const outputScale = Math.min(window.devicePixelRatio || 1, 2);
-
-      const pageWrap = document.createElement("div");
-      pageWrap.className = "pdf-page";
-      pageWrap.setAttribute("aria-label", `Strona ${pageNumber} z ${pdfDocument.numPages}`);
-
-      const canvas = document.createElement("canvas");
-      const context = canvas.getContext("2d", { alpha: false });
-      canvas.width = Math.floor(viewport.width * outputScale);
-      canvas.height = Math.floor(viewport.height * outputScale);
-      canvas.style.width = `${viewport.width}px`;
-      canvas.style.height = `${viewport.height}px`;
-
-      pageWrap.style.maxWidth = `${viewport.width}px`;
-      pageWrap.appendChild(canvas);
-      viewer.appendChild(pageWrap);
-
-      await page.render({
-        canvasContext: context,
-        viewport,
-        transform: outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null
-      }).promise;
-    }
-
-    async function renderPdf() {
-      if (!pdfDocument || !viewer) return;
-      const runId = ++renderRun;
-      clearRenderedPages();
-      setStatus("Renderowanie programu PDF…");
-
-      try {
-        for (let pageNumber = 1; pageNumber <= pdfDocument.numPages; pageNumber += 1) {
-          if (runId !== renderRun) return;
-          await renderPage(pageNumber, runId);
-          if (pageNumber === 1 && status) status.hidden = true;
-        }
-        if (runId === renderRun && status) status.hidden = true;
-      } catch (error) {
-        if (runId === renderRun) {
-          console.error("Nie udało się wyrenderować PDF:", error);
-          setStatus("Nie udało się wyrenderować programu PDF. Skorzystaj z linku „Pobierz PDF” poniżej.", true);
-        }
-      }
-    }
-
-    async function loadPdf() {
-      if (!viewer || !pdfPath) return;
-
-      try {
-        setStatus("Ładowanie programu PDF…");
-        pdfDocument = await pdfjsLib.getDocument(pdfPath).promise;
-        await renderPdf();
-      } catch (error) {
-        console.error("Nie udało się załadować PDF:", error);
-        setStatus("Nie udało się załadować programu PDF. Skorzystaj z linku „Pobierz PDF” poniżej.", true);
-      }
-    }
-
-    window.addEventListener("resize", () => {
-      if (!pdfDocument) return;
-      window.clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(renderPdf, 250);
-    });
-
-    loadPdf();
   </script>
 </body>
 </html>
