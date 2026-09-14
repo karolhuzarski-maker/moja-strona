@@ -188,12 +188,51 @@
       background: #000;
     }
 
+    .hero-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
     .eyebrow {
-      margin: 0 0 10px;
+      margin: 0;
       color: #ff6a6a;
       font-size: 13px;
       font-weight: 900;
       letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .stb-included {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 auto;
+      padding: 7px 10px 7px 7px;
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-left: 3px solid #d10b0b;
+      border-radius: 9px;
+      background: rgba(7, 8, 10, .76);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, .32);
+    }
+
+    .stb-included img {
+      display: block;
+      width: 126px;
+      height: auto;
+      border-radius: 5px;
+      background: #fff;
+    }
+
+    .stb-included strong {
+      max-width: 6.5ch;
+      color: #fff;
+      font-size: 12px;
+      line-height: 1.08;
+      letter-spacing: .055em;
       text-transform: uppercase;
     }
 
@@ -399,6 +438,11 @@
         padding: 4px 2px 2px;
       }
 
+      .hero-topline {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
       .section-heading,
       .program-footer {
         align-items: flex-start;
@@ -467,7 +511,13 @@
         </div>
 
         <div class="hero-copy">
-          <p class="eyebrow">Warsztat dla ratowników medycznych</p>
+          <div class="hero-topline">
+            <p class="eyebrow">Warsztat dla ratowników medycznych</p>
+            <div class="stb-included" aria-label="Kurs STOP THE BLEED w cenie szkolenia">
+              <img src="assets/trauma-workshop/stop-the-bleed-logo.png" width="232" height="74" alt="STOP THE BLEED®" />
+              <strong>Kurs w cenie</strong>
+            </div>
+          </div>
           <h1 id="trauma-workshop-title">Trauma <span>Workshop</span></h1>
           <p class="lead">Interwencje urazowe w strefach Hot / Warm / Cold dla ZRM. Seminarium praktyczne oparte na założeniach TECC, STOP THE BLEED® oraz logice MARCH / PAWS.</p>
           <p class="stress-copy"><strong>Stress Lab</strong> przenosi kluczowe działania do warunków presji, hałasu i ograniczonego światła. To praktyka decyzji i procedur wtedy, gdy samo odtworzenie schematu nie wystarcza.</p>
