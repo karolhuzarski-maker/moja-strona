@@ -2,7 +2,7 @@
 
 :root { --bg:#0b0c0f; --text:#f3f5ff; --muted:#a9b0c0; --line:rgba(255,255,255,.10); --red:#d10b0b; --shadow:0 18px 60px rgba(0,0,0,.55); --radius:16px; }
 * { box-sizing:border-box; }
-body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif; color:var(--text); background:radial-gradient(1200px 700px at 70% -10%,rgba(209,11,11,.25),transparent 60%),radial-gradient(900px 600px at 20% 0%,rgba(255,255,255,.06),transparent 55%),var(--bg); line-height:1.5; }
+body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif; color:var(--text); background:linear-gradient(rgba(11,12,15,.72),rgba(11,12,15,.72)),url("/medic%20cbs.png") center/cover no-repeat fixed,radial-gradient(1200px 700px at 70% -10%,rgba(209,11,11,.25),transparent 60%),radial-gradient(900px 600px at 20% 0%,rgba(255,255,255,.06),transparent 55%),var(--bg); line-height:1.5; }
 a { color:inherit; }
 a:focus-visible { outline:3px solid #fff; outline-offset:4px; }
 .wrap { max-width:1240px; margin:0 auto; padding:12px; }
@@ -57,3 +57,8 @@ footer { margin-top:14px; padding:18px 4px; color:rgba(255,255,255,.65); font-si
 @media (min-width:521px) { .wrap { padding:16px; } .tab-btn { width:auto; } .cta-row { flex-direction:row; flex-wrap:wrap; } .skills { grid-template-columns:repeat(2,minmax(0,1fr)); } .hero-copy,.section { padding:32px; } .final-cta .cta-row { justify-content:center; } }
 @media (min-width:861px) { header { flex-direction:row; align-items:center; } nav { justify-content:flex-start; } .hero { grid-template-columns:1fr 1fr; } .audiences,.details-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .details-grid { gap:18px; } .skills { grid-template-columns:repeat(4,minmax(0,1fr)); } .skills li { display:block; } .skill-number { display:block; margin-bottom:8px; } .final-cta { padding:40px; } }
 @media (prefers-reduced-motion:no-preference) { .btn,.tab-btn { transition:background .2s ease,border-color .2s ease; } }
+
+/* Match the existing site watermark: show the full image on desktop. */
+@media (min-width:861px) {
+  body { background-size:auto,contain,auto,auto; }
+}
