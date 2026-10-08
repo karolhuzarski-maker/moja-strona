@@ -77,3 +77,12 @@ footer { margin-top:14px; padding:18px 4px; color:rgba(255,255,255,.65); font-si
 .page-intro::before { content:""; position:absolute; inset:0; background:linear-gradient(120deg,rgba(255,255,255,.08),transparent 36%); pointer-events:none; }
 .page-intro h1 { position:relative; margin:0 0 10px; }
 .page-intro p { position:relative; margin:0; max-width:70ch; font-size:1.03rem; }
+
+/* Same-page enquiry flow; preserve the existing page and button styling. */
+@media (prefers-reduced-motion:no-preference) {
+  html { scroll-behavior:smooth; }
+}
+#book-training, #train-your-team { scroll-margin-top:24px; }
+.enquiry-section button.btn { font-family:inherit; color:inherit; cursor:pointer; }
+.enquiry-section button:focus-visible { outline:3px solid #fff; outline-offset:4px; }
+.copy-status { min-height:1.5em; margin:12px 0 0; }

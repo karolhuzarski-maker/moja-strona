@@ -17,7 +17,7 @@
   <meta property="og:image" content="https://h-core.edu.pl/assets/stop-the-bleed-en/main-krk.png">
   <meta property="og:image:alt" content="Hands-on STOP THE BLEED® training with H-CORE EDU using bleeding-control training equipment.">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="/assets/stop-the-bleed-en/landing.css?v=20261008-title-strip">
+  <link rel="stylesheet" href="/assets/stop-the-bleed-en/landing.css?v=20261008-cta-hotfix">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -45,8 +45,8 @@
           <p class="lead">Practical, hands-on training for individuals, international teams and companies.</p>
           <p class="no-experience">No medical background required.</p>
           <div class="cta-row">
-            <a class="btn primary" href="mailto:stop@h-core.edu.pl?subject=STOP%20THE%20BLEED%C2%AE%20in%20English%20-%20open%20course%20booking">BOOK YOUR PLACE</a>
-            <a class="btn" href="mailto:stop@h-core.edu.pl?subject=STOP%20THE%20BLEED%C2%AE%20in%20English%20-%20team%20training">TRAIN YOUR TEAM</a>
+            <a id="book-your-place-cta" class="btn primary" href="#book-training">BOOK YOUR PLACE</a>
+            <a id="train-your-team-cta" class="btn" href="#train-your-team">TRAIN YOUR TEAM</a>
           </div>
           <p class="hint">Email us for open course dates or a team training quote.</p>
         </div>
@@ -72,14 +72,14 @@
             <h3>INDIVIDUAL PARTICIPANTS</h3>
             <p>Open courses are available on selected dates.</p>
             <p>No medical experience required.</p>
-            <a class="btn primary" href="mailto:stop@h-core.edu.pl?subject=STOP%20THE%20BLEED%C2%AE%20in%20English%20-%20open%20course%20dates">SEE AVAILABLE DATES</a>
+            <a class="btn primary" href="#book-training">SEE AVAILABLE DATES</a>
             <p class="hint">Ask by email for current dates and availability.</p>
           </article>
           <article class="card">
             <h3>COMPANIES &amp; INTERNATIONAL TEAMS</h3>
             <p>On-site training available for companies, offices and international teams.</p>
             <p>Training can be delivered in English and adapted to the organisation and group size.</p>
-            <a class="btn" href="mailto:stop@h-core.edu.pl?subject=STOP%20THE%20BLEED%C2%AE%20in%20English%20-%20team%20training">REQUEST CORPORATE TRAINING</a>
+            <a class="btn" href="#train-your-team">REQUEST CORPORATE TRAINING</a>
           </article>
         </div>
       </section>
@@ -110,10 +110,35 @@
         <h2 id="ready-title">READY TO LEARN HOW TO STOP<br>LIFE-THREATENING BLEEDING?</h2>
         <p>Join an open course or bring STOP THE BLEED® training to your organisation.</p>
         <div class="cta-row">
-          <a class="btn primary" href="mailto:stop@h-core.edu.pl?subject=STOP%20THE%20BLEED%C2%AE%20in%20English%20-%20open%20course%20booking">BOOK YOUR PLACE</a>
-          <a class="btn" href="mailto:stop@h-core.edu.pl?subject=STOP%20THE%20BLEED%C2%AE%20in%20English%20-%20team%20training">TRAIN YOUR TEAM</a>
+          <a class="btn primary" href="#book-training">BOOK YOUR PLACE</a>
+          <a class="btn" href="#train-your-team">TRAIN YOUR TEAM</a>
         </div>
         <p class="contact-line"><a href="mailto:stop@h-core.edu.pl">stop@h-core.edu.pl</a> <span aria-hidden="true">·</span> <a href="tel:+48512503640">+48 512 503 640</a></p>
+      </section>
+
+      <section id="contact-individual-section" class="section enquiry-section" aria-labelledby="book-training">
+        <h2 id="book-training" tabindex="-1">OPEN COURSE ENQUIRY</h2>
+        <p>Interested in joining an open STOP THE BLEED® course in English?</p>
+        <p>Contact H-CORE EDU for upcoming dates and availability.</p>
+        <p>Email: <strong>stop@h-core.edu.pl</strong><br>Phone: <a href="tel:+48512503640">+48 512 503 640</a></p>
+        <div class="cta-row">
+          <button id="copy-email-individual" class="btn primary" type="button" data-copy-email aria-describedby="copy-status-individual">COPY EMAIL ADDRESS</button>
+        </div>
+        <p id="copy-status-individual" class="copy-status" role="status" aria-live="polite"></p>
+        <p class="hint"><a href="mailto:stop@h-core.edu.pl">Prefer email? Open your email app.</a></p>
+      </section>
+
+      <section id="contact-corporate-section" class="section enquiry-section" aria-labelledby="train-your-team">
+        <h2 id="train-your-team" tabindex="-1">TRAIN YOUR TEAM</h2>
+        <p>Looking for practical bleeding-control training for your company or international team?</p>
+        <p>We provide hands-on STOP THE BLEED® training in English for organisations and organised groups.</p>
+        <p>Email: <strong>stop@h-core.edu.pl</strong><br>Phone: <a href="tel:+48512503640">+48 512 503 640</a></p>
+        <div class="cta-row">
+          <button id="copy-email-corporate" class="btn primary" type="button" data-copy-email aria-describedby="copy-status-corporate">COPY EMAIL ADDRESS</button>
+          <a class="btn" href="tel:+48512503640">CALL H-CORE EDU</a>
+        </div>
+        <p id="copy-status-corporate" class="copy-status" role="status" aria-live="polite"></p>
+        <p class="hint"><a href="mailto:stop@h-core.edu.pl">Prefer email? Open your email app.</a></p>
       </section>
     </main>
     <footer>
@@ -121,5 +146,6 @@
       <br>© H-CORE edu · www.h-core.edu.pl
     </footer>
   </div>
+  <script src="/assets/stop-the-bleed-en/contact.js?v=20261008-cta-hotfix" defer></script>
 </body>
 </html>
