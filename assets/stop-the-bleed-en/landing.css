@@ -15,7 +15,7 @@ nav { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
 .tab-btn[aria-current="page"] { border-color:rgba(209,11,11,.6); background:linear-gradient(180deg,rgba(209,11,11,.25),rgba(255,255,255,.03)); }
 .skip-link { position:absolute; top:8px; left:8px; transform:translateY(-180%); z-index:2; padding:12px; background:var(--bg); }
 .skip-link:focus { transform:none; }
-.hero { margin-top:1px; border:1px solid rgba(255,255,255,.14); border-radius:var(--radius); background:radial-gradient(1100px 300px at 70% -20%,rgba(209,11,11,.35),transparent 60%),linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.015)); box-shadow:0 24px 70px rgba(0,0,0,.55); overflow:hidden; display:grid; }
+.hero { margin-top:18px; border:1px solid rgba(255,255,255,.14); border-radius:var(--radius); background:radial-gradient(1100px 300px at 70% -20%,rgba(209,11,11,.35),transparent 60%),linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.015)); box-shadow:0 24px 70px rgba(0,0,0,.55); overflow:hidden; display:grid; }
 .hero-copy { padding:22px 26px 20px; align-self:center; }
 .eyebrow { color:#ffb7b7; font-size:12px; letter-spacing:1.4px; font-weight:700; }
 h1,h2,h3 { font-family:"Rajdhani","Barlow Condensed","Arial Narrow","Segoe UI",sans-serif; line-height:1.12; }
@@ -62,3 +62,18 @@ footer { margin-top:14px; padding:18px 4px; color:rgba(255,255,255,.65); font-si
 @media (min-width:861px) {
   body { background-size:auto,contain,auto,auto; }
 }
+
+/* Full-width introduction bar, matching Szkolenia and Forward Care Review. */
+.page-intro {
+  margin-top:1px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:var(--radius);
+  background:radial-gradient(1100px 300px at 70% -20%,rgba(209,11,11,.35),transparent 60%),linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.015));
+  box-shadow:0 24px 70px rgba(0,0,0,.55);
+  padding:22px 26px 20px;
+  position:relative;
+  overflow:hidden;
+}
+.page-intro::before { content:""; position:absolute; inset:0; background:linear-gradient(120deg,rgba(255,255,255,.08),transparent 36%); pointer-events:none; }
+.page-intro h1 { position:relative; margin:0 0 10px; }
+.page-intro p { position:relative; margin:0; max-width:70ch; font-size:1.03rem; }
