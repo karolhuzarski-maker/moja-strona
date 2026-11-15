@@ -60,6 +60,9 @@
     @media (max-width:860px) { header { flex-direction:column; align-items:stretch; } .brand { justify-content:center; } nav { justify-content:center; } }
     @media (max-width:700px) { .grid { grid-template-columns:1fr; } .training-card__media img { height:220px; } }
     @media (max-width:520px) { .wrap { padding:12px; } .tab-btn { width:100%; text-align:center; } nav { width:100%; } }
+    /* Jedyna nowa reguła CSS: przycisk wewnątrz kafelka H-CORE K9. */
+    #hcore-k9-card .hcore-k9-cta {display:inline-flex;align-items:center;margin-top:14px;padding:9px 13px;border:1px solid rgba(209,11,11,.65);border-radius:8px;background:linear-gradient(180deg,#d10b0b,#8f0505);font-size:.85rem;font-weight:800;letter-spacing:.04em;color:#fff}
+    #hcore-k9-card .training-card__media img {object-position:50% 55%}
   </style>
 </head>
 <body>
@@ -124,6 +127,18 @@
         </div>
         <div class="training-card__media">
           <img src="tactical_medical klocek.png" alt="Tactical Military Trauma Care - szkolenie urazowe w środowisku taktycznym" />
+        </div>
+      </a>
+
+      <a class="card clickable training-card" id="hcore-k9-card" href="h-core-k9.html" aria-label="Zobacz program kursu H-CORE K9 Pierwsza pomoc dla psów">
+        <div class="training-card__content">
+          <h2>H-CORE K9</h2>
+          <p><strong>Pierwsza pomoc dla psów</strong></p>
+          <p>Praktyczne szkolenie K9. Resuscytacja, masywne krwotoki, opatrunki, urazy i ewakuacja.</p>
+          <span class="hcore-k9-cta">ZOBACZ PROGRAM</span>
+        </div>
+        <div class="training-card__media">
+          <img src="https://images.pexels.com/photos/4459893/pexels-photo-4459893.jpeg" alt="Golden retriever w lesie – H-CORE K9 Pierwsza pomoc dla psów" loading="lazy" />
         </div>
       </a>
     </main>
