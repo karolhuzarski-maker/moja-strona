@@ -202,7 +202,7 @@ body.activity-page {
   width: 100%;
   height: 100% !important;
   min-height: 310px !important;
-  max-height: none !important;
+  max-height: 480px !important;
   object-fit: contain !important;
   background: #f2f2f2;
 }
@@ -295,7 +295,7 @@ body.activity-page {
   font-weight: 700;
 }
 .activity-page .card .back-link:hover, .activity-page .card > p > a[href="dzialania.html"]:hover { background: rgba(227,52,64,.21); }
-.activity-page .card .hero-image { margin: -32px -32px 25px; overflow: hidden; }
+.activity-page .card .hero-image { margin: clamp(-32px, -3vw, -20px) clamp(-32px, -3vw, -20px) 25px; overflow: hidden; }
 .activity-page .card .hero-image img { display: block; width: 100%; max-height: 490px; object-fit: contain; background: #f1f1f1; }
 .activity-page .card .meta { color: var(--activity-red-soft); font-family: Rajdhani, sans-serif; letter-spacing: .09em; }
 .activity-page .image-lightbox, .activity-page .gallery-lightbox { backdrop-filter: blur(6px); }
@@ -327,6 +327,7 @@ body.activity-page {
   .activity-page header > a:first-child img, .activity-page header .brand img { width: min(75vw, 240px); }
   .activity-page header nav { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; width:100%; }
   .activity-page header nav a { width:100%; min-width:0; min-height:40px; padding:9px 7px; font-size:.76rem; }
+  .activity-page header nav a:nth-child(n+5) { grid-column:auto; }
   .activity-page .hero { padding: 21px; }
   .activity-page .grid { grid-template-columns: 1fr; gap: 14px; }
   .activity-page .grid > .card.k1k2-thumb:first-child,
@@ -348,6 +349,9 @@ body.activity-page {
   .activity-page header nav a { font-size:.73rem; }
   .activity-page .grid .k1k2-content { padding:19px; }
   .activity-page .grid .news-thumb { min-height:260px; }
+}
+@media (max-width: 360px) {
+  .activity-page header nav { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion:reduce) {
   .activity-page * { transition:none !important; }
