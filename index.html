@@ -698,8 +698,10 @@
             }
         }
 
-        /* Style wyłącznie przycisku w nowym kafelku. */
-        #hcore-k9-card .hcore-k9-cta {display:inline-flex;margin-top:14px;padding:9px 13px;border-radius:8px;border:1px solid rgba(209,11,11,.65);background:linear-gradient(180deg,#d10b0b,#8f0505);color:#fff;font-weight:800;font-size:13px;letter-spacing:.03em}
+        /* Jednolite przyciski i wyrównanie kafelków szkoleń. */
+        #panel-szkolenia .card-link {display:flex;flex-direction:column;}
+        #panel-szkolenia .card-link > p {margin-bottom:16px;}
+        #panel-szkolenia .training-cta {display:inline-flex;align-items:center;align-self:flex-start;margin-top:auto;padding:9px 13px;border-radius:8px;border:1px solid rgba(209,11,11,.65);background:linear-gradient(180deg,#d10b0b,#8f0505);color:#fff;font-weight:800;font-size:13px;letter-spacing:.03em}
     </style>
 </head>
 
@@ -791,25 +793,29 @@
                     <a class="card card-link" id="hcore-k9-card" href="h-core-k9.html" aria-label="Zobacz program H-CORE K9 – Pierwsza pomoc dla psów">
                         <h3>H-CORE K9</h3>
                         <p><strong>Pierwsza pomoc dla psów</strong><br>Praktyczne szkolenie K9. Resuscytacja, masywne krwotoki, opatrunki, urazy i ewakuacja.</p>
-                        <span class="hcore-k9-cta">ZOBACZ PROGRAM</span>
+                        <span class="training-cta">ZOBACZ PROGRAM</span>
                     </a>
 
                     <a class="card card-link" id="ratownik-kpp-card" href="ratownik-kpp-w-strefie-walki.html" aria-label="Przejdź do podstrony Ratownik KPP w Strefie Walki">
                         <h3>Ratownik KPP w Strefie Walki</h3>
                         <p>Jednodniowy kurs praktyczny dla ratowników KPP: strefy Hot/Warm/Cold, kontrola krwotoków, wound packing, drogi oddechowe, urazy klatki piersiowej, ewakuacja i organizacja punktu pomocy.<br>Czas: 8 × 45 min + 2 przerwy po 15 min • Scenariusze Stress Lab • Certyfikat H-CORE EDU.</p>
+                        <span class="training-cta">ZOBACZ PROGRAM</span>
                     </a>
                     <a class="card card-link" id="trauma-workshop-card" href="trauma-workshop.html" aria-label="Przejdź do podstrony Trauma Workshop">
                         <h3>Trauma Workshop</h3>
                         <p>Interwencje urazowe w strefach Hot/Warm/Cold dla ZRM.<br>Seminarium praktyczne dla ratowników medycznych, oparte na założeniach TECC, STOP THE BLEED® oraz logice MARCH/PAWS.<br>Czas: 8 godz. dydaktycznych • Punkty edukacyjne: 8 pkt • Forma: warsztaty + scenariusze symulacyjne.</p>
+                        <span class="training-cta">ZOBACZ PROGRAM</span>
                     </a>
 
                     <a class="card card-link" id="tmtc-card" href="tactical-military-trauma-care.html" aria-label="Przejdź do podstrony Tactical Military Trauma Care (TMTC)">
                         <h3>Tactical Military Trauma Care (TMTC)</h3>
                         <p>TMTC – Tactical Military Trauma Care<br>Szkolenie urazowe dla środowiska wojskowego, oparte na aktualnych wytycznych TCCC / TECC, logice MARCH / PAWS oraz fazach działania analogicznych do Care Under Fire, Tactical Field Care i Tactical Evacuation Care.</p>
+                        <span class="training-cta">ZOBACZ PROGRAM</span>
                     </a>
                     <a class="card card-link" id="totc-card" href="tactical-officer-trauma-care.html" aria-label="Przejdź do podstrony Tactical Officer Trauma Care (TOTC)">
                         <h3>Tactical Officer Trauma Care (TOTC)</h3>
                         <p>Szkolenie operacyjne dla funkcjonariuszy oparte na wytycznych TCCC / TECC, ukierunkowane na kontrolę krwotoków i opiekę nad poszkodowanym w środowisku zagrożenia.</p>
+                        <span class="training-cta">ZOBACZ PROGRAM</span>
                     </a>
 
                 </div>
