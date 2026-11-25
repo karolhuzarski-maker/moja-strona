@@ -702,6 +702,11 @@
         #panel-szkolenia .card-link {display:flex;flex-direction:column;}
         #panel-szkolenia .card-link > p {margin-bottom:16px;}
         #panel-szkolenia .training-cta {display:inline-flex;align-items:center;align-self:flex-start;margin-top:auto;padding:9px 13px;border-radius:8px;border:1px solid rgba(209,11,11,.65);background:linear-gradient(180deg,#d10b0b,#8f0505);color:#fff;font-weight:800;font-size:13px;letter-spacing:.03em}
+
+        .home-kpp-promo {position:absolute;right:26px;top:50%;transform:translateY(-50%);display:block;width:250px;z-index:1;border-radius:10px;outline-offset:4px}
+        .home-kpp-promo img {display:block;width:100%;height:auto;border:1px solid rgba(255,255,255,.25);border-radius:10px;box-shadow:0 12px 36px rgba(0,0,0,.55);transition:filter .2s ease,border-color .2s ease}
+        .home-kpp-promo:hover img,.home-kpp-promo:focus-visible img {filter:brightness(1.12);border-color:rgba(255,255,255,.65)}
+        @media (max-width:1100px) {.home-kpp-promo {position:relative;right:auto;top:auto;transform:none;width:min(74vw,260px);margin:20px auto 2px}}
     </style>
 </head>
 
@@ -741,6 +746,9 @@
             <div class="pill">
                 <span>Krwotoki</span> • <span>Urazy</span> • <span>Zdarzenia mnogie</span> • <span>Blackout</span> • <span>Ewakuacja</span>
             </div>
+            <a class="home-kpp-promo" href="ratownik-kpp-w-strefie-walki.html" aria-label="Poznaj kurs Ratownik KPP w Strefie Walki, 21 stycznia 2027 w Krakowie">
+                <img src="assets/ratownik-kpp/kpp-krakow-21-01-2027.webp" width="1122" height="1402" alt="Ratownik KPP w Strefie Walki — Kraków, 21.01.2027, 500 zł" decoding="async">
+            </a>
         </section>
 
         <main class="content" id="content">
@@ -798,7 +806,7 @@
 
                     <a class="card card-link" id="ratownik-kpp-card" href="ratownik-kpp-w-strefie-walki.html" aria-label="Przejdź do podstrony Ratownik KPP w Strefie Walki">
                         <h3>Ratownik KPP w Strefie Walki</h3>
-                        <p>Jednodniowy kurs praktyczny dla ratowników KPP: strefy Hot/Warm/Cold, kontrola krwotoków, wound packing, drogi oddechowe, urazy klatki piersiowej, ewakuacja i organizacja punktu pomocy.<br>Czas: 8 × 45 min + 2 przerwy po 15 min • Scenariusze Stress Lab • Certyfikat H-CORE EDU.</p>
+                        <p>Jednodniowy kurs praktyczny dla ratowników KPP: strefy Hot/Warm/Cold, kontrola krwotoków, wound packing, drogi oddechowe, urazy klatki piersiowej, ewakuacja i organizacja punktu pomocy.<br>21.01.2027 • Kraków • 500 zł/os.<br>Czas: 8 × 60 min + 2 przerwy po 15 min • Scenariusze Stress Lab • Certyfikat H-CORE EDU.</p>
                         <span class="training-cta">ZOBACZ PROGRAM</span>
                     </a>
                     <a class="card card-link" id="trauma-workshop-card" href="trauma-workshop.html" aria-label="Przejdź do podstrony Trauma Workshop">
