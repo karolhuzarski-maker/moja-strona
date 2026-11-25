@@ -192,25 +192,57 @@ body.activity-page {
 .activity-page .k1k2-content .k1k2-date { color: #eef0f7; font-weight: 700; }
 .activity-page .k1k2-content h3 { margin-bottom: 12px; }
 .activity-page .k1k2-content p { margin-bottom: 10px; font-size: .97rem; }
-.activity-page .grid > .card.k1k2-thumb:first-child {
-  grid-column: 1 / -1;
+.activity-page .grid > .k1k2-feature-link { grid-column: 1 / -1; }
+.activity-page .k1k2-feature {
   display: grid;
-  grid-template-columns: minmax(300px, .95fr) minmax(0, 1.05fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  padding: 0;
 }
-.activity-page .grid > .card.k1k2-thumb:first-child > .k1k2-image-trigger { height: 100%; }
-.activity-page .grid > .card.k1k2-thumb:first-child > .k1k2-image-trigger img {
-  width: 100%;
-  height: 100% !important;
-  min-height: 310px !important;
-  max-height: 480px !important;
-  object-fit: contain !important;
-  background: #f2f2f2;
+.activity-page .k1k2-collage {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: minmax(180px, 1.15fr) minmax(155px, 1fr);
+  gap: 9px;
+  min-height: 420px;
+  padding: 16px;
+  background: #e7ebf2;
 }
-.activity-page .grid > .card.k1k2-thumb:first-child > .k1k2-content {
+.activity-page .k1k2-collage > div {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 3px 13px rgba(16, 27, 49, .16);
+}
+.activity-page .k1k2-collage-speaker { grid-column: 1 / -1; }
+.activity-page .k1k2-collage img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.activity-page .k1k2-collage-survey img { object-fit: cover; object-position: center 58%; }
+.activity-page .k1k2-feature .k1k2-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: clamp(24px, 3.5vw, 38px);
+}
+.activity-page .k1k2-feature-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  margin-top: 14px;
+  padding-top: 17px;
+  border-top: 1px solid var(--activity-line);
+  color: var(--activity-muted);
+  font-size: .9rem;
+}
+.activity-page .k1k2-feature-facts strong { display: block; color: #fff; font: 700 1.45rem/1.15 "Rajdhani", sans-serif; }
+.activity-page .k1k2-feature-cta {
+  align-self: flex-start;
+  margin-top: 21px;
+  padding: 10px 14px;
+  border: 1px solid rgba(227, 52, 64, .6);
+  border-radius: 8px;
+  background: rgba(227, 52, 64, .15);
+  color: #fff;
+  font-weight: 700;
 }
 .activity-page .grid > .partner-card {
   grid-column: 1 / -1;
@@ -323,7 +355,6 @@ body.activity-page {
   .activity-page header { flex-direction: column; align-items: stretch; }
   .activity-page header > a:first-child, .activity-page header .brand { align-self: center; }
   .activity-page header nav { justify-content: center; }
-  .activity-page .grid > .card.k1k2-thumb:first-child { grid-template-columns: .9fr 1.1fr; }
   .activity-page .gallery { grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
 @media (max-width: 700px) {
@@ -335,15 +366,10 @@ body.activity-page {
   .activity-page header nav a:nth-child(n+5) { grid-column:auto; }
   .activity-page .hero { padding: 21px; }
   .activity-page .grid { grid-template-columns: 1fr; gap: 14px; }
-  .activity-page .grid > .card.k1k2-thumb:first-child,
+  .activity-page .k1k2-feature,
   .activity-page .grid > .partner-card { grid-column:auto; grid-template-columns:1fr; }
-  .activity-page .grid > .card.k1k2-thumb:first-child > .k1k2-image-trigger { height:auto; }
-  .activity-page .grid > .card.k1k2-thumb:first-child > .k1k2-image-trigger img {
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: 340px !important;
-    object-fit: contain !important;
-  }
+  .activity-page .grid > .k1k2-feature-link { grid-column:auto; }
+  .activity-page .k1k2-collage { min-height: 330px; grid-template-rows: 185px 135px; padding: 10px; gap: 8px; }
   .activity-page .partner-card .partner-visual { min-height:0; aspect-ratio: 4 / 3; border-right:0; border-bottom:1px solid var(--activity-line); }
   .activity-page .grid .k1k2-thumb > img, .activity-page .grid .k1k2-thumb > .k1k2-image-trigger img { height:230px; max-height:230px; }
   .activity-page .wrap > section.card, .activity-page .wrap > article.card { padding:20px; }
