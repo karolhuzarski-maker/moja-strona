@@ -227,8 +227,13 @@ body.activity-page {
   min-height: 320px;
   padding: 23px;
   justify-content: flex-end;
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(rgba(11,12,15,.25), rgba(11,12,15,.45)),
+              url("/672467274_122118295113240909_8681924136325612474_n (1).jpg") center 32% / cover no-repeat;
+}
+.activity-page .action-link:hover .news-thumb,
+.activity-page .action-link:focus-visible .news-thumb {
+  background: linear-gradient(rgba(11,12,15,.25), rgba(11,12,15,.45)),
+              url("/672467274_122118295113240909_8681924136325612474_n (1).jpg") center 32% / cover no-repeat;
 }
 .activity-page .news-thumb h3,
 .activity-page .news-thumb p {
